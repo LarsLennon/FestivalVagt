@@ -10,6 +10,7 @@ import {
 } from "reactstrap";
 import { Routes, Route } from "react-router-dom";
 import Login from "../Login";
+import Profile from "../../pages/Profile";
 
 export default function NavMenu() {
   const [isOpen, setIsOpen] = useState(true);
@@ -30,7 +31,7 @@ export default function NavMenu() {
           <Nav className="me-auto" navbar>
 
           </Nav>
-          <NavLink href="/" className="text-dark">
+          <NavLink href="/login" className="text-dark">
             Admin Text
           </NavLink>
         </Collapse>
@@ -39,6 +40,7 @@ export default function NavMenu() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </div>
   );
