@@ -11,6 +11,9 @@ import {
 import { Routes, Route } from "react-router-dom";
 import Login from "../Login";
 import Profile from "../../pages/Profile";
+import Calendar from "../../pages/Calendar";
+import CalendarDays from "../../pages/CalendarDays";
+import CalendarTest from "../../pages/CalendarTest";
 
 export default function NavMenu() {
   const [isOpen, setIsOpen] = useState(true);
@@ -25,7 +28,7 @@ export default function NavMenu() {
         container
         light
       >
-        <NavbarBrand href="/login">SmukVagt</NavbarBrand>
+        <NavbarBrand href="/calendar">SmukVagt</NavbarBrand>
         <NavbarToggler onClick={toggle} className="mr-2" />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
@@ -41,6 +44,7 @@ export default function NavMenu() {
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/calendar" element={<Calendar />} />
       </Routes>
     </div>
   );
