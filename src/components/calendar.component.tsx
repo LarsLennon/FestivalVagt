@@ -7,6 +7,7 @@ export default function CalendarMonth() {
 
     let mDateObject = moment("2023-02-01")
 
+
     const weekdayshort = moment.weekdaysShort();
 
     const weekdayshortname = weekdayshort.map((day, index) => {
@@ -16,7 +17,6 @@ export default function CalendarMonth() {
             </th>
         );
     });
-
 
     const firstDayOfMonth = (): number => {
         let dateObject = mDateObject;
@@ -94,7 +94,8 @@ export default function CalendarMonth() {
 
         <div>
 
-            <h2>{mDateObject.months()}</h2>
+            <h2>{mDateObject.month()}</h2>
+            
             <Table hover>
 
                 <thead>
