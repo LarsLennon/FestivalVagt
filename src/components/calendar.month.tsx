@@ -18,7 +18,7 @@ interface Iprops {
 
 }
 
-export default function CalendarMonth2(props: Iprops) {
+export default function CalendarMonth(props: Iprops) {
 
     if (props.events == null) return (null);
 
@@ -38,7 +38,7 @@ export default function CalendarMonth2(props: Iprops) {
     let days = [];
 
     // Loop through week
-    let a = moment("2021-06-19").day("Monday").week(30); // Get first day of week
+    let a = moment("2021-06-19").day("Monday").week(31); // Get first day of week
     let b = moment(a).add(7, 'days');
     for (var m = moment(a); m.isBefore(b); m.add(1, 'days')) {
 
@@ -48,7 +48,7 @@ export default function CalendarMonth2(props: Iprops) {
                     <span className="date_my">{m.format('DD/MM')}</span>
                     {props.events.filter(event => moment(event.StartTime).isSame(m, 'day')).map(todaysEvent => (
                         <div key={todaysEvent.ShiftId}>
-                            <EventComponent event={todaysEvent}></EventComponent>
+                            <EventComponent event={todaysEvent} returnUrl = ""></EventComponent>
                         </div>
                     ))}
                 </td>
@@ -67,7 +67,6 @@ export default function CalendarMonth2(props: Iprops) {
     return (
 
         <div>
-            <CalenderHeader></CalenderHeader>
             <Table>
 
                 <thead>

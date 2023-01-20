@@ -1,82 +1,118 @@
 import './Calendar.css';
-import CalendarMonth from '../components/calendar.component';
 import { useEffect, useState } from 'react';
-import { BackendAPI } from '../services/api.service';
-import CalendarMonth2 from '../components/calendar2.component';
+import { useParams } from 'react-router-dom';
+import CalendarMonth from '../components/calendar.month';
+import CalenderHeader from '../components/calendar.header';
+import moment from 'moment';
+import CalendarWeek from '../components/calendar.week';
+import Shift from './modals/Shift';
+import AuthService from "../services/auth.service"
+import ApiService from '../services/api.service';
 
 interface IFooBar {
-    ShiftId?: number;
-    Name?: string;
-    Slots?: number;
-    StartTime?: string;
-    EndTime?: string;
+  ShiftId?: number;
+  Name?: string;
+  Slots?: number;
+  StartTime?: string;
+  EndTime?: string;
 
-  }
+}
 
 export default function Calendar() {
-    let itemInstance = {
-        header: "",
-        status: "",
-        from: "",
-        to: "",
-        bookingsCount: "",
-        bookingPercentage: "",
-        incidents: [],
-      };
-    const [itemResources, setItemResources] = useState(null);
-    const id = 0;
-    //console.log("Calendar");
-    const reloadItemResources = () => {
-        BackendAPI("Shifts")
-            .get()
-            .then((res) => {
-              setItemResources(res.data);
-              //console.log(res.data);
-            //console.log("Response");
-            //console.log("Response");
-            });
-      };
-    
+  const { time, index, modal, modalid } = useParams();
+  const returnUrl = "/calendar/" + time + "/" + index;
+  console.log(time);
+  let itemInstance = {
+    header: "",
+    status: "",
+    from: "",
+    to: "",
+    bookingsCount: "",
+    bookingPercentage: "",
+    incidents: [],
+  };
+  const [shifts, setShifts] = useState(null);
+  const id = 0;
+  
+  
+  const reloadItemResources = () => {    
+    const response = ApiService.getShifts().then(
+      (response) => {
+          //setErrorMessage("");
+          //console.log(response);
+              setShifts(response.data);
+          // this.props.router.navigate("/profile");
+          //   window.location.reload();
+      })
+  };
+
   useEffect(() => {
     reloadItemResources();
   }, [id]);
 
-    //const user: IFooBar = JSON.parse(itemResources!)
-    
-  //console.log(itemResources![1]);
-  const shift:IFooBar[] = itemResources!;
-  
-//   if(itemResources != null)
-//   {
-//     const shift:IFooBar[] = itemResources;
-//     console.log(shift[5].ShiftId);
-//     console.log(shift[5].StartTime);
-//     console.log(shift[5].EndTime);
 
-//   }
-const events = 
-[{
-    "ShiftId": 1,
-    "Name": "VoV Skranke",
-    "StartTime": "2021-06-19T08:15:00",
-    "EndTime": "2021-06-19T19:00:00",
-    "Slots": 5,
-    "TimeFactor": 1,
-    "SectionId": 1,
-},{
-    "ShiftId": 2,
-    "Name": "VoV Skranke",
-    "StartTime": "2021-06-19T08:15:00",
-    "EndTime": "2021-06-19T19:00:00",
-    "Slots": 5,
-    "TimeFactor": 1,
-    "SectionId": 1,
-}
-];
+  const events =
+    [{
+      "ShiftId": 1,
+      "Name": "VoV Skranke",
+      "StartTime": "2021-06-19T08:15:00",
+      "EndTime": "2021-06-19T19:00:00",
+      "Slots": 5,
+      "TimeFactor": 1,
+      "SectionId": 1,
+    }, {
+      "ShiftId": 2,
+      "Name": "VoV Skranke",
+      "StartTime": "2021-06-19T08:15:00",
+      "EndTime": "2021-06-19T19:00:00",
+      "Slots": 5,
+      "TimeFactor": 1,
+      "SectionId": 1,
+    }
+    ];
+
+  let currentIndex = 1;
+  if (shifts != null) {
+
+    if (index != null) {
+      currentIndex = Number(index)
+    }
+    else {
+      let shift: IFooBar = shifts[0];
+      currentIndex = moment(shift.StartTime).week();
+    }
+    if (Number(index) > 100) {
+      let shift: IFooBar = shifts[0];
+      console.log("Month: " + moment(shift.StartTime).week()) // Month will output from 0-11}
+    }
+  }
+
+  function RenderTimeSpan() {
+    if (time == "week") {
+      return (<CalendarWeek events={shifts!}></CalendarWeek>);
+    }
+    return (<CalendarMonth events={shifts!}></CalendarMonth>);
+  }
+
+  const renderModal = () => {
     return (
-        <div>
-            {/* <p>{itemResources![0]}</p> */}
-            <CalendarMonth2 events = {itemResources!}></CalendarMonth2>
-        </div>
+      <div>
+        <Shift
+          isOpen={modal == "shift"}
+          id={modalid ?? "0"}
+          returnUrl={returnUrl}
+        />
+      </div>
     );
+  };
+
+  return (
+    <div>
+      {renderModal()}
+      {/* <p>{itemResources![0]}</p> */}
+      <CalenderHeader index={currentIndex}></CalenderHeader>
+      {RenderTimeSpan()}
+      
+    </div>
+  );
 }

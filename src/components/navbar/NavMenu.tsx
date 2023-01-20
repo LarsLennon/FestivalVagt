@@ -45,6 +45,19 @@ export default function NavMenu() {
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/calendar" element={<Calendar />} />
+        
+        <Route
+            path="/calendar/:time/"
+            element={<Calendar/>}
+          />
+        <Route
+            path="/calendar/:time/:index"
+            element={<Calendar/>}
+          />
+          <Route
+              path="/calendar/:time/:index/:modal/:id"
+              element={<Calendar/>}
+            />
       </Routes>
     </div>
   );
