@@ -5,17 +5,10 @@ import { Badge, Table } from "reactstrap";
 import EventComponent from './event.component';
 import CalenderHeader from './calendar.header';
 import { useParams } from 'react-router-dom';
+import { ShiftDTO } from '../interface/interface';
 
-export interface IFooBar {
-    ShiftId?: number;
-    Name?: string;
-    Slots?: number;
-    StartTime?: string;
-    EndTime?: string;
-
-}
 interface Iprops {
-    events: IFooBar[];
+    events: ShiftDTO[];
 
 }
 

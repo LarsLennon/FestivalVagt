@@ -13,18 +13,21 @@ class ApiService {
     return axios.get(API_URL + ENDPOINTS.getShifts);
   }
   
-  acceptShift(id:string, item:string) {
+  getShift(id:number) {
+    return axios.get(API_URL + ENDPOINTS.getShifts + "/" + id);
+  }
+  
+  acceptShift(shiftId:number, memberId:number) {
     return axios.post(API_URL + ENDPOINTS.acceptShift, {
-      tetw: 2,
-      test: 2
+      ShiftId: shiftId,
+      memberId: memberId
     });
   }
 
   // AcceptShift() {
   //   return localStorage.getItem('token');
   // }
-
-
   
 }
+
 export default new ApiService();

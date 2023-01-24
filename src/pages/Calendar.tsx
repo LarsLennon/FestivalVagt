@@ -8,15 +8,8 @@ import CalendarWeek from '../components/calendar.week';
 import Shift from './modals/Shift';
 import AuthService from "../services/auth.service"
 import ApiService from '../services/api.service';
+import { ShiftDTO } from '../interface/interface';
 
-interface IFooBar {
-  ShiftId?: number;
-  Name?: string;
-  Slots?: number;
-  StartTime?: string;
-  EndTime?: string;
-
-}
 
 export default function Calendar() {
   const { time, index, modal, modalid } = useParams();
@@ -34,7 +27,7 @@ export default function Calendar() {
   const [shifts, setShifts] = useState(null);
   const id = 0;
   
-  
+
   const reloadItemResources = () => {    
     const response = ApiService.getShifts().then(
       (response) => {
@@ -78,11 +71,11 @@ export default function Calendar() {
       currentIndex = Number(index)
     }
     else {
-      let shift: IFooBar = shifts[0];
+      let shift: ShiftDTO = shifts[0];
       currentIndex = moment(shift.StartTime).week();
     }
     if (Number(index) > 100) {
-      let shift: IFooBar = shifts[0];
+      let shift: ShiftDTO = shifts[0];
       console.log("Month: " + moment(shift.StartTime).week()) // Month will output from 0-11}
     }
   }
@@ -101,6 +94,7 @@ export default function Calendar() {
           isOpen={modal == "shift"}
           id={modalid ?? "0"}
           returnUrl={returnUrl}
+          events={shifts!}
         />
       </div>
     );

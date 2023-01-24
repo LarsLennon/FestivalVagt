@@ -55,7 +55,7 @@ export default function NavMenu() {
             element={<Calendar/>}
           />
           <Route
-              path="/calendar/:time/:index/:modal/:id"
+              path="/calendar/:time/:index/:modal/:modalid"
               element={<Calendar/>}
             />
       </Routes>
