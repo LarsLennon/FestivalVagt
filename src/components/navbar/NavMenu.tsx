@@ -14,6 +14,7 @@ import Profile from "../../pages/Profile";
 import Calendar from "../../pages/Calendar";
 import CalendarDays from "../../pages/CalendarDays";
 import CalendarTest from "../../pages/CalendarTest";
+import ExampleEventComponent from "../exampleevent.component";
 
 export default function NavMenu() {
   const [isOpen, setIsOpen] = useState(true);
@@ -45,6 +46,7 @@ export default function NavMenu() {
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/calendar" element={<Calendar />} />
+        <Route path="/test" element={<ExampleEventComponent />} />
         
         <Route
             path="/calendar/:time/"

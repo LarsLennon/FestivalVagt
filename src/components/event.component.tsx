@@ -49,7 +49,7 @@ export default function EventComponent(props: Iprops) {
                                     color="danger"
                                 />
                                 <div className="shiftprogresstext">
-                                    1 of 5
+                                    1 of 5 shifts available
                                 </div>
                             </div>
                         )}

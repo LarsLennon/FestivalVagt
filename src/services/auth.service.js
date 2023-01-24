@@ -5,15 +5,16 @@ import jwt_decode from "jwt-decode";
 
 const API_URL = "http://localhost:72871/api/";
 
-const url = "https://localhost:7174/api/Login";
+const url = "https://localhost:44389/api/Login";
 
 class AuthService {
 
   login(username:any, password:any) {
-    var username = 'admin';
-    var basicAuth = 'Basic ' + btoa(username + ':' + password);
     return axios
-      .post(url, { basicAuth})
+      .post(url, {
+        username,
+        password
+      })
       .then(response => {
         if (response.data) {
           //const token = ;
