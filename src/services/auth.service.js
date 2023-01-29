@@ -5,7 +5,7 @@ import jwt_decode from "jwt-decode";
 
 const API_URL = "http://localhost:72871/api/";
 
-const url = "https://localhost:44389/api/Login";
+const url = "https://localhost:7217/api/Login";
 
 class AuthService {
 
@@ -22,7 +22,7 @@ class AuthService {
           var decoded = jwt_decode(response.data);
           console.log("Added token");
           console.log(decoded);
-          localStorage.setItem("username", decoded.username);
+          localStorage.setItem("username", decoded.name);
         }
 
         console.log(response);
@@ -30,7 +30,7 @@ class AuthService {
       });
   }
   
-  getCurrentUser() {
+  getUserToken() {
     return localStorage.getItem('token');
   }
   

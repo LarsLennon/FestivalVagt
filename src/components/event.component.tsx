@@ -14,21 +14,9 @@ export default function EventComponent(props: Iprops) {
 
     const mapMembers = props.event.Members.map((Member, index) => {
         return (
-            // <div key={index}><b>{Member.Name}</b></div>
-
-            <li>
+            <li key={index}>
                 {Member.Name}
             </li>
-        );
-    });
-
-    const renderMembers = props.event.Members.map((Member, index) => {
-        return (
-            <div className="event-list">
-            <List >
-                {mapMembers}
-            </List>
-            </div>
         );
     });
 
@@ -53,7 +41,11 @@ export default function EventComponent(props: Iprops) {
                                 </div>
                             </div>
                         )}
-                        {renderMembers}
+                        <div className="event-list">
+                            <List >
+                                {mapMembers}
+                            </List>
+                        </div>
                     </div>
                 </div>
             </div>

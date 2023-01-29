@@ -15,13 +15,15 @@ import Calendar from "../../pages/Calendar";
 import CalendarDays from "../../pages/CalendarDays";
 import CalendarTest from "../../pages/CalendarTest";
 import ExampleEventComponent from "../exampleevent.component";
+import authService from "../../services/auth.service";
+import MyShifts from "../../pages/MyShifts";
 
 export default function NavMenu() {
   const [isOpen, setIsOpen] = useState(true);
 
   const toggle = () => setIsOpen(!isOpen);
 
-
+  const username = authService.getCurrentUsername();
   return (
     <div>
       <Navbar
@@ -34,9 +36,12 @@ export default function NavMenu() {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
 
+          <NavLink href="/shifts" className="text-dark">
+            Mine Vagter
+          </NavLink>
           </Nav>
           <NavLink href="/login" className="text-dark">
-            Admin Text
+            {username ? username : "Login"}
           </NavLink>
         </Collapse>
       </Navbar>
@@ -45,6 +50,7 @@ export default function NavMenu() {
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/shifts" element={<MyShifts />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/test" element={<ExampleEventComponent />} />
         

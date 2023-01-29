@@ -95,6 +95,7 @@ export default function Calendar() {
           id={modalid ?? "0"}
           returnUrl={returnUrl}
           events={shifts!}
+          refetch={reloadItemResources}
         />
       </div>
     );
