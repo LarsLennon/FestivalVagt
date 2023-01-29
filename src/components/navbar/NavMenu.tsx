@@ -17,6 +17,7 @@ import CalendarTest from "../../pages/CalendarTest";
 import ExampleEventComponent from "../exampleevent.component";
 import authService from "../../services/auth.service";
 import MyShifts from "../../pages/MyShifts";
+import Members from "../../pages/Members";
 
 export default function NavMenu() {
   const [isOpen, setIsOpen] = useState(true);
@@ -39,6 +40,11 @@ export default function NavMenu() {
           <NavLink href="/shifts" className="text-dark">
             Mine Vagter
           </NavLink>
+
+        <NavLink href="/members" className="text-dark">
+          Medhjælpere
+        </NavLink>
+        
           </Nav>
           <NavLink href="/login" className="text-dark">
             {username ? username : "Login"}
@@ -51,6 +57,7 @@ export default function NavMenu() {
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/shifts" element={<MyShifts />} />
+        <Route path="/members" element={<Members />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/test" element={<ExampleEventComponent />} />
         
