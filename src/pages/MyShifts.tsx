@@ -23,7 +23,7 @@ export default function MyShifts() {
 
     const mapShifts = shifts.map((shift: ShiftDTO, index: number) => {
         return (
-            <ListGroupItem>
+            <ListGroupItem key={index}>
                 <div className="d-flex w-100 justify-content-between">
                     <h5 className="mb-1">{moment(shift.StartTime).format("HH:mm")} - {moment(shift.EndTime).format("HH:mm")}</h5>
                     <small>10,5 timer</small>
