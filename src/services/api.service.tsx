@@ -65,6 +65,10 @@ class ApiService {
   getSection(id:number) {
     return axios.get(API_URL + ENDPOINTS.sectionController + "/" + id, { headers: authHeader() });
   }
+  
+  getSections() {
+    return axios.get(API_URL + ENDPOINTS.sectionController, { headers: authHeader() });
+  }
 
   
   importShifts(id:number, selectedFile:any) {

@@ -29,7 +29,7 @@ export interface MembaTeamDTO {
 
 
 export interface SectionDTO {
-  sectionId: number;
+  sectionId: string;
   ShiftId?: number;
   name?: string;
   Slots?: number;

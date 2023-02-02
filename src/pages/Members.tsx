@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { Col, Container, ListGroup, ListGroupItem, Row, Table } from "reactstrap";
 import { MemberDTO, ShiftDTO } from "../interface/interface";
 import apiService from "../services/api.service";
-import ApiService from '../services/api.service';
 import { BsSearch } from 'react-icons/bs';
 
 export default function Members() {
@@ -12,7 +11,7 @@ export default function Members() {
 
     const [apiData, setApiData] = useState<MemberDTO[]>([]);
     const reloadItemResources = () => {
-        const response = ApiService.getMembers().then(
+        const response = apiService.getMembers().then(
             (response) => {
                 setApiData(response.data);
             })

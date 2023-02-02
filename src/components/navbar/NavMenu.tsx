@@ -24,6 +24,7 @@ import Team from "../../pages/manage/Team";
 import SectionCreate from "../../pages/manage/Section.Create";
 import SectionDetails from "../../pages/manage/Section.Details";
 import SectionImport from "../../pages/manage/Section.Import";
+import SectionSelector from "./SectionSelector";
 
 export default function NavMenu() {
   const [isOpen, setIsOpen] = useState(true);
@@ -43,18 +44,19 @@ export default function NavMenu() {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
 
-          <NavLink href="/shifts" className="text-dark">
-            Mine Vagter
-          </NavLink>
+            <NavLink href="/shifts" className="text-dark">
+              Mine Vagter
+            </NavLink>
 
-        <NavLink href="/members" className="text-dark">
-          Medhjælpere
-        </NavLink>
+            <NavLink href="/members" className="text-dark">
+              Medhjælpere
+            </NavLink>
 
-      <NavLink href="/team" className="text-dark">
-        Hold
-      </NavLink>
-        
+            <NavLink href="/team" className="text-dark">
+              Hold
+            </NavLink>
+            <SectionSelector></SectionSelector>
+
           </Nav>
           <NavLink href="/login" className="text-dark">
             {username ? username : "Login"}
@@ -76,19 +78,19 @@ export default function NavMenu() {
         <Route path="/members" element={<Members />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/test" element={<ExampleEventComponent />} />
-        
+
         <Route
-            path="/calendar/:time/"
-            element={<Calendar/>}
-          />
+          path="/calendar/:time/"
+          element={<Calendar />}
+        />
         <Route
-            path="/calendar/:time/:index"
-            element={<Calendar/>}
-          />
-          <Route
-              path="/calendar/:time/:index/:modal/:modalid"
-              element={<Calendar/>}
-            />
+          path="/calendar/:time/:index"
+          element={<Calendar />}
+        />
+        <Route
+          path="/calendar/:time/:index/:modal/:modalid"
+          element={<Calendar />}
+        />
       </Routes>
     </div>
   );
