@@ -58,7 +58,7 @@ export default function TeamSync() {
     <Container fluid="lg">
       <input
         type="search"
-        placeholder="Search here"
+        placeholder="Søg"
         onChange={handleChange}
         value={searchInput} />
 

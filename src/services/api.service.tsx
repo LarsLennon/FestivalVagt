@@ -7,6 +7,7 @@ export const ENDPOINTS = {
   getShifts: "shifts",
   teamController: "team",
   membaController: "memba",
+  membersController: "members",
   sectionController: "sections",
   shiftController: "shifts",
   acceptShift: "shiftcrew",
@@ -41,10 +42,17 @@ class ApiService {
   getShift(id:number) {
     return axios.get(API_URL + ENDPOINTS.getShifts + "/" + id, { headers: authHeader() });
   }
-  
   getMembersShifts() {
     return axios.get(API_URL + ENDPOINTS.getMembersShifts, { headers: authHeader() });
   }
+
+  /*
+  * Members
+  */  
+  getMembers() {
+    return axios.get(API_URL + ENDPOINTS.membersController, { headers: authHeader() });
+  }
+
   /*
   * Sections
   */

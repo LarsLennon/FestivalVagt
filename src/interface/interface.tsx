@@ -1,7 +1,8 @@
 
 export interface MemberDTO {
-  Name?: string;
-  MemberId?: number;
+  name?: string;
+  memberId?: number;
+  membaNumber?: string;
 
 }
 export interface TeamDetailsDTO {

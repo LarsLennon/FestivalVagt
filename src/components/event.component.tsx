@@ -16,7 +16,7 @@ export default function EventComponent(props: Iprops) {
     const mapMembers = props.event.Members.map((Member, index) => {
         return (
             <li key={index}>
-                {Member.Name}
+                {Member.name}
             </li>
         );
     });
