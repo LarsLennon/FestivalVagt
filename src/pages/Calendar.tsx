@@ -49,26 +49,6 @@ export default function Calendar() {
   }, [sectionId]);
 
 
-  const events =
-    [{
-      "ShiftId": 1,
-      "Name": "VoV Skranke",
-      "StartTime": "2021-06-19T08:15:00",
-      "EndTime": "2021-06-19T19:00:00",
-      "Slots": 5,
-      "TimeFactor": 1,
-      "SectionId": 1,
-    }, {
-      "ShiftId": 2,
-      "Name": "VoV Skranke",
-      "StartTime": "2021-06-19T08:15:00",
-      "EndTime": "2021-06-19T19:00:00",
-      "Slots": 5,
-      "TimeFactor": 1,
-      "SectionId": 1,
-    }
-    ];
-
   let currentIndex = 1;
   if (shifts != null && shifts!.length > 0) {
 
@@ -77,11 +57,11 @@ export default function Calendar() {
     }
     else {
       let shift: ShiftDTO = shifts[0];
-      currentIndex = moment(shift.StartTime).week();
+      currentIndex = moment(shift.startTime).week();
     }
     if (Number(index) > 100) {
       let shift: ShiftDTO = shifts[0];
-      console.log("Month: " + moment(shift.StartTime).week()) // Month will output from 0-11}
+      console.log("Month: " + moment(shift.startTime).week()) // Month will output from 0-11}
     }
   }
 

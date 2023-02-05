@@ -35,7 +35,7 @@ export default function CalendarWeek(props: Iprops) {
     let Newdays = [];
 
     // Loop through week
-    let a = moment("2021-06-19").day("Monday").week(parseInt(index!)); // Get first day of week
+    let a = moment("2022-06-19").day("Monday").week(parseInt(index!)); // Get first day of week
     let b = moment(a).add(7, 'days');
     for (var m = moment(a); m.isBefore(b); m.add(1, 'days')) {
 
@@ -43,8 +43,8 @@ export default function CalendarWeek(props: Iprops) {
             <React.Fragment key={m.format('YYYY-MM-DD')}>
                 <td key={m.format('YYYY-MM-DD')} className="event-td">
                     <span className="date_my">{m.format('DD/MM')}</span>
-                    {props.events.filter(event => moment(event.StartTime).isSame(m, 'day')).map(todaysEvent => (
-                        <div key={todaysEvent.ShiftId}>
+                    {props.events.filter(event => moment(event.startTime).isSame(m, 'day')).map(todaysEvent => (
+                        <div key={todaysEvent.shiftId}>
                             <EventComponent event={todaysEvent} returnUrl={returnUrl}></EventComponent>
                         </div>
                     ))}
@@ -57,10 +57,10 @@ export default function CalendarWeek(props: Iprops) {
         Newdays.push(
             <React.Fragment key={m.format('YYYY-MM-DD')}>
                     <div className='w-100 d-md-none'></div>
-                    <div className="col nopadding">
+                    <div className="col-md-3 col-xl nopadding">
                         <h4>{m.format('DD/MM')}</h4>
-                    {props.events.filter(event => moment(event.StartTime).isSame(m, 'day')).map(todaysEvent => (
-                        <div key={todaysEvent.ShiftId}>
+                    {props.events.filter(event => moment(event.startTime).isSame(m, 'day')).map(todaysEvent => (
+                        <div key={todaysEvent.shiftId}>
                             <EventComponent event={todaysEvent} returnUrl={returnUrl}></EventComponent>
                         </div>
                     ))}

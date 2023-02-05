@@ -40,8 +40,8 @@ export default function CalendarMonth(props: Iprops) {
             <React.Fragment key={m.format('YYYY-MM-DD')}>
                 <td key={m.format('YYYY-MM-DD')} className="event-td">
                     <span className="date_my">{m.format('DD/MM')}</span>
-                    {props.events.filter(event => moment(event.StartTime).isSame(m, 'day')).map(todaysEvent => (
-                        <div key={todaysEvent.ShiftId}>
+                    {props.events.filter(event => moment(event.startTime).isSame(m, 'day')).map(todaysEvent => (
+                        <div key={todaysEvent.shiftId}>
                             <EventComponent event={todaysEvent} returnUrl = ""></EventComponent>
                         </div>
                     ))}

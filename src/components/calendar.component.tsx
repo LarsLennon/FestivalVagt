@@ -35,7 +35,7 @@ export default function CalendarMonth() {
 
 
     let daysInMonth = [];
-    for (let d = 1; d <= 30; d++) {
+    for (let d = 1; d <= (7*5)-blanks.length; d++) {
         daysInMonth.push(
 
             <td key={d+100} className="event-td">

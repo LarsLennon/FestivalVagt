@@ -25,6 +25,7 @@ import SectionCreate from "../../pages/manage/Section.Create";
 import SectionDetails from "../../pages/manage/Section.Details";
 import SectionImport from "../../pages/manage/Section.Import";
 import SectionSelector from "./SectionSelector";
+import CalendarMonth from "../calendar.component";
 
 export default function NavMenu() {
   const [isOpen, setIsOpen] = useState(true);
@@ -77,7 +78,7 @@ export default function NavMenu() {
         <Route path="/manage/import/:id" element={<SectionImport />} />
         <Route path="/members" element={<Members />} />
         <Route path="/calendar" element={<Calendar />} />
-        <Route path="/test" element={<CalendarTest />} />
+        <Route path="/test" element={<CalendarMonth />} />
 
         <Route
           path="/calendar/:time/"

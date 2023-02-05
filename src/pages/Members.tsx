@@ -52,9 +52,9 @@ export default function Members() {
           </th>
           <td>{filteredItem.name}</td>
           <td>{filteredItem.membaNumber}</td>
-          <td>{filteredItem.driver ? <ImCheckboxUnchecked /> : <ImCheckboxUnchecked />}</td>
-          <td>{filteredItem.driver ? <ImCheckboxUnchecked /> : <ImCheckboxUnchecked />}</td>
-          <td>{filteredItem.driver ? <ImCheckboxUnchecked /> : <ImCheckboxUnchecked />}</td>
+          <td>{filteredItem.driver ? <ImCheckboxChecked /> : <ImCheckboxUnchecked />}</td>
+          <td>{filteredItem.experienced ? <ImCheckboxChecked /> : <ImCheckboxUnchecked />}</td>
+          <td>{filteredItem.firstAid ? <ImCheckboxChecked /> : <ImCheckboxUnchecked />}</td>
           <td>{filteredItem.units}</td>
           <td></td>
         </tr>

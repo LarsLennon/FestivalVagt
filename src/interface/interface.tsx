@@ -58,11 +58,11 @@ export interface SectionCreateDTO {
 }
 
 export interface ShiftDTO {
-  ShiftId?: number;
-  Name?: string;
-  Slots?: number;
-  StartTime?: string;
-  EndTime?: string;
-  Members: MemberDTO[];
+  shiftId?: number;
+  name?: string;
+  slots?: number;
+  startTime?: string;
+  endTime?: string;
+  members: MemberDTO[];
 
 }
