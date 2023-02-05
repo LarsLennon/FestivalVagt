@@ -3,7 +3,6 @@ import { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ButtonGroup, Button, Container, Col, Row } from "reactstrap";
 import "./calendar.header.css"
-import useStateContext from "../hooks/useStateContext";
 import { useGlobalContext } from "../hooks/GlobalContent";
 
 interface Iprops {
@@ -11,27 +10,24 @@ interface Iprops {
 }
 export default function CalenderHeader(props: Iprops) {
     //const { currentUser, setcurrentUser } = useContext(CurrentUserContext);
-    const { copy, setCopy } = useGlobalContext()
+    //const { copy, setCopy } = useGlobalContext()
     const { sectionId, setSectionId } = useGlobalContext()
 
     const { time, index } = useParams();
     const navigate = useNavigate();
-    const [prevEnabled, setPrevEnabled] = useState(1);
-    const [nextEnabled, setNextEnabled] = useState(true);
-    const { context, setContext } = useStateContext();
     const close = () => navigate("Calendar/Lars");
 
     let mDateObject = moment("2023-02-01")
 
     const weekdays = ['Januar', 'Februar', 'Marts', 'April', 'Maj', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'December'];
     let currentTime = "";
-    if (time == null || time == "") {
-        navigate("/calendar/week")
-    }
-    else {
-        currentTime = time;
-        //setNextEnabled(true)
-    }
+    // if (time == null || time == "") {
+    //     navigate("/calendar/week")
+    // }
+    // else {
+    //     currentTime = time;
+    //     //setNextEnabled(true)
+    // }
     //setNextEnabled(false)
 
     function HeaderText() {
@@ -43,7 +39,7 @@ export default function CalenderHeader(props: Iprops) {
 
     return (
         <Container fluid>
-            <h2 className="headertext"> {sectionId} 1234 Walthers VoV {context.participantId}</h2>
+            <h2 className="headertext"> 1234 Walthers VoV - {sectionId} </h2>
             <Row>
                 <Col>
                     <ButtonGroup>

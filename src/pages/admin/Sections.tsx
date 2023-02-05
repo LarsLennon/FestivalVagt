@@ -12,16 +12,6 @@ interface IFooBar {
 }
 export default function Sections() {
 
-  const [shifts, setShifts] = useState<ShiftDTO[]>([]);
-  const loadApiData = () => {
-    const response = apiService.getShifts().then(
-      (response) => {
-        setShifts(response.data);
-      })
-  };
-  useEffect(() => {
-    loadApiData();
-  }, []);
 
   return (
     <div>

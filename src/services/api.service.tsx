@@ -18,8 +18,8 @@ export const ENDPOINTS = {
 class ApiService {
 
   //return axios.get(API_URL + 'user', { headers: authHeader() });
-  getShifts() {
-    return axios.get(API_URL + ENDPOINTS.getShifts, { headers: authHeader() });
+  getShifts(id:string) {
+    return axios.get(API_URL + ENDPOINTS.getShifts + "/section/" + id, { headers: authHeader() });
   }
   
   getTeams() {
@@ -49,8 +49,8 @@ class ApiService {
   /*
   * Members
   */  
-  getMembers() {
-    return axios.get(API_URL + ENDPOINTS.membersController, { headers: authHeader() });
+  getMembers(sectionId:string) {
+    return axios.get(API_URL + ENDPOINTS.membersController + "/section/" + sectionId, { headers: authHeader() });
   }
 
   /*
@@ -71,7 +71,7 @@ class ApiService {
   }
 
   
-  importShifts(id:number, selectedFile:any) {
+  importShifts(id:string, selectedFile:any) {
       var formData = new FormData();
       formData.append("file", selectedFile);
 

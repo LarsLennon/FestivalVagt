@@ -9,9 +9,11 @@ import Shift from './modals/Shift';
 import AuthService from "../services/auth.service"
 import ApiService from '../services/api.service';
 import { ShiftDTO } from '../interface/interface';
+import { useGlobalContext } from '../hooks/GlobalContent';
 
 
 export default function Calendar() {
+  const { sectionId, setSectionId } = useGlobalContext();
   const { time, index, modal, modalid } = useParams();
   const returnUrl = "/calendar/" + time + "/" + index;
   console.log(time);
@@ -24,24 +26,27 @@ export default function Calendar() {
     bookingPercentage: "",
     incidents: [],
   };
-  const [shifts, setShifts] = useState(null);
+  const [shifts, setShifts] = useState([]);
   const id = 0;
-  
 
-  const reloadItemResources = () => {    
-    const response = ApiService.getShifts().then(
+
+  const reloadItemResources = () => {
+    const response = ApiService.getShifts(sectionId).then(
       (response) => {
-          //setErrorMessage("");
-          //console.log(response);
-              setShifts(response.data);
-          // this.props.router.navigate("/profile");
-          //   window.location.reload();
+        //setErrorMessage("");
+        //console.log(response);
+        setShifts(response.data);
+
+        // this.props.router.navigate("/profile");
+        //   window.location.reload();
       })
   };
 
   useEffect(() => {
-    reloadItemResources();
-  }, [id]);
+    if (sectionId != "") {
+      reloadItemResources();
+    }
+  }, [sectionId]);
 
 
   const events =
@@ -65,7 +70,7 @@ export default function Calendar() {
     ];
 
   let currentIndex = 1;
-  if (shifts != null) {
+  if (shifts != null && shifts!.length > 0) {
 
     if (index != null) {
       currentIndex = Number(index)
@@ -81,10 +86,13 @@ export default function Calendar() {
   }
 
   function RenderTimeSpan() {
-    if (time == "week") {
-      return (<CalendarWeek events={shifts!}></CalendarWeek>);
+    if (shifts != null && shifts!.length > 0) {
+      if (time == "week") {
+        return (<CalendarWeek events={shifts!}></CalendarWeek>);
+      }
+      return (<CalendarMonth events={shifts!}></CalendarMonth>);
     }
-    return (<CalendarMonth events={shifts!}></CalendarMonth>);
+    return (<h6>Ingen  vagter blev fundet</h6>);
   }
 
   const renderModal = () => {
@@ -107,7 +115,7 @@ export default function Calendar() {
       {/* <p>{itemResources![0]}</p> */}
       <CalenderHeader index={currentIndex}></CalenderHeader>
       {RenderTimeSpan()}
-      
+
     </div>
   );
 }

@@ -1,10 +1,15 @@
 
 export interface MemberDTO {
-  name?: string;
   memberId?: number;
+  name?: string;
   membaNumber?: string;
+  driver?:boolean;
+  experienced?:boolean;
+  firstAid?:boolean;
+  units?:number;
 
 }
+
 export interface TeamDetailsDTO {
   teamId: number;
   name?: string;
@@ -38,7 +43,7 @@ export interface SectionDTO {
 }
 
 export interface SectionDetailsDTO {
-  sectionId: number;
+  sectionId: string;
   ShiftId?: number;
   name?: string;
   Slots?: number;
