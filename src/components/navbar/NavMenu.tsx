@@ -77,7 +77,7 @@ export default function NavMenu() {
         <Route path="/manage/import/:id" element={<SectionImport />} />
         <Route path="/members" element={<Members />} />
         <Route path="/calendar" element={<Calendar />} />
-        <Route path="/test" element={<ExampleEventComponent />} />
+        <Route path="/test" element={<CalendarTest />} />
 
         <Route
           path="/calendar/:time/"

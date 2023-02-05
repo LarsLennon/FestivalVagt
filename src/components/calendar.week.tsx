@@ -1,7 +1,7 @@
 import '../pages//Calendar.css';
 import moment from "moment";
 import React from "react";
-import { Badge, Table } from "reactstrap";
+import { Badge, Col, Container, Row, Table } from "reactstrap";
 import EventComponent from './event.component';
 import CalenderHeader from './calendar.header';
 import { useParams } from 'react-router-dom';
@@ -32,6 +32,7 @@ export default function CalendarWeek(props: Iprops) {
     });
 
     let days = [];
+    let Newdays = [];
 
     // Loop through week
     let a = moment("2021-06-19").day("Monday").week(parseInt(index!)); // Get first day of week
@@ -51,6 +52,22 @@ export default function CalendarWeek(props: Iprops) {
             </React.Fragment>);
     }
 
+    for (var m = moment(a); m.isBefore(b); m.add(1, 'days')) {
+
+        Newdays.push(
+            <React.Fragment key={m.format('YYYY-MM-DD')}>
+                    <div className='w-100 d-md-none'></div>
+                    <div className="col nopadding">
+                        <h4>{m.format('DD/MM')}</h4>
+                    {props.events.filter(event => moment(event.StartTime).isSame(m, 'day')).map(todaysEvent => (
+                        <div key={todaysEvent.ShiftId}>
+                            <EventComponent event={todaysEvent} returnUrl={returnUrl}></EventComponent>
+                        </div>
+                    ))}
+                    </div>
+            </React.Fragment>);
+    }
+
     const renderEvents = days.map((ShiftId, index) => {
         return (
             <React.Fragment key={index}>
@@ -59,21 +76,25 @@ export default function CalendarWeek(props: Iprops) {
         );
     });
 
+    const renderNewEvents = Newdays.map((ShiftId, index) => {
+        return (
+            <React.Fragment key={index}>
+            {ShiftId}
+            </React.Fragment>
+        );
+    });
 
     return (
 
         <div>
-            <Table>
 
-                <thead>
-                    <tr>{weekdayshortname}</tr>
-                </thead>
+            <Container fluid>
 
-                <tbody>
-                    <tr>{renderEvents}</tr>
-                </tbody>
+                <div className="row">
+                {renderNewEvents}
+                </div>
+            </Container>
 
-            </Table>
         </div>
 
     );

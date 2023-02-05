@@ -1,5 +1,5 @@
 function CalendarDays(props: any) {
-  const firstDayOfMonth = new Date(props.day.getFullYear(), props.day.getMonth(), 1);
+  const firstDayOfMonth = new Date(2023, 1, 1);
   const weekdayOfFirstDay = firstDayOfMonth.getDay();
   let currentDays = [];
 
@@ -13,11 +13,11 @@ function CalendarDays(props: any) {
     }
 
     let calendarDay = {
-      currentMonth: (firstDayOfMonth.getMonth() === props.day.getMonth()),
+      currentMonth: (firstDayOfMonth.getMonth() === 1),
       date: (new Date(firstDayOfMonth)),
       month: firstDayOfMonth.getMonth(),
       number: firstDayOfMonth.getDate(),
-      selected: (firstDayOfMonth.toDateString() === props.day.toDateString()),
+      selected: false,
       year: firstDayOfMonth.getFullYear()
     }
 
@@ -26,6 +26,7 @@ function CalendarDays(props: any) {
 
   return (
     <div className="table-content">
+
       {
         currentDays.map((day) => {
           return (
