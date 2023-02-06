@@ -10,7 +10,9 @@ interface Iprops {
     lastShiftDate: string;
 }
 export default function CalenderHeader(props: Iprops) {
-    const { sectionId, setSectionId } = useGlobalContext()
+    const { sectionName } = useGlobalContext()
+    const { calendarTimeline, setCalendarTimeline } = useGlobalContext()
+    const { calendarDate, setCalendarDate } = useGlobalContext()
 
     const { time, index } = useParams();
     const navigate = useNavigate();
@@ -20,25 +22,71 @@ export default function CalenderHeader(props: Iprops) {
     let currentTime = "";
 
     function HeaderText() {
-        if (time == "week") {
-            return (<h2 className="headertext">Uge</h2>);
+        if (calendarTimeline == "week") {
+            return (<h2 className="headertext">Uge {moment(calendarDate).week()}</h2>);
         }
-        return (<h2 className="headertext">{weekdays[0]}</h2>);
+        let month = moment(calendarDate).month();
+        console.log(moment().month(calendarDate))
+        return (<h2 className="headertext">{weekdays[month]}</h2>);
     }
+
+    function momentFormat(date:any) {
+        return moment(date).format("yyyy-MM-DD")
+    }
+
+    function handleMonth() {
+        setCalendarTimeline("month")
+    }
+
+    function handleWeek() {
+        setCalendarTimeline("week")
+    }
+
+    function handleAll() {
+        setCalendarTimeline("all")
+    }
+
+   
+    function handlePrev() {
+        if(calendarTimeline == "month")
+        {
+            let nextDate = moment(calendarDate).subtract(1, 'month');
+            setCalendarDate(momentFormat(nextDate))
+        }
+        if(calendarTimeline == "week")
+        {
+            let nextDate = moment(calendarDate).subtract(1, 'week');
+            setCalendarDate(momentFormat(nextDate))
+        }
+    }
+
+    function handleNext() {
+        if(calendarTimeline == "month")
+        {
+            let nextDate = moment(calendarDate).add(1, 'month');
+            setCalendarDate(momentFormat(nextDate))
+        }
+        if(calendarTimeline == "week")
+        {
+            let nextDate = moment(calendarDate).add(1, 'week');
+            setCalendarDate(momentFormat(nextDate))
+        }
+    }
+
 
     return (
         <Container fluid>
-            <h2 className="headertext"> 1234 Walthers VoV - {sectionId} </h2>
+            <h2 className="headertext">{sectionName} </h2>
             <Row>
                 <Col>
                     <ButtonGroup>
-                        <Button onClick={() => navigate("/calendar/" + currentTime + "/")}>
+                        <Button onClick={handlePrev}>
                             Tilbage
                         </Button>
                         <Button>
                             Dags Dato
                         </Button>
-                        <Button onClick={() => navigate("/calendar/" + currentTime + "/")}>
+                        <Button onClick={handleNext}>
                             Frem
                         </Button>
                     </ButtonGroup>
@@ -49,15 +97,18 @@ export default function CalenderHeader(props: Iprops) {
                 <Col>
                     <div style={{ display: "flex" }}>
                         <ButtonGroup style={{ marginLeft: "auto" }}>
-                            <Button onClick={() => navigate("/calendar/week")}>
+                            <Button onClick={handleWeek}>
                                 Uge
                             </Button>
-                            <Button onClick={() => navigate("/calendar/month")}>
+                            <Button onClick={handleMonth}>
                                 Måned
                             </Button>
-                            <Button onClick={() => setSectionId("Hurra")}>
-                                setContext
+                            <Button onClick={handleAll}>
+                                Alle
                             </Button>
+                            {/* <Button onClick={() => setSectionId("Hurra")}>
+                                setContext
+                            </Button> */}
                         </ButtonGroup>
                     </div>
                 </Col>

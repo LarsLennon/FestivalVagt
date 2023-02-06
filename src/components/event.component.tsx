@@ -49,12 +49,12 @@ export default function EventComponent(props: Iprops) {
                                 <ProgressAvailable total={props.event.slots!} occupied={props.event.members.length}></ProgressAvailable>
                             </div>
                         )}
-                        {/* <div className="event-list">
+                        <div className="event-list">
                             <List>
                                 {mapMembers}
                                 {mapblanks}
                             </List>
-                        </div> */}
+                        </div>
                     </div>
                 </div>
             </div>

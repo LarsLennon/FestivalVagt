@@ -12,9 +12,6 @@ import { Routes, Route } from "react-router-dom";
 import Login from "../Login";
 import Profile from "../../pages/Profile";
 import Calendar from "../../pages/Calendar";
-import CalendarDays from "../../pages/CalendarDays";
-import CalendarTest from "../../pages/CalendarTest";
-import ExampleEventComponent from "../exampleevent.component";
 import authService from "../../services/auth.service";
 import MyShifts from "../../pages/MyShifts";
 import Members from "../../pages/Members";
@@ -25,7 +22,6 @@ import SectionCreate from "../../pages/manage/Section.Create";
 import SectionDetails from "../../pages/manage/Section.Details";
 import SectionImport from "../../pages/manage/Section.Import";
 import SectionSelector from "./SectionSelector";
-import CalendarMonth from "../calendar.component";
 
 export default function NavMenu() {
   const [isOpen, setIsOpen] = useState(true);
@@ -45,6 +41,10 @@ export default function NavMenu() {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
 
+            <NavLink href="/calendar" className="text-dark">
+              Kalender
+            </NavLink>
+
             <NavLink href="/shifts" className="text-dark">
               Mine Vagter
             </NavLink>
@@ -57,9 +57,9 @@ export default function NavMenu() {
               Hold
             </NavLink>
             <SectionSelector></SectionSelector>
-          <NavLink href="/test" className="text-dark">
-            Test
-          </NavLink>
+            <NavLink href="/test" className="text-dark">
+              Test
+            </NavLink>
 
           </Nav>
           <NavLink href="/login" className="text-dark">
@@ -81,7 +81,7 @@ export default function NavMenu() {
         <Route path="/manage/import/:id" element={<SectionImport />} />
         <Route path="/members" element={<Members />} />
         <Route path="/calendar" element={<Calendar />} />
-        <Route path="/test" element={<CalendarMonth />} />
+        {/* <Route path="/test" element={<CalendarMonth />} /> */}
 
         <Route
           path="/calendar/:time/"
