@@ -6,35 +6,24 @@ import "./calendar.header.css"
 import { useGlobalContext } from "../hooks/GlobalContent";
 
 interface Iprops {
-    index: number;
+    firstShiftDate: string;
+    lastShiftDate: string;
 }
 export default function CalenderHeader(props: Iprops) {
-    //const { currentUser, setcurrentUser } = useContext(CurrentUserContext);
-    //const { copy, setCopy } = useGlobalContext()
     const { sectionId, setSectionId } = useGlobalContext()
 
     const { time, index } = useParams();
     const navigate = useNavigate();
-    const close = () => navigate("Calendar/Lars");
 
-    let mDateObject = moment("2023-02-01")
 
     const weekdays = ['Januar', 'Februar', 'Marts', 'April', 'Maj', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'December'];
     let currentTime = "";
-    // if (time == null || time == "") {
-    //     navigate("/calendar/week")
-    // }
-    // else {
-    //     currentTime = time;
-    //     //setNextEnabled(true)
-    // }
-    //setNextEnabled(false)
 
     function HeaderText() {
         if (time == "week") {
-            return (<h2 className="headertext">Uge {props.index}</h2>);
+            return (<h2 className="headertext">Uge</h2>);
         }
-        return (<h2 className="headertext">{weekdays[Number(props.index)]}</h2>);
+        return (<h2 className="headertext">{weekdays[0]}</h2>);
     }
 
     return (
@@ -43,13 +32,13 @@ export default function CalenderHeader(props: Iprops) {
             <Row>
                 <Col>
                     <ButtonGroup>
-                        <Button onClick={() => navigate("/calendar/" + currentTime + "/" + (props.index - 1))}>
+                        <Button onClick={() => navigate("/calendar/" + currentTime + "/")}>
                             Tilbage
                         </Button>
                         <Button>
                             Dags Dato
                         </Button>
-                        <Button onClick={() => navigate("/calendar/" + currentTime + "/" + (props.index + 1))}>
+                        <Button onClick={() => navigate("/calendar/" + currentTime + "/")}>
                             Frem
                         </Button>
                     </ButtonGroup>

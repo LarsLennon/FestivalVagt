@@ -57,6 +57,9 @@ export default function NavMenu() {
               Hold
             </NavLink>
             <SectionSelector></SectionSelector>
+          <NavLink href="/test" className="text-dark">
+            Test
+          </NavLink>
 
           </Nav>
           <NavLink href="/login" className="text-dark">
