@@ -4,7 +4,6 @@ import authHeader from "./auth-header"
 const API_URL = "https://localhost:7217/api/";
 
 export const ENDPOINTS = {
-  getShifts: "shifts",
   teamController: "team",
   membaController: "memba",
   membersController: "members",
@@ -19,7 +18,7 @@ class ApiService {
 
   //return axios.get(API_URL + 'user', { headers: authHeader() });
   getShifts(id:string) {
-    return axios.get(API_URL + ENDPOINTS.getShifts + "/section/" + id, { headers: authHeader() });
+    return axios.get(API_URL + ENDPOINTS.shiftController + "/section/" + id, { headers: authHeader() });
   }
   
   getTeams() {
@@ -40,7 +39,7 @@ class ApiService {
   }
 
   getShift(id:number) {
-    return axios.get(API_URL + ENDPOINTS.getShifts + "/" + id, { headers: authHeader() });
+    return axios.get(API_URL + ENDPOINTS.shiftController + "/" + id, { headers: authHeader() });
   }
   getMembersShifts() {
     return axios.get(API_URL + ENDPOINTS.getMembersShifts, { headers: authHeader() });

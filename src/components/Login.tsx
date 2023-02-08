@@ -22,9 +22,41 @@ export default function Login() {
         setPassword(event.target.value)
     };
 
+    const handleDummyLogin = (user: string) => {
+        setLoading(true);
+        let response = AuthService.login(user, "").then(
+            () => {
+                setErrorMessage("");
+                console.log("Response");
+                navigate("/profile")
+                // this.props.router.navigate("/profile");
+                //   window.location.reload();
+            },
+            error => {
+                const resMessage =
+                    (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                    error.message ||
+
+
+                    console.log("AuthService error");
+                console.log(error);
+
+                setLoading(false);
+                setErrorMessage(resMessage);
+                setErrorMessage(error.response.data);
+            }
+        );
+    };
+
     const SubmitHandler = (event: any) => {
         event.preventDefault();
         console.log("SubmitHandler");
+        handleLogin();
+    };
+
+    const handleLogin = () => {
         setLoading(true);
         let response = AuthService.login(username, password).then(
             () => {
@@ -40,9 +72,9 @@ export default function Login() {
                         error.response.data &&
                         error.response.data.message) ||
                     error.message ||
-                    
 
-                console.log("AuthService error");
+
+                    console.log("AuthService error");
                 console.log(error);
 
                 setLoading(false);
@@ -50,14 +82,16 @@ export default function Login() {
                 setErrorMessage(error.response.data);
             }
         );
-
-
-
     };
 
     return (
         <div className="App">
             <h2>Login</h2>
+            
+            <Button onClick={() => handleDummyLogin("l@rslennon.dk")}>Login Lars</Button>
+            <Button onClick={() => handleDummyLogin("Janne@smukfest.dk")}>Login Janne</Button>
+            <Button onClick={() => handleDummyLogin("all.rasmussen@gmail.com")}>Login Allan</Button>
+
             <Form className="form" onSubmit={SubmitHandler}>
                 <FormGroup>
                     <Label for="exampleEmail">Memba medlemsnummer eller email</Label>
@@ -77,8 +111,7 @@ export default function Login() {
                 <FormGroup>{errorMessage != "" ? <Alert color="danger">{errorMessage}</Alert> : ""}</FormGroup>
 
 
-                <Button
-                    disabled={loading}>Submit</Button>
+                <Button disabled={loading}>Submit</Button>
             </Form>
         </div>
     );

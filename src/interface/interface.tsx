@@ -64,5 +64,25 @@ export interface ShiftDTO {
   startTime?: string;
   endTime?: string;
   members: MemberDTO[];
+}
+
+export interface CalendarShiftDTO {
+  shiftId?: number;
+  name?: string;
+  slots?: number;
+  startTime?: string;
+  endTime?: string;
+  myShift?: string;
+  members: MemberDTO[];
+}
+
+export interface CalendarDTO {
+  name: string;
+  openTime: string;
+  closeTime: string;
+  firstDate: string;
+  lastDate: string;
+  isOpen: boolean;
+  shifts: CalendarShiftDTO[];
 
 }

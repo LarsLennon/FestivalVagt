@@ -8,7 +8,7 @@ export default function ProgressAvailable(props:
 
     const colorClass = percentage >= 50 ? (percentage > 75 ? "danger" : "warning") : "success";
 
-
+    const available = props.total - props.occupied;
 
     return (
         <div>
@@ -18,7 +18,7 @@ export default function ProgressAvailable(props:
                 color={colorClass}
             />
             <div className="shiftprogresstext">
-                {props.total - props.occupied} pladser ledige
+                {available} {available == 1 ? "plads ledig" : "pladser ledige"}
             </div>
         </div>
     )

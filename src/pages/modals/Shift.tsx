@@ -10,26 +10,15 @@ interface BookingProps {
   isOpen: boolean;
   id: string;
   returnUrl: string;
-  events: ShiftDTO[];
   refetch: any;
+  close: any;
 }
 
 export default function Booking(props: BookingProps) {
-  let itemInstance = {
-    From: "Loading...",
-    Pickedup: "Loading...",
-    To: "Loading...",
-    Returned: "Loading...",
-    MemberName: "Loading...",
-    MemberId: "Loading...",
-    MemberPhone: "Loading...",
-    TeamName: "Loading...",
-    TeamId: "Loading...",
-    CreatedBy: "Loading...",
-  };
+
   const [data, setData] = useState(null);
   const navigate = useNavigate();
-  const close = () => navigate(props.returnUrl);
+  const close = () => props.close();
   //const bookingId = parseInt(props.id);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -54,15 +43,9 @@ export default function Booking(props: BookingProps) {
     setData(null);
     setLoading(true)
     refetchData();
-    console.log(props.events)
+    //console.log(props.events)
     console.log("modalOpened")
 
-    if (props.events != null) {
-      let test = props.events.find((element) => {
-        return false;
-      })
-
-    }
 
   };
 
@@ -70,7 +53,7 @@ export default function Booking(props: BookingProps) {
     const response = apiService.acceptShift(parseInt(props.id)).then(
       () => {
         console.log("Response");
-        props.refetch();
+        //props.refetch();
         navigate(props.returnUrl)
       }, (error) => {
         console.log(error);
@@ -83,7 +66,7 @@ export default function Booking(props: BookingProps) {
     const response = apiService.removeShift(parseInt(props.id)).then(
       () => {
         console.log("Response");
-        props.refetch();
+        //props.refetch();
         navigate(props.returnUrl)
       }, (error) => {
         console.log(error);

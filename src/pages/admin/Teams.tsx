@@ -9,9 +9,6 @@ import moment from "moment";
 import React from "react";
 
 
-interface IFooBar {
-  username?: string;
-}
 export default function Teams() {
   const navigate = useNavigate();
 

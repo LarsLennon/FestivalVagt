@@ -1,16 +1,15 @@
 import moment from "moment";
-import { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ButtonGroup, Button, Container, Col, Row } from "reactstrap";
-import "./calendar.header.css"
 import { useGlobalContext } from "../hooks/GlobalContent";
+import "./calendar.header.css"
 
 interface Iprops {
     firstShiftDate: string;
     lastShiftDate: string;
+    sectionName: string;
 }
 export default function CalenderHeader(props: Iprops) {
-    const { sectionName } = useGlobalContext()
     const { calendarTimeline, setCalendarTimeline } = useGlobalContext()
     const { calendarDate, setCalendarDate } = useGlobalContext()
 
@@ -25,9 +24,11 @@ export default function CalenderHeader(props: Iprops) {
         if (calendarTimeline == "week") {
             return (<h2 className="headertext">Uge {moment(calendarDate).week()}</h2>);
         }
-        let month = moment(calendarDate).month();
-        console.log(moment().month(calendarDate))
-        return (<h2 className="headertext">{weekdays[month]}</h2>);
+        else if (calendarTimeline == "month") {
+            let month = moment(calendarDate).month();
+            return (<h2 className="headertext">{weekdays[month]}</h2>);
+        }
+        return (<h2 className="headertext">Alle</h2>);
     }
 
     function momentFormat(date:any) {
@@ -76,7 +77,7 @@ export default function CalenderHeader(props: Iprops) {
 
     return (
         <Container fluid>
-            <h2 className="headertext">{sectionName} </h2>
+            <h2 className="headertext">{props.sectionName} </h2>
             <Row>
                 <Col>
                     <ButtonGroup>
@@ -97,13 +98,13 @@ export default function CalenderHeader(props: Iprops) {
                 <Col>
                     <div style={{ display: "flex" }}>
                         <ButtonGroup style={{ marginLeft: "auto" }}>
-                            <Button onClick={handleWeek}>
+                            <Button onClick={handleWeek} disabled={calendarTimeline == "week"}>
                                 Uge
                             </Button>
-                            <Button onClick={handleMonth}>
+                            <Button onClick={handleMonth} disabled={calendarTimeline == "month"}>
                                 Måned
                             </Button>
-                            <Button onClick={handleAll}>
+                            <Button onClick={handleAll} disabled={calendarTimeline == "all"}>
                                 Alle
                             </Button>
                             {/* <Button onClick={() => setSectionId("Hurra")}>
