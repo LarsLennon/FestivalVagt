@@ -52,6 +52,13 @@ td.event-td {
     box-shadow: 1px 1px 1px 1px #ccc !important;
 }
 
+.event-myshift .event-link.active, .event-pills .show > .event-link {
+    color: black !important;
+    border-left: 5px solid greenyellow !important;
+    background-color: greenyellow !important;
+    border-radius: 0 !important;
+    box-shadow: 1px 1px 1px 1px #ccc !important;
+}
 
 .nav {
     display: block !important;
@@ -62,6 +69,9 @@ td.event-td {
     color: #fff;
 }
 
+.weekend {
+    background-color: #48575f;
+}
 .sm {
     font-size: 13px !important;
 }

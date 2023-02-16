@@ -12,11 +12,11 @@ export default function ProgressAvailable(props:
 
     return (
         <div>
-            <Progress
+            {/* <Progress
                 className="shiftprogress"
                 value={(props.occupied * 100) / props.total}
                 color={colorClass}
-            />
+            /> */}
             <div className="shiftprogresstext">
                 {available} {available == 1 ? "plads ledig" : "pladser ledige"}
             </div>

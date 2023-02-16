@@ -8,11 +8,10 @@ import ProgressAvailable from "./progress.available";
 
 interface Iprops {
     event: CalendarShiftDTO;
-    returnUrl: string;
+    refresh:Function;
 }
 
 export default function EventComponent(props: Iprops) {
-    const navigate = useNavigate();
     const [eventInfoModal, setEventInfoModal] = useState(false);
 
     let blanks = [];
@@ -44,32 +43,44 @@ export default function EventComponent(props: Iprops) {
         return "";
     };
 
-    const eventBoxBorder = () => {
-        if (props.event.myShift) return "event-conflict";
+    const eventBoxBorderColor = () => {
+        if (props.event.conflict != null && props.event.conflict > 0) return "event-conflict";
         return "event-box";
     };
 
+    const handleClose = () => {
+        console.log("Close");
+        setEventInfoModal(false);
+        props.refresh();
+    };
     
+    const Test = () => {
+        console.log("REFETCH");
+        props.refresh();
+    };
+
   const renderModal = () => {
     return (
       <div>
         <Shift
           isOpen={eventInfoModal}
-          id="0"
+          id={props.event.shiftId}
           returnUrl={""}
-          refetch={eventBoxBorder}
-          close={() => setEventInfoModal(false)}
+          refetch={Test}
+          close={handleClose}
         />
       </div>
     );
   };
+
+  const ifWeekend = (moment(props.event.startTime).day() == 0) || (moment(props.event.startTime).day() == 6);
 
     return (
         <div>
             {renderModal()}
             <div key={props.event.shiftId} className="row event-row">
                 <div className="col">
-                    <div className={eventBoxBorder() + " " + eventBoxColor()} onClick={() => setEventInfoModal(true)}>
+                    <div className={eventBoxBorderColor() + " " + eventBoxColor()} onClick={() => setEventInfoModal(true)}>
 
                         <div title="Du kan ikke vælge denne vagt" className="event-link active" asp-page="/Shifts/Overview" asp-route-id="@item.ShiftId">
                             <span className="font-weight-bold sm">{props.event.name}</span><br></br>

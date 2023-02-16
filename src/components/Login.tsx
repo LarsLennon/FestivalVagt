@@ -62,7 +62,7 @@ export default function Login() {
             () => {
                 setErrorMessage("");
                 console.log("Response");
-                navigate("/profile")
+                navigate("/calendar")
                 // this.props.router.navigate("/profile");
                 //   window.location.reload();
             },
@@ -87,7 +87,7 @@ export default function Login() {
     return (
         <div className="App">
             <h2>Login</h2>
-            
+
             <Button onClick={() => handleDummyLogin("l@rslennon.dk")}>Login Lars</Button>
             <Button onClick={() => handleDummyLogin("Janne@smukfest.dk")}>Login Janne</Button>
             <Button onClick={() => handleDummyLogin("all.rasmussen@gmail.com")}>Login Allan</Button>

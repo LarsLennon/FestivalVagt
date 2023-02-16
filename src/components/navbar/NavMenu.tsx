@@ -54,6 +54,17 @@ export default function NavMenu() {
           <SectionSelector></SectionSelector>
         </React.Fragment>
       );
+      else
+      {
+        return (
+          <React.Fragment>
+  
+            <NavLink href="/calendar" className="text-dark">
+              BOGUS
+            </NavLink>
+          </React.Fragment>
+        );
+      }
   };
 
 

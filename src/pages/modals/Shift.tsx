@@ -53,7 +53,7 @@ export default function Booking(props: BookingProps) {
     const response = apiService.acceptShift(parseInt(props.id)).then(
       () => {
         console.log("Response");
-        //props.refetch();
+        props.refetch();
         navigate(props.returnUrl)
       }, (error) => {
         console.log(error);
@@ -66,7 +66,7 @@ export default function Booking(props: BookingProps) {
     const response = apiService.removeShift(parseInt(props.id)).then(
       () => {
         console.log("Response");
-        //props.refetch();
+        props.refetch();
         navigate(props.returnUrl)
       }, (error) => {
         console.log(error);

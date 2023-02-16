@@ -67,12 +67,13 @@ export interface ShiftDTO {
 }
 
 export interface CalendarShiftDTO {
-  shiftId?: number;
+  shiftId: string;
   name?: string;
   slots?: number;
   startTime?: string;
   endTime?: string;
   myShift?: string;
+  conflict?: number;
   members: MemberDTO[];
 }
 

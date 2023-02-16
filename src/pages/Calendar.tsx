@@ -20,37 +20,37 @@ export default function Calendar() {
 
   const [apiData, setApiData] = useState<CalendarDTO>();
   const getShifts = () => {
-    const response = ApiService.getShifts(sectionId).then(
-      (response) => {
-        setApiData(response.data);
-        const shiftsResponse: CalendarDTO = response.data;
-        if (shiftsResponse.shifts.length > 0) {
-          var first = moment(shiftsResponse.shifts[0].startTime!).format("yyyy-MM-DD");
-          var last = moment(shiftsResponse.shifts[shiftsResponse.shifts.length - 1].endTime!).format("yyyy-MM-DD");
-          setFirstShiftDate(first);
-          setLastShiftDate(last);
-          var m = moment(calendarDate);
-          if (m.isValid()) {
-            var year = moment(first).year();
-            var newDate = moment(calendarDate).set('year', year);
-            setCalendarDate(newDate.format("yyyy-MM-DD"));
+    if (sectionId != "") {
+      const response = ApiService.getShifts(sectionId).then(
+        (response) => {
+          setApiData(response.data);
+          const shiftsResponse: CalendarDTO = response.data;
+          if (shiftsResponse.shifts.length > 0) {
+            var first = moment(shiftsResponse.shifts[0].startTime!).format("yyyy-MM-DD");
+            var last = moment(shiftsResponse.shifts[shiftsResponse.shifts.length - 1].endTime!).format("yyyy-MM-DD");
+            setFirstShiftDate(first);
+            setLastShiftDate(last);
+            var m = moment(calendarDate);
+            if (m.isValid()) {
+              var year = moment(first).year();
+              var newDate = moment(calendarDate).set('year', year);
+              setCalendarDate(newDate.format("yyyy-MM-DD"));
+            }
+            else {
+              setCalendarDate(first);
+            }
           }
-          else {
-            setCalendarDate(first);
-          }
-        }
-      })
+        })
+    }
   };
 
   useEffect(() => {
-    if (sectionId != "") {
-      getShifts();
-      console.log("useEffect")
-    }
+    getShifts();
+    console.log("useEffect")
   }, [sectionId]);
 
 
-  const calenderEndDate = (currentStartDate:any) => {
+  const calenderEndDate = (currentStartDate: any) => {
     if (calendarTimeline == "month") {
       return moment(currentStartDate).add(1, 'month').add(7, 'days').add(12, 'hours');
     }
@@ -86,28 +86,25 @@ export default function Calendar() {
   if (apiData != null) {
     for (var m = moment(a); m.isBefore(b); m.add(1, 'days')) {
       let dayOfWeek = parseInt(m.format('d'));
-
-
       const filteredEvents = apiData!.shifts.filter(event => moment(event.startTime).isSame(m, 'day'));
 
       days.push(
         <React.Fragment key={m.format('YYYY-MM-DD')}>
-          <div className='w-100 d-md-none'></div>
-          <div className="col-md-3 col-xl nopadding m-1 mt-4">
+          <div className='w-100 d-md-none '></div>
+          <div className="col-sm-2 col-md-3 col-xl nopadding">
             <h4>{weekdays[dayOfWeek]} {m.format('DD/MM')}</h4>
 
             {filteredEvents.length > 0 ? (
               filteredEvents.map(todaysEvent => (
 
                 <div key={todaysEvent.shiftId}>
-                  <EventComponent event={todaysEvent} returnUrl={returnUrl}></EventComponent>
+                  <EventComponent event={todaysEvent} refresh={getShifts}></EventComponent>
                 </div>
               ))) : (
               <div>
                 Ingen vagter
               </div>
             )}
-
           </div>
         </React.Fragment>);
     }

@@ -35,6 +35,7 @@ export default function SectionImport() {
       const response = apiService.importShifts(section!.sectionId, fileName).then(
         (response) => {
           //setTeam(response.data);
+          navigate("/calendar")
         })
     }
   };
