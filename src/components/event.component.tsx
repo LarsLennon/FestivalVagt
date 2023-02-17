@@ -8,7 +8,7 @@ import ProgressAvailable from "./progress.available";
 
 interface Iprops {
     event: CalendarShiftDTO;
-    refresh:Function;
+    refresh: Function;
 }
 
 export default function EventComponent(props: Iprops) {
@@ -53,27 +53,27 @@ export default function EventComponent(props: Iprops) {
         setEventInfoModal(false);
         props.refresh();
     };
-    
+
     const Test = () => {
         console.log("REFETCH");
         props.refresh();
     };
 
-  const renderModal = () => {
-    return (
-      <div>
-        <Shift
-          isOpen={eventInfoModal}
-          id={props.event.shiftId}
-          returnUrl={""}
-          refetch={Test}
-          close={handleClose}
-        />
-      </div>
-    );
-  };
+    const renderModal = () => {
+        return (
+            <div>
+                <Shift
+                    event={props.event}
+                    isOpen={eventInfoModal}
+                    returnUrl={""}
+                    refetch={Test}
+                    close={handleClose}
+                />
+            </div>
+        );
+    };
 
-  const ifWeekend = (moment(props.event.startTime).day() == 0) || (moment(props.event.startTime).day() == 6);
+    const ifWeekend = (moment(props.event.startTime).day() == 0) || (moment(props.event.startTime).day() == 6);
 
     return (
         <div>
