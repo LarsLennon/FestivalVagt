@@ -14,7 +14,7 @@ export default function SectionImport() {
 
   const [section, setSection] = useState<SectionDetailsDTO>();
   const loadApiData = () => {
-    const response = apiService.getSection(parseInt(id!)).then(
+    apiService.getSection(parseInt(id!)).then(
       (response) => {
         setSection(response.data);
         console.log(response.data)
@@ -32,8 +32,8 @@ export default function SectionImport() {
       // };
     // console.log(fileName)
     console.log(section)
-      const response = apiService.importShifts(section!.sectionId, fileName).then(
-        (response) => {
+      apiService.importShifts(section!.sectionId, fileName).then(
+        () => {
           //setTeam(response.data);
           navigate("/calendar")
         })

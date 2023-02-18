@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Container, ListGroup, ListGroupItem, Row, Table } from "reactstrap";
+import { Button, Col, Container, ListGroup, ListGroupItem, Row } from "reactstrap";
 
 import { useNavigate, useParams } from "react-router-dom";
 import apiService from "../../services/api.service";
 import { SectionDTO, TeamDetailsDTO } from "../../interface/interface";
-import moment from "moment";
 
 export default function Team() {
   const { id } = useParams();
@@ -12,7 +11,7 @@ export default function Team() {
 
   const [team, setTeam] = useState<TeamDetailsDTO>();
   const loadApiData = () => {
-    const response = apiService.getTeam(parseInt(id!)).then(
+    apiService.getTeam(parseInt(id!)).then(
       (response) => {
         setTeam(response.data);
 
