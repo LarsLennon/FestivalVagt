@@ -2,10 +2,9 @@ import moment from "moment";
 import { useState } from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import { Button, Modal, ModalHeader, ModalBody, Table, Alert, AccordionBody, Accordion, AccordionHeader, AccordionItem } from "reactstrap";
+import { Button, Modal, ModalHeader, ModalBody, Table, Alert } from "reactstrap";
 import { CalendarShiftDTO } from "../../interface/interface";
 import apiService from "../../services/api.service";
-import AuthService from "../../services/auth.service"
 
 
 interface BookingProps {
@@ -28,14 +27,13 @@ export default function Booking(props: BookingProps) {
     }
   };
   const close = () => props.close();
-  const [errorMessage, setErrorMessage] = useState("");
 
   const modalOpened = () => {
     console.log("modalOpened")
   };
 
   const AcceptShift = () => {
-    const response = apiService.acceptShift(parseInt(props.event.shiftId)).then(
+    apiService.acceptShift(parseInt(props.event.shiftId)).then(
       () => {
         console.log("Response");
         props.refetch();
@@ -48,7 +46,7 @@ export default function Booking(props: BookingProps) {
 
 
   const RemoveShift = () => {
-    const response = apiService.removeShift(parseInt(props.event.shiftId)).then(
+    apiService.removeShift(parseInt(props.event.shiftId)).then(
       () => {
         console.log("Response");
         props.refetch();
@@ -68,19 +66,7 @@ export default function Booking(props: BookingProps) {
     );
   };
 
-  const mapMembers = props.event.members.map((Member, index) => {
-    return (
-      <tr key={index}>
-        <td>{Member.name}</td>
-        <td>1</td>
-        <td>1</td>
-        <td><Button color="danger"><RiDeleteBinLine /></Button></td>
-      </tr>
-      // <li key={index}>
-      //     {Member.name}
-      // </li>
-    );
-  });
+
 
   return (
     <div>

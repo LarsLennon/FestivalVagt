@@ -12,14 +12,14 @@ export default function SectionDetails() {
 
   const [section, setSection] = useState<SectionDetailsDTO>();
   const loadApiData = () => {
-    const response = apiService.getSection(parseInt(id!)).then(
+    apiService.getSection(parseInt(id!)).then(
       (response) => {
         setSection(response.data);
       })
   };
   useEffect(() => {
     loadApiData();
-  }, []);
+  });
 
 
   return (

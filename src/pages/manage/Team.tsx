@@ -19,7 +19,7 @@ export default function Team() {
   };
   useEffect(() => {
     loadApiData();
-  }, []);
+  });
 
   const mapSections = team?.sections.map((section: SectionDTO, index: number) => {
     return (

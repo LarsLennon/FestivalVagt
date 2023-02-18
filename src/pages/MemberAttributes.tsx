@@ -1,18 +1,21 @@
 import { useState } from "react";
-import { Button, Col, Container, Form, FormGroup, FormText, Input, Label } from "reactstrap";
+import { Button, Col, Container, Form, FormGroup, Input, Label } from "reactstrap";
 
 export default function MemberAttributes() {
-    const [valid, setValid] = useState(false);
+    // const [legalAge, setLegalAge] = useState(false);
+    // const [legalAgeValid, setLegalAgeValid] = useState(false);
+    // const [driversLicense, setDriversLicense] = useState(false);
+    // const [driversLicenseValid, setDriversLicenseValid] = useState(false);
+    // const [firstAid, setFirstAid] = useState(false);
+    // const [firstAidValid, setFirstAidValid] = useState(false);
     const [legalAge, setLegalAge] = useState(false);
     const [legalAgeValid, setLegalAgeValid] = useState(false);
-    const [driversLicense, setDriversLicense] = useState(false);
-    const [driversLicenseValid, setDriversLicenseValid] = useState(false);
-    const [firstAid, setFirstAid] = useState(false);
-    const [firstAidValid, setFirstAidValid] = useState(false);
 
     
     const handleSubmit = (event: any) => {
         event.preventDefault();
+        void legalAge;
+        void legalAgeValid;
     };
 
 
@@ -23,15 +26,15 @@ export default function MemberAttributes() {
         setLegalAgeValid(true);
     };
 
-    const handleDriversLicense = (value:boolean) => {
-        setDriversLicense(value);
-        setDriversLicenseValid(true);
-    };
+    // const handleDriversLicense = (value:boolean) => {
+    //     setDriversLicense(value);
+    //     setDriversLicenseValid(true);
+    // };
 
-    const handleFirstAid = (value:boolean) => {
-        setFirstAid(value);
-        setFirstAidValid(true);
-    };
+    // const handleFirstAid = (value:boolean) => {
+    //     setFirstAid(value);
+    //     setFirstAidValid(true);
+    // };
 
     return (
         <Container>

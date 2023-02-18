@@ -9,7 +9,7 @@ export default function MyShifts() {
     const [shifts, setShifts] = useState<ShiftDTO[]>([]);
 
     const reloadItemResources = () => {
-        const response = ApiService.getMembersShifts().then(
+        ApiService.getMembersShifts().then(
             (response) => {
                 setShifts(response.data);
             })

@@ -10,14 +10,14 @@ export default function TeamSync() {
 
   const [teams, setTeams] = useState<MembaTeamDTO[]>([]);
   const loadApiData = () => {
-    const response = apiService.getMembaTeams().then(
+    apiService.getMembaTeams().then(
       (response) => {
         setTeams(response.data);
       })
   };
   useEffect(() => {
     loadApiData();
-  }, []);
+  });
 
 
   const handleChange = (e: any) => {
@@ -27,8 +27,8 @@ export default function TeamSync() {
 
   const handleImport = (membaTeamId: any) => {
     console.log(membaTeamId);
-    const response = apiService.importTeam(membaTeamId).then(
-      (response) => {
+    apiService.importTeam(membaTeamId).then(
+      () => {
         //setTeams(response.data);
       })
   };

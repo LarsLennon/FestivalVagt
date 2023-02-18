@@ -1,34 +1,33 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Container, Form, FormGroup, FormText, Input, Label, Row } from "reactstrap";
+import { Button, Col, Container, Form, FormGroup, Input, Label, Row } from "reactstrap";
 
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import apiService from "../../services/api.service";
 import { SectionCreateDTO, TeamDTO } from "../../interface/interface";
 
 
 export default function SectionCreate() {
   const { id } = useParams();
-  const navigate = useNavigate();
 
   const [team, setTeam] = useState<TeamDTO>();
   const loadApiData = () => {
-    const response = apiService.getTeam(parseInt(id!)).then(
+    apiService.getTeam(parseInt(id!)).then(
       (response) => {
         setTeam(response.data);
       })
   };
   useEffect(() => {
     loadApiData();
-  }, []);
+  });
 
   const SubmitData = () => {
     if (true) {
-      const newSection:SectionCreateDTO = {
+      const newSection: SectionCreateDTO = {
         Name: "2023",
         TeamId: team!.teamId
       };
-      const response = apiService.createSection(newSection).then(
-        (response) => {
+      apiService.createSection(newSection).then(
+        () => {
           //setTeam(response.data);
         })
     }

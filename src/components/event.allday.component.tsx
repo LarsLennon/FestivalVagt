@@ -2,7 +2,6 @@ import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import { List, Progress } from "reactstrap";
 import { ShiftDTO } from "../interface/interface";
-import ProgressAvailable from "./progress.available";
 
 interface Iprops {
     event: ShiftDTO;
@@ -33,7 +32,6 @@ export default function EventComponent(props: Iprops) {
                             <div>
                                 <div>
                                     <span className="font-weight-bold sm"><b>{moment(props.event.startTime).format("HH:mm")} - {moment(props.event.endTime).format("HH:mm")} </b></span>
-                                    <ProgressAvailable total={props.event.slots!} occupied={props.event.members.length}></ProgressAvailable>
                                 </div>
                                 <div className="event-list">
                                     <List >

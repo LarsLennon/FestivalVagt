@@ -1,8 +1,7 @@
-import moment from "moment";
 import React from "react";
 import { useEffect, useState } from "react";
-import { Col, Container, ListGroup, ListGroupItem, Row, Table } from "reactstrap";
-import { MemberDTO, ShiftDTO } from "../interface/interface";
+import { Container, Table } from "reactstrap";
+import { MemberDTO } from "../interface/interface";
 import apiService from "../services/api.service";
 import { BsSearch } from 'react-icons/bs';
 import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im';
@@ -14,7 +13,7 @@ export default function Members() {
 
   const [apiData, setApiData] = useState<MemberDTO[]>([]);
   const reloadItemResources = () => {
-    const response = apiService.getMembers(sectionId).then(
+    apiService.getMembers(sectionId).then(
       (response) => {
         setApiData(response.data);
       })
@@ -22,7 +21,7 @@ export default function Members() {
 
   useEffect(() => {
     reloadItemResources();
-  }, [sectionId]);
+  });
 
 
   const handleChange = (e: any) => {
@@ -30,13 +29,13 @@ export default function Members() {
     setSearchInput(e.target.value.toLowerCase());
   };
 
-  const handleImport = (membaTeamId: any) => {
-    console.log(membaTeamId);
-    const response = apiService.importTeam(membaTeamId).then(
-      (response) => {
-        //setTeams(response.data);
-      })
-  };
+  // const handleImport = (membaTeamId: any) => {
+  //   console.log(membaTeamId);
+  //   apiService.importTeam(membaTeamId).then(
+  //     () => {
+  //       //setTeams(response.data);
+  //     })
+  // };
 
   const filteredData = apiData.filter((data) => {
     return data.name!.toLowerCase().match(searchInput) || data.membaNumber!.toLowerCase().match(searchInput);
