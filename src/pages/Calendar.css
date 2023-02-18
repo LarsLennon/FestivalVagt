@@ -1,0 +1,122 @@
+
+.event-link {
+    display: block;
+    padding: .5rem 1rem
+}
+
+
+.event-row {
+    padding: 5px;
+}
+
+.event-td {
+    padding: 0rem;
+}
+
+td.event-td {
+    padding: 0rem;
+}
+
+
+/* Event event*/
+
+.event-box .event-link.active, .event-pills .show > .event-link {
+    color: black !important;
+    border-left: 5px solid green !important;
+    background-color: #ffffff !important;
+    border-radius: 0 !important;
+    box-shadow: 1px 1px 1px 1px #ccc !important;
+}
+
+.event-conflict .event-link.active, .event-pills .show > .event-link {
+    color: black !important;
+    border-left: 5px solid red !important;
+    background-color: #ffffff !important;
+    border-radius: 0 !important;
+    box-shadow: 1px 1px 1px 1px #ccc !important;
+}
+
+.event-myshift .event-link.active, .event-pills .show > .event-link {
+    color: black !important;
+    border-left: 5px solid greenyellow !important;
+    background-color: greenyellow !important;
+    border-radius: 0 !important;
+    box-shadow: 1px 1px 1px 1px #ccc !important;
+}
+
+.event-disabled .event-link.active, .event-pills .show > .event-link {
+    color: black !important;
+    border-left: 5px solid red !important;
+    background-color: red !important;
+    border-radius: 0 !important;
+    box-shadow: 1px 1px 1px 1px #ccc !important;
+}
+
+.event-myshift .event-link.active, .event-pills .show > .event-link {
+    color: black !important;
+    border-left: 5px solid greenyellow !important;
+    background-color: greenyellow !important;
+    border-radius: 0 !important;
+    box-shadow: 1px 1px 1px 1px #ccc !important;
+}
+
+.nav {
+    display: block !important;
+}
+
+.head_color {
+    background-color: #48575f;
+    color: #fff;
+}
+
+.weekend {
+    background-color: #48575f;
+}
+.sm {
+    font-size: 13px !important;
+}
+
+.date_my {
+    color: #544e4e;
+    font-size: 13px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.date_my2 {
+    background-color: gray;
+    color: white;
+    border-radius: 39px;
+    font-size: 14px;
+    padding: 5px;
+}
+
+
+.event-name {
+    font-size: 20px;
+}
+
+.event-list {
+    display: flex;
+}
+
+.shiftprogress {
+    height: 5px;
+    margin-top: 5px !important;
+    margin-bottom: 0px !important;
+}
+.shiftprogresstext {
+    margin-top: 0px;
+    font-weight: bold;
+    font-size: 12px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+}
+
+
+.nopadding {
+    padding: 0rem;
+}
+
