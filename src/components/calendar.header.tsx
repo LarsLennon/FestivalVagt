@@ -1,5 +1,4 @@
 import moment from "moment";
-import { useNavigate, useParams } from "react-router-dom";
 import { ButtonGroup, Button, Container, Col, Row } from "reactstrap";
 import { useGlobalContext } from "../hooks/GlobalContent";
 import "./calendar.header.css"
@@ -13,18 +12,15 @@ export default function CalenderHeader(props: Iprops) {
     const { calendarTimeline, setCalendarTimeline } = useGlobalContext()
     const { calendarDate, setCalendarDate } = useGlobalContext()
 
-    const { time, index } = useParams();
-    const navigate = useNavigate();
 
 
     const weekdays = ['Januar', 'Februar', 'Marts', 'April', 'Maj', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'December'];
-    let currentTime = "";
 
     function HeaderText() {
-        if (calendarTimeline == "week") {
+        if (calendarTimeline === "week") {
             return (<h2 className="headertext">Uge {moment(calendarDate).week()}</h2>);
         }
-        else if (calendarTimeline == "month") {
+        else if (calendarTimeline === "month") {
             let month = moment(calendarDate).month();
             return (<h2 className="headertext">{weekdays[month]}</h2>);
         }
@@ -49,12 +45,12 @@ export default function CalenderHeader(props: Iprops) {
 
    
     function handlePrev() {
-        if(calendarTimeline == "month")
+        if(calendarTimeline === "month")
         {
             let nextDate = moment(calendarDate).subtract(1, 'month');
             setCalendarDate(momentFormat(nextDate))
         }
-        if(calendarTimeline == "week")
+        if(calendarTimeline === "week")
         {
             let nextDate = moment(calendarDate).subtract(1, 'week');
             setCalendarDate(momentFormat(nextDate))
@@ -62,12 +58,12 @@ export default function CalenderHeader(props: Iprops) {
     }
 
     function handleNext() {
-        if(calendarTimeline == "month")
+        if(calendarTimeline === "month")
         {
             let nextDate = moment(calendarDate).add(1, 'month');
             setCalendarDate(momentFormat(nextDate))
         }
-        if(calendarTimeline == "week")
+        if(calendarTimeline === "week")
         {
             let nextDate = moment(calendarDate).add(1, 'week');
             setCalendarDate(momentFormat(nextDate))
@@ -98,13 +94,13 @@ export default function CalenderHeader(props: Iprops) {
                 <Col>
                     <div style={{ display: "flex" }}>
                         <ButtonGroup style={{ marginLeft: "auto" }}>
-                            <Button onClick={handleWeek} disabled={calendarTimeline == "week"}>
+                            <Button onClick={handleWeek} disabled={calendarTimeline === "week"}>
                                 Uge
                             </Button>
-                            <Button onClick={handleMonth} disabled={calendarTimeline == "month"}>
+                            <Button onClick={handleMonth} disabled={calendarTimeline === "month"}>
                                 Måned
                             </Button>
-                            <Button onClick={handleAll} disabled={calendarTimeline == "all"}>
+                            <Button onClick={handleAll} disabled={calendarTimeline === "all"}>
                                 Alle
                             </Button>
                             {/* <Button onClick={() => setSectionId("Hurra")}>

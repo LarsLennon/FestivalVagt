@@ -83,12 +83,10 @@ export default function Calendar() {
   let a = calenderStartDate(); // moment(calendarDate).day("Monday");//.week(parseInt(index!)); // Get first day of week
   let b = calenderEndDate(a);//moment(lastShiftDate).add(7, 'days').add(12, 'hours');
   let filteredEvents;
-  let day = a;
   if (apiData != null) {
     for (let m = moment(a); m.isBefore(b); m.add(1, 'days')) {
       let dayOfWeek = parseInt(m.format('d'));
-      day = m;
-      filteredEvents = apiData!.shifts.filter(event => moment(event.startTime).isSame(day, 'day'));
+      filteredEvents = apiData!.shifts.filter(event => moment(event.startTime).isSame(m, 'day'));
 
       days.push(
         <React.Fragment key={m.format('YYYY-MM-DD')}>
