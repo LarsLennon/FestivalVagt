@@ -1,7 +1,10 @@
 import axios from "axios";
 import { SectionCreateDTO } from "../interface/interface";
 import authHeader from "./auth-header"
-const API_URL = "https://localhost:7217/api/";
+
+
+//export const API_URL = "https://localhost:7217/api/";
+export const API_URL = "https://smukvagtdb20230218133559.azurewebsites.net/api/";
 
 export const ENDPOINTS = {
   teamController: "team",

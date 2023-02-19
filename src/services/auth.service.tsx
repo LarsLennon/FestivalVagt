@@ -1,16 +1,17 @@
 import axios from "axios";
+import { API_URL } from "./api.service";
 // import { useJwt } from "react-jwt";
 // import jwt_decode from "jwt-decode";
 
 
 // const url = "https://localhost:7217/api/Login";
-const url = "https://smukvagtdb20230218133559.azurewebsites.net/api/Login";
+const loginUrl = API_URL + "login";
 
 class AuthService {
 
   login(username: any, password: any) {
     return axios
-      .post(url, {
+      .post(loginUrl, {
         username,
         password
       })
@@ -52,5 +53,4 @@ class AuthService {
 // export default new AuthService();
 
 const authService = new AuthService();
-
 export default authService;
