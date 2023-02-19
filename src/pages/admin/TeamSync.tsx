@@ -15,9 +15,10 @@ export default function TeamSync() {
         setTeams(response.data);
       })
   };
+
   useEffect(() => {
     loadApiData();
-  });
+  }, []);
 
 
   const handleChange = (e: any) => {

@@ -1,11 +1,14 @@
 import axios from "axios";
 import { API_URL } from "./api.service";
-// import { useJwt } from "react-jwt";
-// import jwt_decode from "jwt-decode";
+ import jwt_decode from "jwt-decode";
 
 
 // const url = "https://localhost:7217/api/Login";
 const loginUrl = API_URL + "login";
+
+interface jwtProps {
+  name: string;
+}
 
 class AuthService {
 
@@ -19,13 +22,12 @@ class AuthService {
         if (response.data) {
           //const token = ;
           localStorage.setItem("token", response.data);
-          // var decoded: jwtProps = jwt_decode(response.data);
-          console.log("Added token");
+           var decoded: jwtProps = jwt_decode(response.data);
           // console.log(decoded);
-          // localStorage.setItem("username", decoded.name);
+          localStorage.setItem("username", decoded.name);
+          console.log("Added token for " + decoded.name);
         }
 
-        console.log(response);
         return response.data;
       });
   }
