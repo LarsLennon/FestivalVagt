@@ -27,7 +27,7 @@ export default function SectionSelector() {
 
 
   useEffect(() => {
-    if(apiData == null)
+    if(apiData.length == 0)
     {
       loadApiData();
     }

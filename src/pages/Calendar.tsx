@@ -44,11 +44,8 @@ export default function Calendar() {
   };
 
   useEffect(() => {
-    if(apiData == null)
-    {
       loadApiData();
-    }
-  });
+  }, [sectionId]);
 
 
   const calenderEndDate = (currentStartDate: any) => {

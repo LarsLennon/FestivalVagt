@@ -21,7 +21,7 @@ export default function Members() {
 
 
   useEffect(() => {
-    if(apiData == null)
+    if(apiData.length == 0)
     {
       loadApiData();
     }

@@ -15,7 +15,7 @@ export default function MyShifts() {
     };
 
     useEffect(() => {
-        if(apiData == null)
+        if(apiData.length == 0)
         {
           loadApiData();
         }

@@ -22,7 +22,7 @@ export default function Teams() {
   };
 
   useEffect(() => {
-    if(apiData == null)
+    if(apiData.length == 0)
     {
       loadApiData();
     }
