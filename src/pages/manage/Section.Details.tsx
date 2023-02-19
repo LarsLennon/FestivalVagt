@@ -19,7 +19,7 @@ export default function SectionDetails() {
   };
   useEffect(() => {
     loadApiData();
-  });
+  }, []);
 
 
   return (

@@ -18,7 +18,7 @@ export default function SectionCreate() {
   };
   useEffect(() => {
     loadApiData();
-  });
+  }, []);
 
   const SubmitData = () => {
     if (true) {

@@ -22,7 +22,7 @@ export default function SectionImport() {
   };
   useEffect(() => {
     loadApiData();
-  });
+  }, []);
 
   const submitData = () => {
     if (true) {

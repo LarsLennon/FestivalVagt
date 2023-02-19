@@ -46,7 +46,7 @@ export default function Calendar() {
   useEffect(() => {
     getShifts();
     console.log("useEffect")
-  });
+  }, []);
 
 
   const calenderEndDate = (currentStartDate: any) => {
@@ -69,7 +69,7 @@ export default function Calendar() {
     }
     return moment(firstShiftDate).day("Monday");
   };
-  
+
 
 
   let days = [];
