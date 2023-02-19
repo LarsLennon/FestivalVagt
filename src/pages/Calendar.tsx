@@ -69,8 +69,8 @@ export default function Calendar() {
     }
     return moment(firstShiftDate).day("Monday");
   };
-
-
+  const connectionString = process.env.DATABASE_CONNECTION_STRING;
+console.log("connectionString" + connectionString);
 
 
   let days = [];
