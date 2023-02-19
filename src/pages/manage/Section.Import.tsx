@@ -21,7 +21,7 @@ export default function SectionImport() {
       })
   };
   useEffect(() => {
-    if(apiData == null)
+    if(apiData === null)
     {
       loadApiData();
     }

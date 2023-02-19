@@ -18,7 +18,7 @@ export default function SectionCreate() {
   };
 
   useEffect(() => {
-    if(apiData == null)
+    if(apiData === null)
     {
       loadApiData();
     }

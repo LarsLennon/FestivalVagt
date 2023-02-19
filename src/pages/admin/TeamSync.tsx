@@ -18,7 +18,7 @@ export default function TeamSync() {
   };
 
   useEffect(() => {
-    if(apiData.length == 0)
+    if(apiData.length === 0)
     {
       loadApiData();
     }

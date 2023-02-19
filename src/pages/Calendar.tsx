@@ -45,7 +45,7 @@ export default function Calendar() {
 
   useEffect(() => {
       loadApiData();
-  }, [sectionId]);
+  }, [sectionId]); // eslint-disable-line react-hooks/exhaustive-deps
 
 
   const calenderEndDate = (currentStartDate: any) => {
