@@ -1,16 +1,5 @@
 {
-  "routes": [
-     {
-     "route": "/login.html",
-     "rewrite": "/login.html"
-    },
-    {
-     "route": "/login/",
-     "rewrite": "/login.html"
-    },
-    {
-     "route": "/test/",
-     "rewrite": "/index.html"
-    }   
-    ]
+  "navigationFallback": {
+    "rewrite": "/index.html"
+  }
 }
