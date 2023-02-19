@@ -1,0 +1,12 @@
+{
+  "routes": [
+     {
+     "route": "/login.html",
+     "rewrite": "/login.html"
+    },
+    {
+     "route": "/login/",
+     "rewrite": "/login.html"
+    }    
+    ]
+}
