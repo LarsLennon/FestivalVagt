@@ -6,22 +6,24 @@ import ApiService from '../services/api.service';
 
 export default function MyShifts() {
 
-    const [shifts, setShifts] = useState<ShiftDTO[]>([]);
-
-    const reloadItemResources = () => {
+    const [apiData, setApiData] = useState<ShiftDTO[]>([]);
+    const loadApiData = () => {
         ApiService.getMembersShifts().then(
             (response) => {
-                setShifts(response.data);
+                setApiData(response.data);
             })
     };
 
     useEffect(() => {
-        reloadItemResources();
-    }, []);
+        if(apiData == null)
+        {
+          loadApiData();
+        }
+      });
 
 
 
-    const mapShifts = shifts.map((shift: ShiftDTO, index: number) => {
+    const mapShifts = apiData.map((shift: ShiftDTO, index: number) => {
         return (
             <ListGroupItem key={index}>
                 <div className="d-flex w-100 justify-content-between">

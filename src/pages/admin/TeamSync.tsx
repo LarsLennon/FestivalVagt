@@ -7,18 +7,22 @@ import React from "react";
 
 export default function TeamSync() {
   const [searchInput, setSearchInput] = useState("");
+   
+  const [apiData, setApiData] = useState<MembaTeamDTO[]>([]);
 
-  const [teams, setTeams] = useState<MembaTeamDTO[]>([]);
   const loadApiData = () => {
     apiService.getMembaTeams().then(
       (response) => {
-        setTeams(response.data);
+        setApiData(response.data);
       })
   };
 
   useEffect(() => {
-    loadApiData();
-  }, []);
+    if(apiData == null)
+    {
+      loadApiData();
+    }
+  });
 
 
   const handleChange = (e: any) => {
@@ -34,7 +38,7 @@ export default function TeamSync() {
       })
   };
 
-  const filteredData = teams.filter((data) => {
+  const filteredData = apiData.filter((data) => {
     return data.TeamName!.toLowerCase().match(searchInput) || data.TeamNumber!.toLowerCase().match(searchInput);
   });
 

@@ -10,23 +10,26 @@ export default function SectionDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [section, setSection] = useState<SectionDetailsDTO>();
+  const [apiData, setApiData] = useState<SectionDetailsDTO>();
   const loadApiData = () => {
     apiService.getSection(parseInt(id!)).then(
       (response) => {
-        setSection(response.data);
+        setApiData(response.data);
       })
   };
   useEffect(() => {
-    loadApiData();
-  }, []);
+    if(apiData == null)
+    {
+      loadApiData();
+    }
+  });
 
 
   return (
 
     <Container fluid="lg">
-    <h2>Vagtplan {section?.name} tilhørende {section?.team.number} - {section?.team.name}</h2>
-      <Button onClick={() => navigate("/manage/import/" + section?.sectionId)}>Importer vagtplan</Button>
+    <h2>Vagtplan {apiData?.name} tilhørende {apiData?.team.number} - {apiData?.team.name}</h2>
+      <Button onClick={() => navigate("/manage/import/" + apiData?.sectionId)}>Importer vagtplan</Button>
 
     </Container>
 

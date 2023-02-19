@@ -12,15 +12,19 @@ export default function Members() {
   const { sectionId } = useGlobalContext();
 
   const [apiData, setApiData] = useState<MemberDTO[]>([]);
-  const reloadItemResources = () => {
+  const loadApiData = () => {
     apiService.getMembers(sectionId).then(
       (response) => {
         setApiData(response.data);
       })
   };
 
+
   useEffect(() => {
-    reloadItemResources();
+    if(apiData == null)
+    {
+      loadApiData();
+    }
   });
 
 

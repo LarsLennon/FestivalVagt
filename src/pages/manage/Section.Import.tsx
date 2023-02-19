@@ -12,17 +12,20 @@ export default function SectionImport() {
 
   const [fileName, setFileName] = useState();
 
-  const [section, setSection] = useState<SectionDetailsDTO>();
+  const [apiData, setApiData] = useState<SectionDetailsDTO>();
   const loadApiData = () => {
     apiService.getSection(parseInt(id!)).then(
       (response) => {
-        setSection(response.data);
+        setApiData(response.data);
         console.log(response.data)
       })
   };
   useEffect(() => {
-    loadApiData();
-  }, []);
+    if(apiData == null)
+    {
+      loadApiData();
+    }
+  });
 
   const submitData = () => {
     if (true) {
@@ -31,8 +34,8 @@ export default function SectionImport() {
       //   TeamId: team!.teamId
       // };
     // console.log(fileName)
-    console.log(section)
-      apiService.importShifts(section!.sectionId, fileName).then(
+    console.log(apiData)
+      apiService.importShifts(apiData!.sectionId, fileName).then(
         () => {
           //setTeam(response.data);
           navigate("/calendar")
@@ -50,7 +53,7 @@ export default function SectionImport() {
 
 
     <Container fluid="lg">
-      <h2>Importer vagter til {section?.name} tilhørende {section?.team.number} - {section?.team.name}</h2>
+      <h2>Importer vagter til {apiData?.name} tilhørende {apiData?.team.number} - {apiData?.team.name}</h2>
 
       <Row xs="2"><Col>
         <Form id="uploadForm" encType="multipart/form-data">

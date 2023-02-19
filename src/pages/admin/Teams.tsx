@@ -11,20 +11,25 @@ import React from "react";
 export default function Teams() {
   const navigate = useNavigate();
 
-  const [teams, setTeams] = useState<TeamDTO[]>([]);
+   const [apiData, setApiData] = useState<TeamDTO[]>([]);
+
   const loadApiData = () => {
     apiService.getTeams().then(
       (response) => {
-        setTeams(response.data);
+        setApiData(response.data);
         console.log(response.data)
       })
   };
+
   useEffect(() => {
-    loadApiData();
-  }, []);
+    if(apiData == null)
+    {
+      loadApiData();
+    }
+  });
 
   
-  const renderTeams = teams.map((team, index) => {
+  const renderTeams = apiData.map((team, index) => {
     return (
       <React.Fragment key={index}>
         <tr onClick={() => navigate("/manage/team/" + team.teamId)}>

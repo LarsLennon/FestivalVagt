@@ -9,22 +9,26 @@ import { SectionCreateDTO, TeamDTO } from "../../interface/interface";
 export default function SectionCreate() {
   const { id } = useParams();
 
-  const [team, setTeam] = useState<TeamDTO>();
+  const [apiData, setApiData] = useState<TeamDTO>();
   const loadApiData = () => {
     apiService.getTeam(parseInt(id!)).then(
       (response) => {
-        setTeam(response.data);
+        setApiData(response.data);
       })
   };
+
   useEffect(() => {
-    loadApiData();
-  }, []);
+    if(apiData == null)
+    {
+      loadApiData();
+    }
+  });
 
   const SubmitData = () => {
     if (true) {
       const newSection: SectionCreateDTO = {
         Name: "2023",
-        TeamId: team!.teamId
+        TeamId: apiData!.teamId
       };
       apiService.createSection(newSection).then(
         () => {
@@ -36,7 +40,7 @@ export default function SectionCreate() {
   return (
 
     <Container fluid="lg">
-      <h2>Opret Vagtplan for {team?.number} - {team?.name}</h2>
+      <h2>Opret Vagtplan for {apiData?.number} - {apiData?.name}</h2>
       <Row xs="2"><Col>
         <Form>
           <FormGroup>

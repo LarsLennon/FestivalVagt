@@ -18,7 +18,7 @@ export default function Calendar() {
   const weekdays = ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'];
 
   const [apiData, setApiData] = useState<CalendarDTO>();
-  const getShifts = () => {
+  const loadApiData = () => {
     if (sectionId !== "") {
       apiService.getShifts(sectionId).then(
         (response) => {
@@ -44,9 +44,11 @@ export default function Calendar() {
   };
 
   useEffect(() => {
-    getShifts();
-    console.log("useEffect")
-  }, []);
+    if(apiData == null)
+    {
+      loadApiData();
+    }
+  });
 
 
   const calenderEndDate = (currentStartDate: any) => {
@@ -97,7 +99,7 @@ export default function Calendar() {
               filteredEvents.map(todaysEvent => (
 
                 <div key={todaysEvent.shiftId}>
-                  <EventComponent event={todaysEvent} refresh={getShifts}></EventComponent>
+                  <EventComponent event={todaysEvent} refresh={loadApiData}></EventComponent>
                 </div>
               ))) : (
               <div>

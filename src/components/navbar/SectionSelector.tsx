@@ -18,19 +18,20 @@ export default function SectionSelector() {
 
 
   const [apiData, setApiData] = useState<SectionDetailsDTO[]>([]);
-  const getApiData = () => {
+  const loadApiData = () => {
       apiService.getSections().then(
           (response) => {
               setApiData(response.data);
           })
   };
 
+
   useEffect(() => {
-    getApiData();
-    // if (apiData.length > 0) {
-    //   selectSection(apiData[0]);
-    // }
-  }, []);
+    if(apiData == null)
+    {
+      loadApiData();
+    }
+  });
 
 
 
