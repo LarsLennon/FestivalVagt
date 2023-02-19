@@ -3,8 +3,10 @@ import { SectionCreateDTO } from "../interface/interface";
 import authHeader from "./auth-header"
 
 
-//export const API_URL = "https://localhost:7217/api/";
-export const API_URL = "https://smukvagtdb20230218133559.azurewebsites.net/api/";
+const API_URL_development = "https://localhost:7217/api/";
+const API_URL_production = "https://smukvagtdb20230218133559.azurewebsites.net/api/";
+
+export const API_URL = process.env.NODE_ENV === "production" ? API_URL_production : API_URL_development;
 
 export const ENDPOINTS = {
   teamController: "team",
