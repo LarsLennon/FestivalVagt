@@ -1,6 +1,5 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./components/Login";
-//import NavMenu from "./components/navbar/NavMenu";
+import { BrowserRouter } from "react-router-dom";
+import NavMenu from "./components/navbar/NavMenu";
 
 
 export default function App() {
@@ -8,9 +7,7 @@ export default function App() {
     //  <GlobalContextProvider>
 
     <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-      </Routes>
+      <NavMenu></NavMenu>
     </BrowserRouter>
     //  </GlobalContextProvider>
   );
