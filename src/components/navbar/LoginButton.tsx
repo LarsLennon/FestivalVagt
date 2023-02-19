@@ -7,19 +7,26 @@ import {
 } from "reactstrap";
 import authService from "../../services/auth.service";
 import { useNavigate } from "react-router-dom";
+import { useGlobalContext } from "../../hooks/GlobalContent";
 
+interface Iprops {
+  refresh: Function;
+}
 
-export default function LoginButton() {
+export default function LoginButton(props: Iprops) {
+  const { setUserName } = useGlobalContext()
   const navigate = useNavigate();
 
 
   const handleLogout = () => {
     authService.logout();
+    setUserName("");
     navigate("/login");
   };
 
   const renderButton = () => {
     if (authService.isAuth()) {
+      props.refresh(true);
       return (
         <UncontrolledDropdown>
           <DropdownToggle className="text-dark" nav caret>
@@ -36,6 +43,7 @@ export default function LoginButton() {
       );
     }
     else {
+      props.refresh(false);
       return (
         <NavLink href="/login" className="text-dark">
           Login

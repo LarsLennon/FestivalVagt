@@ -3,10 +3,12 @@ import { Alert, Button, Form, FormGroup, Input, Label } from "reactstrap";
 import './Login.css';
 import authService from "../services/auth.service"
 import { useNavigate } from "react-router-dom";
+import { useGlobalContext } from "../hooks/GlobalContent";
 
 
 
 export default function Login() {
+    const { setSectionId, setUserName } = useGlobalContext()
     const navigate = useNavigate();
 
     const [loading, setLoading] = useState(false);
@@ -28,7 +30,10 @@ export default function Login() {
             () => {
                 setErrorMessage("");
                 console.log("Response");
-                navigate("/profile")
+                navigate("/calendar")
+                setSectionId("222");
+                setUserName(authService.getCurrentUsername()!);
+                console.log(authService.getCurrentUsername());
                 // this.props.router.navigate("/profile");
                 //   window.location.reload();
             },
@@ -64,7 +69,6 @@ export default function Login() {
                 console.log("Response");
                 navigate("/calendar")
                 // this.props.router.navigate("/profile");
-                //   window.location.reload();
             },
             error => {
                 const resMessage =

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Collapse,
   Navbar,
@@ -24,15 +24,20 @@ import MemberAttributes from "../../pages/MemberAttributes";
 import Members from "../../pages/Members";
 import MyShifts from "../../pages/MyShifts";
 import Profile from "../../pages/Profile";
+import { useGlobalContext } from "../../hooks/GlobalContent";
 
 export default function NavMenu() {
+  const { setUserName } = useGlobalContext();
   const [isOpen, setIsOpen] = useState(true);
 
   const toggle = () => setIsOpen(!isOpen);
 
-  //const username = authService.getCurrentUsername();
+  useEffect(() => {
+    console.log("Effect!!!");
+  }, [setUserName]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const renderNavLinks = () => {
+    console.log(authService.isAuth());
     if (authService.isAuth())
       return (
         <React.Fragment>
@@ -61,7 +66,11 @@ export default function NavMenu() {
       }
   };
 
+  const refresh = (isAuth:boolean) => {
+    //setIsAuth(isAuth);
+  }
 
+  console.log(authService.isAuth());
   return (
     <div>
       <Navbar
@@ -77,7 +86,7 @@ export default function NavMenu() {
 
 
           </Nav>
-          <LoginButton></LoginButton>
+          <LoginButton refresh={refresh}></LoginButton>
         </Collapse>
       </Navbar>
 

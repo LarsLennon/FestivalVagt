@@ -4,6 +4,8 @@ import { GlobalContextProvider } from "./hooks/GlobalContent";
 
 
 export default function App() {
+  
+  
   return (
     <GlobalContextProvider>
       <BrowserRouter>

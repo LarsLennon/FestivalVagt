@@ -21,7 +21,11 @@ export default function SectionSelector() {
   const loadApiData = () => {
       apiService.getSections().then(
           (response) => {
+            if(response.data.length > 0)  
+            {
               setApiData(response.data);
+              setSectionId(response.data[0].sectionId)
+            }
           })
   };
 
@@ -53,23 +57,25 @@ export default function SectionSelector() {
   // }
 
   return (
-    <UncontrolledDropdown nav inNavbar>
-      <DropdownToggle className="text-dark" nav caret>
-        {sectionName === "" ? "Loading..." : sectionName}
-      </DropdownToggle>
-      <DropdownMenu end>
-        {apiData.map((item, idx) => (
-          <DropdownItem
-            key={idx}
-            onClick={() => {
-              selectSection(item);
-            }}
-          >
-            {item.team.name +  " - " + item.name}
-          </DropdownItem>
-        ))}
-      </DropdownMenu>
-    </UncontrolledDropdown>
-    
+     apiData.length > 1 ?     
+     <UncontrolledDropdown nav inNavbar>
+     <DropdownToggle className="text-dark" nav caret>
+       {sectionName === "" ? "Loading..." : sectionName}
+     </DropdownToggle>
+     <DropdownMenu end>
+       {apiData.map((item, idx) => (
+         <DropdownItem
+           key={idx}
+           onClick={() => {
+             selectSection(item);
+           }}
+         >
+           {item.team.name +  " - " + item.name}
+         </DropdownItem>
+       ))}
+     </DropdownMenu>
+   </UncontrolledDropdown>
+
+    : <div></div>
   );
 }
