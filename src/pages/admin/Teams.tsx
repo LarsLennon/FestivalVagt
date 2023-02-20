@@ -11,7 +11,7 @@ import React from "react";
 export default function Teams() {
   const navigate = useNavigate();
 
-   const [apiData, setApiData] = useState<TeamDTO[]>([]);
+  const [apiData, setApiData] = useState<TeamDTO[]>([]);
 
   const loadApiData = () => {
     apiService.getTeams().then(
@@ -28,7 +28,7 @@ export default function Teams() {
     }
   });
 
-  
+
   const renderTeams = apiData.map((team, index) => {
     return (
       <React.Fragment key={index}>
@@ -48,15 +48,15 @@ export default function Teams() {
       <Button onClick={() => navigate("/team/sync")}>Team Sync</Button>
 
 
-      
+
       <Table hover>
         <thead>
           <tr>
             <th>Hold Nummer</th>
             <th>Hold Navn</th>
           </tr>
-       </thead>
-       <tbody>
+        </thead>
+        <tbody>
           {renderTeams}
         </tbody>
       </Table>

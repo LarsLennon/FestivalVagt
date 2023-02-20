@@ -9,22 +9,22 @@ export default function Team() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [team, setTeam] = useState<TeamDetailsDTO>();
+  const [apiData, setApiData] = useState<TeamDetailsDTO>();
   const loadApiData = () => {
     apiService.getTeam(parseInt(id!)).then(
       (response) => {
-        setTeam(response.data);
+        setApiData(response.data);
 
       })
   };
   useEffect(() => {
-    loadApiData();
-  });
+      loadApiData();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const mapSections = team?.sections.map((section: SectionDTO, index: number) => {
+  const mapSections = apiData?.sections.map((section: SectionDTO, index: number) => {
     return (
-      <ListGroupItem key={index} action onClick={() => navigate("/manage/section/" + section.sectionId)}>
-        <h5 className="mb-1">{section.name}</h5>
+      <ListGroupItem color={section.isActive ? "success" : ""} key={index} action onClick={() => navigate("/manage/section/" + section.sectionId)}>
+        <h5 className="mb-1">{section.name} {section.isActive ? "(Active)" : ""}</h5>
         {/* <small className="mb-1">VoV Skranke</small> */}
       </ListGroupItem>
     );
@@ -33,7 +33,7 @@ export default function Team() {
   return (
 
     <Container fluid="lg">
-      <h2>Hold: {team?.number} - {team?.name}</h2>
+      <h2>Hold: {apiData?.number} - {apiData?.name}</h2>
       {/* <Button onClick={() => navigate("/team/sync")}>Team Sync</Button> */}
 
       <Row xs="2">
@@ -41,7 +41,7 @@ export default function Team() {
           <h3>
             Vagtplan
           </h3>
-          <Button onClick={() => navigate("/manage/create/" + team?.teamId)}>Opret Vagtplan</Button>
+          <Button onClick={() => navigate("/manage/create/" + apiData?.teamId)}>Opret Vagtplan</Button>
           <ListGroup>
             {mapSections}
           </ListGroup>

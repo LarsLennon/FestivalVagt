@@ -25,6 +25,7 @@ import Members from "../../pages/Members";
 import MyShifts from "../../pages/MyShifts";
 import Profile from "../../pages/Profile";
 import { useGlobalContext } from "../../hooks/GlobalContent";
+import SectionEdit from "../../pages/manage/Section.Edit";
 
 export default function NavMenu() {
   const { setUserName } = useGlobalContext();
@@ -100,6 +101,7 @@ export default function NavMenu() {
         <Route path="/manage/team/:id" element={<ProtectedRoute><Team /></ProtectedRoute>} />
         <Route path="/manage/create/:id" element={<ProtectedRoute><SectionCreate /></ProtectedRoute>} />
         <Route path="/manage/section/:id" element={<ProtectedRoute><SectionDetails /></ProtectedRoute>} />
+        <Route path="/manage/section/edit/:id" element={<ProtectedRoute><SectionEdit /></ProtectedRoute>} />
         <Route path="/manage/import/:id" element={<ProtectedRoute><SectionImport /></ProtectedRoute>} />
         <Route path="/members" element={<ProtectedRoute><Members /></ProtectedRoute>} />
         <Route path="/calendar" element={<ProtectedRoute><Calendar /></ProtectedRoute>} />

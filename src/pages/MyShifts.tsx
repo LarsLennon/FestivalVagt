@@ -1,25 +1,24 @@
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { Col, Container, ListGroup, ListGroupItem, Row } from "reactstrap";
+import { useGlobalContext } from "../hooks/GlobalContent";
 import { ShiftDTO } from "../interface/interface";
 import ApiService from '../services/api.service';
 
 export default function MyShifts() {
+    const { sectionId } = useGlobalContext();
 
     const [apiData, setApiData] = useState<ShiftDTO[]>([]);
     const loadApiData = () => {
-        ApiService.getMembersShifts().then(
+        ApiService.getMembersShifts(sectionId).then(
             (response) => {
                 setApiData(response.data);
             })
     };
 
     useEffect(() => {
-        if(apiData.length === 0)
-        {
           loadApiData();
-        }
-      });
+        }, [sectionId]); // eslint-disable-line react-hooks/exhaustive-deps
 
 
 

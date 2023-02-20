@@ -40,6 +40,7 @@ export interface SectionDTO {
   Slots?: number;
   StartTime?: string;
   EndTime?: string;
+  isActive?: boolean;
 }
 
 export interface SectionDetailsDTO {
@@ -49,12 +50,20 @@ export interface SectionDetailsDTO {
   Slots?: number;
   StartTime?: string;
   EndTime?: string;
+  isActive?: boolean;
   team: TeamDTO;
 }
 
 export interface SectionCreateDTO {
   TeamId: number;
   Name: string;
+  // IsActive?: boolean;
+}
+
+export interface SectionEditDTO {
+  SectionId: string;
+  Name: string;
+  isActive?: boolean;
 }
 
 export interface ShiftDTO {

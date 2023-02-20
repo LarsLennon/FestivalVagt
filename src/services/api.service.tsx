@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SectionCreateDTO } from "../interface/interface";
+import { SectionCreateDTO, SectionEditDTO } from "../interface/interface";
 import authHeader from "./auth-header"
 
 
@@ -46,8 +46,8 @@ class ApiService {
   getShift(id:number) {
     return axios.get(API_URL + ENDPOINTS.shiftController + "/" + id, { headers: authHeader() });
   }
-  getMembersShifts() {
-    return axios.get(API_URL + ENDPOINTS.getMembersShifts, { headers: authHeader() });
+  getMembersShifts(sectionId:string) {
+    return axios.get(API_URL + ENDPOINTS.getMembersShifts + "/" + sectionId, { headers: authHeader() });
   }
 
   /*
@@ -62,6 +62,12 @@ class ApiService {
   */
   createSection(section:SectionCreateDTO) {
     return axios.post(API_URL + ENDPOINTS.sectionController,
+      section,
+      { headers: authHeader() });
+  }
+
+  updateSection(section:SectionEditDTO) {
+    return axios.put(API_URL + ENDPOINTS.sectionController,
       section,
       { headers: authHeader() });
   }
