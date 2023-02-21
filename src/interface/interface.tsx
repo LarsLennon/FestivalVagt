@@ -7,7 +7,12 @@ export interface MemberDTO {
   experienced?:boolean;
   firstAid?:boolean;
   units?:number;
+}
 
+export interface MemberAttributesDTO {
+  memberId?: number;
+  driver?:boolean;
+  firstAid?:boolean;
 }
 
 export interface TeamDetailsDTO {
@@ -88,6 +93,7 @@ export interface CalendarShiftDTO {
 
 export interface CalendarDTO {
   name: string;
+  requireAttributes: boolean;
   openTime: string;
   closeTime: string;
   firstDate: string;

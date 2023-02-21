@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SectionCreateDTO, SectionEditDTO } from "../interface/interface";
+import { MemberAttributesDTO, SectionCreateDTO, SectionEditDTO } from "../interface/interface";
 import authHeader from "./auth-header"
 
 
@@ -11,6 +11,7 @@ export const API_URL = process.env.NODE_ENV === "production" ? API_URL_productio
 export const ENDPOINTS = {
   teamController: "team",
   membaController: "memba",
+  memberController: "member",
   membersController: "members",
   sectionController: "sections",
   shiftController: "shifts",
@@ -55,6 +56,12 @@ class ApiService {
   */  
   getMembers(sectionId:string) {
     return axios.get(API_URL + ENDPOINTS.membersController + "/section/" + sectionId, { headers: authHeader() });
+  }
+
+  setMemberAttributes(attributes:MemberAttributesDTO) {
+    return axios.put(API_URL + ENDPOINTS.memberController + "/1",
+      attributes,
+      { headers: authHeader() });
   }
 
   /*

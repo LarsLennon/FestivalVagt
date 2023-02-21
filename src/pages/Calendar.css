@@ -36,14 +36,6 @@ td.event-td {
     box-shadow: 1px 1px 1px 1px #ccc !important;
 }
 
-.event-myshift .event-link.active, .event-pills .show > .event-link {
-    color: black !important;
-    border-left: 5px solid greenyellow !important;
-    background-color: greenyellow !important;
-    border-radius: 0 !important;
-    box-shadow: 1px 1px 1px 1px #ccc !important;
-}
-
 .event-disabled .event-link.active, .event-pills .show > .event-link {
     color: black !important;
     border-left: 5px solid red !important;
@@ -54,8 +46,8 @@ td.event-td {
 
 .event-myshift .event-link.active, .event-pills .show > .event-link {
     color: black !important;
-    border-left: 5px solid greenyellow !important;
-    background-color: greenyellow !important;
+    border-left: 5px solid #FF69B4 !important;
+    background-color: #FF69B4 !important;
     border-radius: 0 !important;
     box-shadow: 1px 1px 1px 1px #ccc !important;
 }

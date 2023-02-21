@@ -105,7 +105,7 @@ export default function NavMenu() {
         <Route path="/manage/import/:id" element={<ProtectedRoute><SectionImport /></ProtectedRoute>} />
         <Route path="/members" element={<ProtectedRoute><Members /></ProtectedRoute>} />
         <Route path="/calendar" element={<ProtectedRoute><Calendar /></ProtectedRoute>} />
-        <Route path="/test" element={<MemberAttributes />} />
+        <Route path="/attributes" element={<MemberAttributes />} />
 
 
       </Routes>

@@ -8,9 +8,11 @@ import { useGlobalContext } from '../hooks/GlobalContent';
 import { Container } from 'reactstrap';
 import React from 'react';
 import EventComponent from '../components/event.component';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Calendar() {
+  const navigate = useNavigate();
   const { sectionId, calendarTimeline, calendarDate, setCalendarDate } = useGlobalContext();
   const [firstShiftDate, setFirstShiftDate] = useState("");
   const [lastShiftDate, setLastShiftDate] = useState("");
@@ -23,10 +25,16 @@ export default function Calendar() {
       apiService.getShifts(sectionId).then(
         (response) => {
           setApiData(response.data);
-          const shiftsResponse: CalendarDTO = response.data;
-          if (shiftsResponse.shifts.length > 0) {
-            var first = moment(shiftsResponse.shifts[0].startTime!).format("yyyy-MM-DD");
-            var last = moment(shiftsResponse.shifts[shiftsResponse.shifts.length - 1].endTime!).format("yyyy-MM-DD");
+          const calendarDTO: CalendarDTO = response.data;
+
+          if(calendarDTO.requireAttributes)
+          {
+            navigate("/attributes")
+          }
+
+          if (calendarDTO.shifts.length > 0) {
+            var first = moment(calendarDTO.shifts[0].startTime!).format("yyyy-MM-DD");
+            var last = moment(calendarDTO.shifts[calendarDTO.shifts.length - 1].endTime!).format("yyyy-MM-DD");
             setFirstShiftDate(first);
             setLastShiftDate(last);
             var m = moment(calendarDate);

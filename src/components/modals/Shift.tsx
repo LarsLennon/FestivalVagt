@@ -1,7 +1,9 @@
 import moment from "moment";
+// import { useState } from "react";
 // import { RiDeleteBinLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { Button, Modal, ModalHeader, ModalBody, Table, Alert } from "reactstrap";
+import conflict from "../../components/conflics";
 import { CalendarShiftDTO } from "../../interface/interface";
 import apiService from "../../services/api.service";
 
@@ -65,20 +67,9 @@ export default function Booking(props: BookingProps) {
     );
   };
 
-  // const mapMembers = props.event.members.map((Member, index) => {
-  //   return (
-  //     <tr key={index}>
-  //       <td>{Member.name}</td>
-  //       <td>1</td>
-  //       <td>1</td>
-  //       {/* <td><Button color="danger"><RiDeleteBinLine /></Button></td> */}
-  //     </tr>
-  //     // <li key={index}>
-  //     //     {Member.name}
-  //     // </li>
-  //   );
-  // });
 
+  var stringConflict = conflict(props.event.conflict!);
+  
   return (
     <div>
       <Modal onOpened={modalOpened} isOpen={props.isOpen} toggle={close}>
@@ -87,7 +78,7 @@ export default function Booking(props: BookingProps) {
           {props.event.name}
         </ModalHeader>
 
-        {props.event.conflict !== 0 ? <Alert color="danger">Du kan ikke tage denne vagt. Kode: {props.event.conflict}</Alert> : ""}
+        {props.event.conflict !== 0 ? <Alert color="danger">Du kan ikke tage denne vagt. : {stringConflict}</Alert> : ""}
 
         <ModalBody>
           Her kan vi skrive en masse tekst omkring hvad man skal være opmærksom på under vagtet. Eller hvad denne vagt indebærer.

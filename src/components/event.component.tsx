@@ -2,6 +2,7 @@ import moment from "moment";
 import { useState } from "react";
 import { List } from "reactstrap";
 import { CalendarShiftDTO } from "../interface/interface";
+import conflict from "./conflics";
 import Shift from "./modals/Shift";
 
 interface Iprops {
@@ -86,6 +87,9 @@ export default function EventComponent(props: Iprops) {
                                 <div>
                                     <span className="font-weight-bold sm"><b>{moment(props.event.startTime).format("HH:mm")} - {moment(props.event.endTime).format("HH:mm")} </b></span>
                                     {/* <ProgressAvailable total={props.event.slots!} occupied={props.event.members.length}></ProgressAvailable> */}
+                                    <div className="shiftprogresstext">
+                                        {conflict(props.event.conflict!)}
+                                    </div>
                                 </div>
                             )}
                             <div className="event-list">

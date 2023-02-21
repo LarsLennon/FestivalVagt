@@ -9,17 +9,18 @@ import { SectionCreateDTO, TeamDTO } from "../../interface/interface";
 export default function SectionCreate() {
   const { id } = useParams();
 
+  const [isLoading, setLoading] = useState(true);
   const [apiData, setApiData] = useState<TeamDTO>();
   const loadApiData = () => {
     apiService.getTeam(parseInt(id!)).then(
       (response) => {
+        setLoading(false);
         setApiData(response.data);
       })
   };
 
   useEffect(() => {
-    if(apiData === null)
-    {
+    if (isLoading) {
       loadApiData();
     }
   });
