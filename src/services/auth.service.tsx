@@ -44,21 +44,17 @@ class AuthService {
     var token = localStorage.getItem("token");
 
     if (token !== null) {
-      // var tokenToDecode = token
       try {
-        
-      var decoded:jwtProps = jwt_decode(token);
-      console.log(decoded);
-      console.log(decoded.role);
+        var decoded: jwtProps = jwt_decode(token);
+        // console.log(decoded);
+        // console.log(decoded.role);
       } catch (error) {
-        return false;        
+        return false;
       }
       // decoded.name
       return true;
     }
-    return false;
-
-
+    return false;  
   }
 
   getUserToken() {

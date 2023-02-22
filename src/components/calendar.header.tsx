@@ -18,7 +18,7 @@ export default function CalenderHeader(props: Iprops) {
 
     function HeaderText() {
         if (calendarTimeline === "week") {
-            return (<h2 className="headertext">Uge {moment(calendarDate).week()}</h2>);
+            return ""; //(<h2 className="headertext">Uge {moment(calendarDate).week()}</h2>);
         }
         else if (calendarTimeline === "month") {
             let month = moment(calendarDate).month();

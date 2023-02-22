@@ -12,17 +12,18 @@ export default function SectionImport() {
 
   const [fileName, setFileName] = useState();
 
+  const [isLoading, setLoading] = useState(true);
   const [apiData, setApiData] = useState<SectionDetailsDTO>();
   const loadApiData = () => {
     apiService.getSection(parseInt(id!)).then(
       (response) => {
+        setLoading(false);
         setApiData(response.data);
         console.log(response.data)
       })
   };
   useEffect(() => {
-    if(apiData === null)
-    {
+    if (isLoading) {
       loadApiData();
     }
   });

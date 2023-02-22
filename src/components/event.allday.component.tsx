@@ -1,10 +1,10 @@
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import { List, Progress } from "reactstrap";
-import { ShiftDTO } from "../interface/interface";
+import { ShiftWithMemberDTO } from "../interface/interface";
 
 interface Iprops {
-    event: ShiftDTO;
+    event: ShiftWithMemberDTO;
     returnUrl: string;
 }
 

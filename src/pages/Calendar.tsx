@@ -96,6 +96,7 @@ export default function Calendar() {
 
       days.push(
         <React.Fragment key={m.format('YYYY-MM-DD')}>
+          { dayOfWeek == 1 ? <div className="head_color"><h2 className="headertext">Uge {moment(m).week()}</h2></div> : ""}
           <div className='w-100 d-md-none '></div>
           <div className="col-sm-2 col-md-3 col-xl nopadding">
             <h4>{weekdays[dayOfWeek]} {m.format('DD/MM')}</h4>
@@ -131,7 +132,7 @@ export default function Calendar() {
   });
 
   let mapRows = rows.map((d: any, index: any) => {
-    return (
+    return (    
       <div className="row" key={index + 1000}>
         {d}
       </div>);

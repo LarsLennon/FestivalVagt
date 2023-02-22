@@ -10,7 +10,6 @@ export interface MemberDTO {
 }
 
 export interface MemberAttributesDTO {
-  memberId?: number;
   driver?:boolean;
   firstAid?:boolean;
 }
@@ -71,7 +70,25 @@ export interface SectionEditDTO {
   isActive?: boolean;
 }
 
+export interface MyShiftsDTO {
+  shiftId?: number;
+  name?: string;
+  slots?: number;
+  startTime?: string;
+  endTime?: string;
+  shifts: ShiftDTO[];
+}
+
 export interface ShiftDTO {
+  shiftId?: number;
+  name?: string;
+  slots?: number;
+  startTime?: string;
+  endTime?: string;
+  members: MemberDTO[];
+}
+
+export interface ShiftWithMemberDTO {
   shiftId?: number;
   name?: string;
   slots?: number;

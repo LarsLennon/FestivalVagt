@@ -2,13 +2,13 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import { Col, Container, ListGroup, ListGroupItem, Row } from "reactstrap";
 import { useGlobalContext } from "../hooks/GlobalContent";
-import { ShiftDTO } from "../interface/interface";
+import { MyShiftsDTO, ShiftDTO } from "../interface/interface";
 import ApiService from '../services/api.service';
 
 export default function MyShifts() {
     const { sectionId } = useGlobalContext();
 
-    const [apiData, setApiData] = useState<ShiftDTO[]>([]);
+    const [apiData, setApiData] = useState<MyShiftsDTO>();
     const loadApiData = () => {
         ApiService.getMembersShifts(sectionId).then(
             (response) => {
@@ -22,7 +22,7 @@ export default function MyShifts() {
 
 
 
-    const mapShifts = apiData.map((shift: ShiftDTO, index: number) => {
+    const mapShifts = apiData?.shifts.map((shift: ShiftDTO, index: number) => {
         return (
             <ListGroupItem key={index}>
                 <div className="d-flex w-100 justify-content-between">
