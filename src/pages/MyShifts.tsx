@@ -1,6 +1,7 @@
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { Col, Container, ListGroup, ListGroupItem, Row } from "reactstrap";
+import FestivalUnits from "../components/FestivalUnits";
 import { useGlobalContext } from "../hooks/GlobalContent";
 import { MyShiftsDTO, ShiftDTO } from "../interface/interface";
 import ApiService from '../services/api.service';
@@ -13,12 +14,13 @@ export default function MyShifts() {
         ApiService.getMembersShifts(sectionId).then(
             (response) => {
                 setApiData(response.data);
+                console.log(response.data);
             })
     };
 
     useEffect(() => {
-          loadApiData();
-        }, [sectionId]); // eslint-disable-line react-hooks/exhaustive-deps
+        loadApiData();
+    }, [sectionId]); // eslint-disable-line react-hooks/exhaustive-deps
 
 
 
@@ -34,8 +36,13 @@ export default function MyShifts() {
         );
     });
 
+
     return (
         <div>
+            <FestivalUnits 
+            units={apiData== null ? 0 : apiData!.units}
+            sectionName={apiData?.name!}
+            ></FestivalUnits>
             <Container fluid="lg">
                 <Row xs="2">
                     <Col>

@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, FormGroup, Input, Label, Row } from "reactstrap";
 
 import { useParams } from "react-router-dom";
-import apiService from "../../services/api.service";
-import { SectionCreateDTO, TeamDTO } from "../../interface/interface";
+import apiService from "../services/api.service";
+import { SectionCreateDTO, TeamDTO } from "../interface/interface";
 
 
 export default function SectionCreate() {

@@ -2,12 +2,17 @@ import { useEffect, useState } from "react";
 import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
 
 import { useParams } from "react-router-dom";
-import apiService from "../../services/api.service";
-import { SectionDetailsDTO, SectionEditDTO } from "../../interface/interface";
+import apiService from "../services/api.service";
+import { SectionDetailsDTO, SectionEditDTO } from "../interface/interface";
+import DateTimePicker from "../components/formcomponents/DateTimePicker";
+import Moment from "react-moment";
+import moment from "moment";
 
 
 export default function SectionEdit() {
   const { id } = useParams();
+  const [openDate, setOpenDate] = useState(new Date());
+  const [closeDate, setCloseDate] = useState(new Date());
 
   const [isActive, setActive] = useState(false);
   const [name, setName] = useState("");
@@ -31,15 +36,20 @@ export default function SectionEdit() {
 
 
   const SubmitData = () => {
+    var newOpenDate = moment(openDate).format('yyyy-MM-DD hh:mm'); //openDate.toString("yyyy-MM-dd hh:mm"),
+    var newCloseDate = moment(openDate).format('yyyy-MM-DD hh:mm'); //openDate.toString("yyyy-MM-dd hh:mm"),
+
     const newSection: SectionEditDTO = {
-        SectionId: id!,
-        Name: name,
-        isActive: isActive
-      };
-      apiService.updateSection(newSection).then(
-        () => {
-          //setTeam(response.data);
-        })
+      SectionId: id!,
+      Name: name,
+      isActive: isActive,
+      openTime: newOpenDate,
+      closeTime: newCloseDate
+    };
+    apiService.updateSection(newSection).then(
+      () => {
+        //setTeam(response.data);
+      })
   };
 
   const onChangeUsername = (event: any) => {
@@ -58,7 +68,7 @@ export default function SectionEdit() {
       <h2>Edit {apiData?.name} tilhørende {apiData?.team.number} - {apiData?.team.name}</h2>
       <Form>
         <FormGroup>
-          <Label for="exampleEmail">
+          <Label for="exampleName">
             Navn
           </Label>
           <Input
@@ -70,15 +80,31 @@ export default function SectionEdit() {
           />
         </FormGroup>
         <FormGroup check>
-          <Input 
-          type="checkbox" 
-          checked={isActive}
-          onChange={onChangeActive}
-           />
+          <Input
+            type="checkbox"
+            checked={isActive}
+            onChange={onChangeActive}
+          />
           {' '}
           <Label check>
             Active
           </Label>
+        </FormGroup>
+        <FormGroup>
+          <Label for="exampleSelectMultiTo">Open</Label>
+          <DateTimePicker
+            initDate={openDate}
+            onChange={setOpenDate}
+            placeholderText="Open Date"
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label for="exampleSelectMultiTo">Close</Label>
+          <DateTimePicker
+            initDate={closeDate}
+            onChange={setCloseDate}
+            placeholderText="Close Date"
+          />
         </FormGroup>
         <Button onClick={SubmitData}>
           Submit

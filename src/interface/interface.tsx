@@ -68,10 +68,13 @@ export interface SectionEditDTO {
   SectionId: string;
   Name: string;
   isActive?: boolean;
+  openTime?: string;
+  closeTime?: string;
 }
 
 export interface MyShiftsDTO {
   shiftId?: number;
+  units: number;
   name?: string;
   slots?: number;
   startTime?: string;
@@ -100,7 +103,11 @@ export interface ShiftWithMemberDTO {
 export interface CalendarShiftDTO {
   shiftId: string;
   name?: string;
+  allDay: boolean;
+  units: number;
   slots?: number;
+  reqDrivers?: string;
+  reqExperienced?: string;
   startTime?: string;
   endTime?: string;
   myShift?: string;
@@ -111,6 +118,7 @@ export interface CalendarShiftDTO {
 export interface CalendarDTO {
   name: string;
   requireAttributes: boolean;
+  units: number;
   openTime: string;
   closeTime: string;
   firstDate: string;

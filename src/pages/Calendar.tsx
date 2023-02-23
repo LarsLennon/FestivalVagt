@@ -5,7 +5,7 @@ import moment from 'moment';
 import apiService from '../services/api.service';
 import { CalendarDTO } from '../interface/interface';
 import { useGlobalContext } from '../hooks/GlobalContent';
-import { Container } from 'reactstrap';
+import { Alert, Container } from 'reactstrap';
 import React from 'react';
 import EventComponent from '../components/event.component';
 import { useNavigate } from 'react-router-dom';
@@ -27,11 +27,10 @@ export default function Calendar() {
           setApiData(response.data);
           const calendarDTO: CalendarDTO = response.data;
 
-          if(calendarDTO.requireAttributes)
-          {
+          if (calendarDTO.requireAttributes) {
             navigate("/attributes")
           }
-
+          console.log(calendarDTO); // TODO
           if (calendarDTO.shifts.length > 0) {
             var first = moment(calendarDTO.shifts[0].startTime!).format("yyyy-MM-DD");
             var last = moment(calendarDTO.shifts[calendarDTO.shifts.length - 1].endTime!).format("yyyy-MM-DD");
@@ -52,7 +51,7 @@ export default function Calendar() {
   };
 
   useEffect(() => {
-      loadApiData();
+    loadApiData();
   }, [sectionId]); // eslint-disable-line react-hooks/exhaustive-deps
 
 
@@ -79,15 +78,10 @@ export default function Calendar() {
 
 
 
+  let a = calenderStartDate();
+  let b = calenderEndDate(a);
+
   let days = [];
-  // Loop through week
-  // let a = moment(firstShiftDate).day("Monday").week(parseInt(index!)); // Get first day of week
-  // let a = moment(firstShiftDate);//.day("Monday").week(parseInt(index!)); // Get first day of week
-  //let a = momene; //moment(firstShiftDate).day("Monday");//.week(parseInt(index!)); // Get first day of week
-  // let b = moment(a).add(7, 'days');
-  // let b = moment(lastShiftDate);
-  let a = calenderStartDate(); // moment(calendarDate).day("Monday");//.week(parseInt(index!)); // Get first day of week
-  let b = calenderEndDate(a);//moment(lastShiftDate).add(7, 'days').add(12, 'hours');
   let filteredEvents;
   if (apiData != null) {
     for (let m = moment(a); m.isBefore(b); m.add(1, 'days')) {
@@ -96,7 +90,7 @@ export default function Calendar() {
 
       days.push(
         <React.Fragment key={m.format('YYYY-MM-DD')}>
-          { dayOfWeek == 1 ? <div className="head_color"><h2 className="headertext">Uge {moment(m).week()}</h2></div> : ""}
+          {dayOfWeek === 1 ? <div className="head_color"><h2 className="headertext">Uge {moment(m).week()}</h2></div> : ""}
           <div className='w-100 d-md-none '></div>
           <div className="col-sm-2 col-md-3 col-xl nopadding">
             <h4>{weekdays[dayOfWeek]} {m.format('DD/MM')}</h4>
@@ -132,7 +126,7 @@ export default function Calendar() {
   });
 
   let mapRows = rows.map((d: any, index: any) => {
-    return (    
+    return (
       <div className="row" key={index + 1000}>
         {d}
       </div>);
@@ -140,7 +134,10 @@ export default function Calendar() {
 
   return (
     <div>
-      <CalenderHeader firstShiftDate={firstShiftDate} lastShiftDate={lastShiftDate} sectionName={apiData?.name!}></CalenderHeader>
+      <Container>
+        <Alert color="danger">Vagtplanen er lukket!</Alert>
+      </Container>
+      <CalenderHeader firstShiftDate={firstShiftDate} lastShiftDate={lastShiftDate} sectionName={apiData?.name!} units={apiData ? apiData.units : 0}></CalenderHeader>
       <div>
         <Container fluid>
           {mapRows}

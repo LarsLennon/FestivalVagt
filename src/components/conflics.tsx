@@ -5,7 +5,7 @@ export enum ConflictType {
   TimeConflict,
   AlreadyAssigned,
   NotSelectable,
-  SectionClosed,
+  TooManyShifts,
   ShiftFull,
 }
 
@@ -32,8 +32,8 @@ export default function conflict(conflict: number) {
     case ConflictType.NotSelectable:
       return "Denne vagt skal tildeles";
 
-    case ConflictType.SectionClosed:
-      return "Vagtplanen er lukket";
+    case ConflictType.TooManyShifts:
+      return "Du kan ikke tage flere timer";
 
     case ConflictType.ShiftFull:
       return "Ingen ledige pladser";

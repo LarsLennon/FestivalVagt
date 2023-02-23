@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Button, Col, Container, ListGroup, ListGroupItem, Row } from "reactstrap";
 
 import { useNavigate, useParams } from "react-router-dom";
-import apiService from "../../services/api.service";
-import { SectionDTO, TeamDetailsDTO } from "../../interface/interface";
+import apiService from "../services/api.service";
+import { SectionDTO, TeamDetailsDTO } from "../interface/interface";
 
 export default function Team() {
   const { id } = useParams();

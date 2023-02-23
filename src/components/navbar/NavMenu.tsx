@@ -16,16 +16,16 @@ import Login from "../Login";
 import Teams from "../../pages/admin/Teams";
 import TeamSync from "../../pages/admin/TeamSync";
 import Calendar from "../../pages/Calendar";
-import SectionCreate from "../../pages/manage/Section.Create";
-import SectionDetails from "../../pages/manage/Section.Details";
-import SectionImport from "../../pages/manage/Section.Import";
-import Team from "../../pages/manage/Team";
+import SectionCreate from "../../pages/Section.Create";
+import SectionDetails from "../../pages/Section.Details";
+import SectionImport from "../../pages/Section.Import";
+import Team from "../../pages/Team";
 import MemberAttributes from "../../pages/MemberAttributes";
 import Members from "../../pages/Members";
 import MyShifts from "../../pages/MyShifts";
 import Profile from "../../pages/Profile";
 import { useGlobalContext } from "../../hooks/GlobalContent";
-import SectionEdit from "../../pages/manage/Section.Edit";
+import SectionEdit from "../../pages/Section.Edit";
 
 export default function NavMenu() {
   const { setUserName } = useGlobalContext();
@@ -54,17 +54,7 @@ export default function NavMenu() {
           <SectionSelector></SectionSelector>
         </React.Fragment>
       );
-      else
-      {
-        return (
-          <React.Fragment>
-  
-            <NavLink href="/calendar" className="text-dark">
-              BOGUS
-            </NavLink>
-          </React.Fragment>
-        );
-      }
+      return;
   };
 
   const refresh = (isAuth:boolean) => {

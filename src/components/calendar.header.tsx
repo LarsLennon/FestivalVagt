@@ -2,11 +2,13 @@ import moment from "moment";
 import { ButtonGroup, Button, Container, Col, Row } from "reactstrap";
 import { useGlobalContext } from "../hooks/GlobalContent";
 import "./calendar.header.css"
+import FestivalUnits from "./FestivalUnits";
 
 interface Iprops {
     firstShiftDate: string;
     lastShiftDate: string;
     sectionName: string;
+    units: number;
 }
 export default function CalenderHeader(props: Iprops) {
     const { calendarTimeline, setCalendarTimeline } = useGlobalContext()
@@ -27,7 +29,7 @@ export default function CalenderHeader(props: Iprops) {
         return (<h2 className="headertext">Alle</h2>);
     }
 
-    function momentFormat(date:any) {
+    function momentFormat(date: any) {
         return moment(date).format("yyyy-MM-DD")
     }
 
@@ -43,37 +45,36 @@ export default function CalenderHeader(props: Iprops) {
         setCalendarTimeline("all")
     }
 
-   
+
     function handlePrev() {
-        if(calendarTimeline === "month")
-        {
+        if (calendarTimeline === "month") {
             let nextDate = moment(calendarDate).subtract(1, 'month');
             setCalendarDate(momentFormat(nextDate))
         }
-        if(calendarTimeline === "week")
-        {
+        if (calendarTimeline === "week") {
             let nextDate = moment(calendarDate).subtract(1, 'week');
             setCalendarDate(momentFormat(nextDate))
         }
     }
 
     function handleNext() {
-        if(calendarTimeline === "month")
-        {
+        if (calendarTimeline === "month") {
             let nextDate = moment(calendarDate).add(1, 'month');
             setCalendarDate(momentFormat(nextDate))
         }
-        if(calendarTimeline === "week")
-        {
+        if (calendarTimeline === "week") {
             let nextDate = moment(calendarDate).add(1, 'week');
             setCalendarDate(momentFormat(nextDate))
         }
     }
 
-
     return (
+
         <Container fluid>
-            <h2 className="headertext">{props.sectionName} </h2>
+        <FestivalUnits 
+        units={props.units}
+        sectionName={props.sectionName}
+        />
             <Row>
                 <Col>
                     <ButtonGroup>

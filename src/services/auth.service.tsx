@@ -46,7 +46,7 @@ class AuthService {
     if (token !== null) {
       try {
         var decoded: jwtProps = jwt_decode(token);
-        // console.log(decoded);
+        console.log(decoded);
         // console.log(decoded.role);
       } catch (error) {
         return false;

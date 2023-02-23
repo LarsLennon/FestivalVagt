@@ -69,7 +69,7 @@ export default function Booking(props: BookingProps) {
 
 
   var stringConflict = conflict(props.event.conflict!);
-  
+
   return (
     <div>
       <Modal onOpened={modalOpened} isOpen={props.isOpen} toggle={close}>
@@ -78,7 +78,7 @@ export default function Booking(props: BookingProps) {
           {props.event.name}
         </ModalHeader>
 
-        {props.event.conflict !== 0 ? <Alert color="danger">Du kan ikke tage denne vagt. : {stringConflict}</Alert> : ""}
+        {props.event.conflict !== 0 ? <Alert color="danger">{stringConflict}</Alert> : ""}
 
         <ModalBody>
           Her kan vi skrive en masse tekst omkring hvad man skal være opmærksom på under vagtet. Eller hvad denne vagt indebærer.
@@ -92,6 +92,11 @@ export default function Booking(props: BookingProps) {
             <tbody>
               {tableRow("Start", moment(props.event.startTime).format("HH:mm D/MM/YY"))}
               {tableRow("Slut", moment(props.event.endTime).format("HH:mm D/MM/YY"))}
+
+              {tableRow("Id", props.event.shiftId)}
+              {tableRow("Chauffører", props.event.reqDrivers!)}
+              {tableRow("Erfarne", props.event.reqExperienced!)}
+              {tableRow("All Day", props.event.allDay ? "Ja" : "Nej")}
             </tbody>
           </Table>
 
@@ -108,55 +113,55 @@ export default function Booking(props: BookingProps) {
             </tbody>
           </Table> */}
 
-{
-          //@ts-ignore
-          // <Accordion open={open} toggle={toggle}>
-          //   <AccordionItem>
-          //     <AccordionHeader targetId="1">Info</AccordionHeader>
-          //     <AccordionBody accordionId="1">
-          //       <Table>
-          //         <thead>
-          //           <tr>
-          //             <th></th>
-          //             <th></th>
-          //           </tr>
-          //         </thead>
-          //         <tbody>
-          //           <tr>
-          //             <td>Status</td>
-          //             <td>Status</td>
-          //           </tr>
-          //           <tr>
-          //             <td>Bestillinger</td>
-          //             <td>Bestillinger</td>
-          //           </tr>
-          //           <tr>
-          //             <td>Bestilt til</td>
-          //             <td>
-          //               {" "}
-          //               Platforme Op/Ned<br></br>
-          //               Walthers VoV
-          //             </td>
-          //           </tr>
-          //           <tr>
-          //             <td>Første</td>
-          //             <td>Første</td>
-          //           </tr>
-          //           <tr>
-          //             <td>Sidste</td>
-          //             <td>Sidste</td>
-          //           </tr>
-          //           <tr>
-          //             <td>Belægning</td>
-          //             <td>Alle 59 dage</td>
-          //           </tr>
-          //         </tbody>
-          //       </Table>
-          //     </AccordionBody>
-          //   </AccordionItem>
-          // </Accordion>
-}
-<br></br>
+          {
+            //@ts-ignore
+            // <Accordion open={open} toggle={toggle}>
+            //   <AccordionItem>
+            //     <AccordionHeader targetId="1">Info</AccordionHeader>
+            //     <AccordionBody accordionId="1">
+            //       <Table>
+            //         <thead>
+            //           <tr>
+            //             <th></th>
+            //             <th></th>
+            //           </tr>
+            //         </thead>
+            //         <tbody>
+            //           <tr>
+            //             <td>Status</td>
+            //             <td>Status</td>
+            //           </tr>
+            //           <tr>
+            //             <td>Bestillinger</td>
+            //             <td>Bestillinger</td>
+            //           </tr>
+            //           <tr>
+            //             <td>Bestilt til</td>
+            //             <td>
+            //               {" "}
+            //               Platforme Op/Ned<br></br>
+            //               Walthers VoV
+            //             </td>
+            //           </tr>
+            //           <tr>
+            //             <td>Første</td>
+            //             <td>Første</td>
+            //           </tr>
+            //           <tr>
+            //             <td>Sidste</td>
+            //             <td>Sidste</td>
+            //           </tr>
+            //           <tr>
+            //             <td>Belægning</td>
+            //             <td>Alle 59 dage</td>
+            //           </tr>
+            //         </tbody>
+            //       </Table>
+            //     </AccordionBody>
+            //   </AccordionItem>
+            // </Accordion>
+          }
+          <br></br>
           <div className="d-flex justify-content-between">
             <Button
               className="m-1"
@@ -169,7 +174,7 @@ export default function Booking(props: BookingProps) {
               <Button
                 color="primary"
                 className="float-right m-1"
-              // onClick={() => navigate(props.returnUrl + "/edit/" + bookingId)}
+                //onClick={close()}
               >
                 Rediger
               </Button>

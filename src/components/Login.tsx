@@ -8,7 +8,7 @@ import { useGlobalContext } from "../hooks/GlobalContent";
 
 
 export default function Login() {
-    const { setSectionId, setUserName } = useGlobalContext()
+    const { setUserName } = useGlobalContext()
     const navigate = useNavigate();
 
     const [loading, setLoading] = useState(false);
@@ -26,16 +26,14 @@ export default function Login() {
 
     const handleDummyLogin = (user: string) => {
         setLoading(true);
-        authService.login(user, "").then(
+        authService.login(user, "1234").then(
             () => {
                 setErrorMessage("");
                 console.log("Response");
                 navigate("/calendar")
-                setSectionId("222");
+                //setSectionId("222");
                 setUserName(authService.getCurrentUsername()!);
                 console.log(authService.getCurrentUsername());
-                // this.props.router.navigate("/profile");
-                //   window.location.reload();
             },
             error => {
                 const resMessage =

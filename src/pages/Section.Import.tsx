@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Form, Button, Col, Container, FormGroup, Input, Label, Row, FormText } from "reactstrap";
 
 import { useNavigate, useParams } from "react-router-dom";
-import apiService from "../../services/api.service";
-import { SectionDetailsDTO } from "../../interface/interface";
+import apiService from "../services/api.service";
+import { SectionDetailsDTO } from "../interface/interface";
 
 
 export default function SectionImport() {
