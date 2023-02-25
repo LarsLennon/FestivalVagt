@@ -13,8 +13,8 @@ import LoginButton from "./LoginButton";
 import { ProtectedRoute } from "./ProtectedRoute ";
 import SectionSelector from "./SectionSelector";
 import Login from "../Login";
-import Teams from "../../pages/admin/Teams";
-import TeamSync from "../../pages/admin/TeamSync";
+import Teams from "../../pages/Teams";
+import TeamSync from "../../pages/TeamSync";
 import Calendar from "../../pages/Calendar";
 import SectionCreate from "../../pages/Section.Create";
 import SectionDetails from "../../pages/Section.Details";
@@ -22,10 +22,11 @@ import SectionImport from "../../pages/Section.Import";
 import Team from "../../pages/Team";
 import MemberAttributes from "../../pages/MemberAttributes";
 import Members from "../../pages/Members";
-import MyShifts from "../../pages/MyShifts";
+import MemberShifts from "../../pages/Member.Shifts";
 import Profile from "../../pages/Profile";
 import { useGlobalContext } from "../../hooks/GlobalContent";
 import SectionEdit from "../../pages/Section.Edit";
+import Home from "../../pages/Home";
 
 export default function NavMenu() {
   const { setUserName } = useGlobalContext();
@@ -69,7 +70,7 @@ export default function NavMenu() {
         container
         light
       >
-        <NavbarBrand href="/calendar">SmukVagt</NavbarBrand>
+        <NavbarBrand href="/">SmukVagt</NavbarBrand>
         <NavbarToggler onClick={toggle} className="mr-2" />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
@@ -82,10 +83,11 @@ export default function NavMenu() {
       </Navbar>
 
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/lars" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
         <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-        <Route path="/shifts" element={<ProtectedRoute><MyShifts /></ProtectedRoute>} />
+        <Route path="/shifts" element={<ProtectedRoute><MemberShifts /></ProtectedRoute>} />
         <Route path="/team" element={<ProtectedRoute><Teams /></ProtectedRoute>} />
         <Route path="/team/sync" element={<ProtectedRoute><TeamSync /></ProtectedRoute>} />
         <Route path="/manage/team/:id" element={<ProtectedRoute><Team /></ProtectedRoute>} />

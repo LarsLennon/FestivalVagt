@@ -135,7 +135,7 @@ export default function Calendar() {
   return (
     <div>
       <Container>
-        <Alert color="danger">Vagtplanen er lukket!</Alert>
+        {!apiData?.isOpen ? <Alert color="danger">Vagtplanen er lukket!</Alert> : ""}
       </Container>
       <CalenderHeader firstShiftDate={firstShiftDate} lastShiftDate={lastShiftDate} sectionName={apiData?.name!} units={apiData ? apiData.units : 0}></CalenderHeader>
       <div>

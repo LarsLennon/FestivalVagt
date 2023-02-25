@@ -33,7 +33,7 @@ export default function conflict(conflict: number) {
       return "Denne vagt skal tildeles";
 
     case ConflictType.TooManyShifts:
-      return "Du kan ikke tage flere timer";
+      return "Du kan ikke tage flere vagter";
 
     case ConflictType.ShiftFull:
       return "Ingen ledige pladser";

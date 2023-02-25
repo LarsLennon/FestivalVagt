@@ -38,7 +38,8 @@ export default function Booking(props: BookingProps) {
       () => {
         console.log("Response");
         props.refetch();
-        navigate(props.returnUrl)
+        close();
+        //navigate(props.returnUrl)
       }, (error) => {
         console.log(error);
       }
@@ -51,7 +52,8 @@ export default function Booking(props: BookingProps) {
       () => {
         console.log("Response");
         props.refetch();
-        navigate(props.returnUrl)
+        close();
+        //navigate(props.returnUrl)
       }, (error) => {
         console.log(error);
       }
@@ -67,6 +69,9 @@ export default function Booking(props: BookingProps) {
     );
   };
 
+  const test = () => {
+
+  };
 
   var stringConflict = conflict(props.event.conflict!);
 
@@ -166,7 +171,7 @@ export default function Booking(props: BookingProps) {
             <Button
               className="m-1"
               color="secondary"
-            // onClick={() => navigate(-1)}
+              onClick={close}
             >
               Tilbage
             </Button>
@@ -174,7 +179,6 @@ export default function Booking(props: BookingProps) {
               <Button
                 color="primary"
                 className="float-right m-1"
-                //onClick={close()}
               >
                 Rediger
               </Button>

@@ -6,7 +6,7 @@ import { useGlobalContext } from "../hooks/GlobalContent";
 import { MyShiftsDTO, ShiftDTO } from "../interface/interface";
 import ApiService from '../services/api.service';
 
-export default function MyShifts() {
+export default function MemberShifts() {
     const { sectionId } = useGlobalContext();
 
     const [apiData, setApiData] = useState<MyShiftsDTO>();

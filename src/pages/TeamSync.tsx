@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Button, Container, Table } from "reactstrap";
 
-import apiService from "../../services/api.service";
-import { MembaTeamDTO } from "../../interface/interface";
+import apiService from "../services/api.service";
+import { MembaTeamDTO } from "../interface/interface";
 import React from "react";
 
 export default function TeamSync() {

@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import apiService from "../services/api.service";
 import { SectionDetailsDTO, SectionEditDTO } from "../interface/interface";
 import DateTimePicker from "../components/formcomponents/DateTimePicker";
-import Moment from "react-moment";
 import moment from "moment";
 
 

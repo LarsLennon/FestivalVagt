@@ -3,8 +3,8 @@ import { Button, Container, Table } from "reactstrap";
 
 // import { useJwt } from "react-jwt";
 import { useNavigate } from "react-router-dom";
-import apiService from "../../services/api.service";
-import { TeamDTO } from "../../interface/interface";
+import apiService from "../services/api.service";
+import { TeamDTO } from "../interface/interface";
 import React from "react";
 
 

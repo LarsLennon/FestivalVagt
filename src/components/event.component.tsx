@@ -50,7 +50,7 @@ export default function EventComponent(props: Iprops) {
     const handleClose = () => {
         console.log("Close");
         setEventInfoModal(false);
-        props.refresh();
+        //props.refresh();
     };
 
     const Test = () => {
