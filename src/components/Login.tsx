@@ -89,10 +89,13 @@ export default function Login() {
     return (
         <div className="App">
             <h2>Login</h2>
-            {/* process.env.NODE_ENV === "production" ? API_URL_production : API_URL_development; */}
-            <Button onClick={() => handleDummyLogin("l@rslennon.dk")}>Login Lars</Button>
-            <Button onClick={() => handleDummyLogin("Janne@smukfest.dk")}>Login Janne</Button>
-            <Button onClick={() => handleDummyLogin("all.rasmussen@gmail.com")}>Login Allan</Button>
+            {process.env.NODE_ENV !== "development" ? "" :
+                <div>
+                    <Button onClick={() => handleDummyLogin("l@rslennon.dk")}>Login Lars</Button>
+                    <Button onClick={() => handleDummyLogin("Janne@smukfest.dk")}>Login Janne</Button>
+                    <Button onClick={() => handleDummyLogin("all.rasmussen@gmail.com")}>Login Allan</Button>
+                </div>
+            }
 
             <Form className="form" onSubmit={SubmitHandler}>
                 <FormGroup>
