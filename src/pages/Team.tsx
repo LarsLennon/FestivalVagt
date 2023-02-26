@@ -30,6 +30,14 @@ export default function Team() {
     );
   });
 
+  const handleImport = () => {
+    console.log(apiData?.teamId);
+    apiService.syncMembers(apiData?.teamId!).then(
+      () => {
+        //setTeams(response.data);
+      })
+  };
+
   return (
 
     <Container fluid="lg">
@@ -42,6 +50,7 @@ export default function Team() {
             Vagtplan
           </h3>
           <Button onClick={() => navigate("/manage/create/" + apiData?.teamId)}>Opret Vagtplan</Button>
+          <Button color="danger" onClick={() => handleImport()}>Sync Medlemmer</Button>
           <ListGroup>
             {mapSections}
           </ListGroup>

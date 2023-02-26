@@ -11,7 +11,7 @@ import { useGlobalContext } from "../../hooks/GlobalContent";
 
 
 export default function SectionSelector() {
-  const { setSectionId } = useGlobalContext()
+  const { sectionId, setSectionId } = useGlobalContext()
   const { sectionName, setSectionName } = useGlobalContext()
   const [currentSection, setCurrentSection] = useState<SectionDetailsDTO>();
 
@@ -24,7 +24,11 @@ export default function SectionSelector() {
             if(response.data.length > 0)  
             {
               setApiData(response.data);
-              setSectionId(response.data[0].sectionId)
+              if(sectionId == "")
+              {
+                // setSectionId(response.data[0].sectionId)
+                selectSection(response.data[0])
+              }
             }
           })
   };

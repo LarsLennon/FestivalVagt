@@ -9,11 +9,7 @@ import authService from "../../services/auth.service";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../hooks/GlobalContent";
 
-interface Iprops {
-  refresh: Function;
-}
-
-export default function LoginButton(props: Iprops) {
+export default function ManageButton() {
   const { setUserName } = useGlobalContext()
   const navigate = useNavigate();
 
@@ -25,27 +21,19 @@ export default function LoginButton(props: Iprops) {
   };
 
   const renderButton = () => {
-    if (authService.isAuth()) {
-      props.refresh(true);
+
+    if (authService.isManager()) {
       return (
         <UncontrolledDropdown>
           <DropdownToggle className="text-dark" nav caret>
-            {authService.getCurrentUsername()}
+            Manage
           </DropdownToggle>
-          <DropdownMenu end> 
-            <DropdownItem onClick={() => navigate("/attributes")}>Min Info</DropdownItem> 
-            <DropdownItem divider />
-            <DropdownItem onClick={handleLogout}>Logout</DropdownItem>
+          <DropdownMenu end>
+            {authService.isManager() ? <DropdownItem onClick={() => navigate("/team")}>Hold</DropdownItem> : ""}
+            {authService.isManager() ? <DropdownItem onClick={() => navigate("/members")}>Medhjælpere</DropdownItem> : ""}
+            
           </DropdownMenu>
         </UncontrolledDropdown>
-      );
-    }
-    else {
-      props.refresh(false);
-      return (
-        <NavLink href="/login" className="text-dark">
-          Login
-        </NavLink>
       );
     }
   };

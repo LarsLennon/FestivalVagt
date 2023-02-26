@@ -10,7 +10,7 @@ import {
 import { Routes, Route } from "react-router-dom";
 import authService from "../../services/auth.service";
 import LoginButton from "./LoginButton";
-import { ProtectedRoute } from "./ProtectedRoute ";
+import { ProtectedAdminRoute, ProtectedManagerRoute, ProtectedRoute } from "./ProtectedRoute ";
 import SectionSelector from "./SectionSelector";
 import Login from "../Login";
 import Teams from "../../pages/Teams";
@@ -27,6 +27,8 @@ import Profile from "../../pages/Profile";
 import { useGlobalContext } from "../../hooks/GlobalContent";
 import SectionEdit from "../../pages/Section.Edit";
 import Home from "../../pages/Home";
+import ManageButton from "./ManageButton";
+import Unauthorized from "../../pages/Unauthorized";
 
 export default function NavMenu() {
   const { setUserName } = useGlobalContext();
@@ -55,10 +57,10 @@ export default function NavMenu() {
           <SectionSelector></SectionSelector>
         </React.Fragment>
       );
-      return;
+    return;
   };
 
-  const refresh = (isAuth:boolean) => {
+  const refresh = (isAuth: boolean) => {
     //setIsAuth(isAuth);
   }
 
@@ -75,6 +77,7 @@ export default function NavMenu() {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
             {renderNavLinks()}
+            <ManageButton></ManageButton>
 
 
           </Nav>
@@ -83,22 +86,31 @@ export default function NavMenu() {
       </Navbar>
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* Public */}
         <Route path="/login" element={<Login />} />
-        <Route path="/lars" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-        <Route path="/shifts" element={<ProtectedRoute><MemberShifts /></ProtectedRoute>} />
-        <Route path="/team" element={<ProtectedRoute><Teams /></ProtectedRoute>} />
-        <Route path="/team/sync" element={<ProtectedRoute><TeamSync /></ProtectedRoute>} />
-        <Route path="/manage/team/:id" element={<ProtectedRoute><Team /></ProtectedRoute>} />
-        <Route path="/manage/create/:id" element={<ProtectedRoute><SectionCreate /></ProtectedRoute>} />
-        <Route path="/manage/section/:id" element={<ProtectedRoute><SectionDetails /></ProtectedRoute>} />
-        <Route path="/manage/section/edit/:id" element={<ProtectedRoute><SectionEdit /></ProtectedRoute>} />
-        <Route path="/manage/import/:id" element={<ProtectedRoute><SectionImport /></ProtectedRoute>} />
-        <Route path="/members" element={<ProtectedRoute><Members /></ProtectedRoute>} />
+        <Route path="/unauthorized" element={<ProtectedRoute><Unauthorized /></ProtectedRoute>} />
+        
+        {/* Authorized */}
+        <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
         <Route path="/calendar" element={<ProtectedRoute><Calendar /></ProtectedRoute>} />
-        <Route path="/attributes" element={<MemberAttributes />} />
+        <Route path="/attributes" element={<ProtectedRoute><MemberAttributes /></ProtectedRoute>} />
+        <Route path="/shifts" element={<ProtectedRoute><MemberShifts /></ProtectedRoute>} />
 
+        {/* Manager */}
+        <Route path="/members" element={<ProtectedManagerRoute><Members /></ProtectedManagerRoute>} />
+
+        {/* Admin */}
+        <Route path="/team" element={<ProtectedAdminRoute><Teams /></ProtectedAdminRoute>} />
+        <Route path="/team/sync" element={<ProtectedAdminRoute><TeamSync /></ProtectedAdminRoute>} />
+        <Route path="/manage/team/:id" element={<ProtectedAdminRoute><Team /></ProtectedAdminRoute>} />
+        <Route path="/manage/create/:id" element={<ProtectedAdminRoute><SectionCreate /></ProtectedAdminRoute>} />
+        <Route path="/manage/section/:id" element={<ProtectedAdminRoute><SectionDetails /></ProtectedAdminRoute>} />
+        <Route path="/manage/section/edit/:id" element={<ProtectedAdminRoute><SectionEdit /></ProtectedAdminRoute>} />
+        <Route path="/manage/import/:id" element={<ProtectedAdminRoute><SectionImport /></ProtectedAdminRoute>} />
+
+        {/* Test */}
+        <Route path="/lars" element={<ProtectedAdminRoute><Profile /></ProtectedAdminRoute>} />
+        <Route path="/profile" element={<ProtectedAdminRoute><Profile /></ProtectedAdminRoute>} />
 
       </Routes>
     </div>

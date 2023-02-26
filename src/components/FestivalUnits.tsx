@@ -22,7 +22,7 @@ export default function FestivalUnits(props: Iprops) {
                     <div>
                         <h2 className="headertext">{props.sectionName} </h2>
                         <div className="text-center">
-                            <b>{props.units}</b> af 42 Festival-timer
+                            <b>{props.units.toFixed(1)}</b> af 42 Festival-timer
                         </div>
                         <Progress
                             color={getProgressColor()}

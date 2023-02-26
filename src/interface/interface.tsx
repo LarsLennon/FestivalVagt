@@ -84,6 +84,7 @@ export interface MyShiftsDTO {
 
 export interface ShiftDTO {
   shiftId?: number;
+  units: number;
   name?: string;
   slots?: number;
   startTime?: string;
@@ -108,6 +109,7 @@ export interface CalendarShiftDTO {
   slots?: number;
   reqDrivers?: string;
   reqExperienced?: string;
+  timeFactor?: string;
   startTime?: string;
   endTime?: string;
   myShift?: string;

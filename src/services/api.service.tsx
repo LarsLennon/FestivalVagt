@@ -24,7 +24,7 @@ class ApiService {
 
   //return axios.get(API_URL + 'user', { headers: authHeader() });
   getShifts(id:string) {
-    return axios.get(API_URL + ENDPOINTS.shiftController + "/section/" + id, { headers: authHeader() });
+    return axios.get(API_URL + ENDPOINTS.memberController + "/section/" + id, { headers: authHeader() });
   }
   
   getTeams() {
@@ -41,6 +41,11 @@ class ApiService {
   
   importTeam(id:number) {
     return axios.post(API_URL + ENDPOINTS.membaController + "/ImportTeam/" + id,
+    { headers: authHeader() });
+  }
+  
+  syncMembers(id:number) {
+    return axios.post(API_URL + ENDPOINTS.membaController + "/SyncMembers/" + id,
     { headers: authHeader() });
   }
 
@@ -84,7 +89,7 @@ class ApiService {
   }
   
   getSections() {
-    return axios.get(API_URL + ENDPOINTS.sectionController, { headers: authHeader() });
+    return axios.get(API_URL + ENDPOINTS.memberController + "/sections/", { headers: authHeader() });
   }
 
   

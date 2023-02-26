@@ -13,8 +13,9 @@ interface Iprops {
 export default function EventComponent(props: Iprops) {
     const [eventInfoModal, setEventInfoModal] = useState(false);
 
+    const emptySlots = props.event.slots! - props.event.members.length;
     let blanks = [];
-    for (let d = 1; d <= (props.event.slots! - props.event.members.length); d++) {
+    for (let d = 1; d <= (emptySlots); d++) {
 
         blanks.push("");
     }
@@ -72,6 +73,24 @@ export default function EventComponent(props: Iprops) {
         );
     };
 
+    const renderHelperText = () => {
+        let conflictText = conflict(props.event.conflict!)
+
+        if(conflictText === "")
+        {
+            if(emptySlots === 1) {
+                conflictText = emptySlots + " ledig plads";
+            } else {
+                conflictText = emptySlots + " ledige pladser";
+            }
+        }
+
+        return (
+            <div className="shiftprogresstext">
+                {conflictText}
+            </div>
+        );
+    };
     // const ifWeekend = (moment(props.event.startTime).day() === 0) || (moment(props.event.startTime).day() === 6);
 
     return (
@@ -84,14 +103,12 @@ export default function EventComponent(props: Iprops) {
                             {props.event.allDay ? "" : (
                                 <div>
 
-                                    <span className="font-weight-bold"><b>{moment(props.event.startTime).format("HH:mm")} - {moment(props.event.endTime).format("HH:mm")}</b> ({props.event.units}t) </span>
+                                    <span className="font-weight-bold"><b>{moment(props.event.startTime).format("HH:mm")} - {moment(props.event.endTime).format("HH:mm")}</b> ({props.event.units.toFixed(1)}t) </span>
 
                                     {/* <Badge className="" color="info">
                                         {props.event.units}
                                     </Badge> */}
-                                    <div className="shiftprogresstext">
-                                        {conflict(props.event.conflict!)}
-                                    </div>
+                                    {renderHelperText()}
                                 </div>
                             )}
                             <span className="font-weight-bold">{props.event.name}</span>

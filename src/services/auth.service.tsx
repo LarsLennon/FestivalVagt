@@ -26,8 +26,8 @@ class AuthService {
           localStorage.setItem("token", response.data);
           var decoded: jwtProps = jwt_decode(response.data);
           // console.log(decoded);
-          localStorage.setItem("username", decoded.name);
-          console.log("Added token for " + decoded.name);
+          localStorage.setItem("username", decoded.name + decoded.role);
+          console.log("Added token for " + decoded.role);
         }
 
         console.log(response);
@@ -38,6 +38,42 @@ class AuthService {
   logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
+  }
+
+  isAdmin() {
+    var token = localStorage.getItem("token");
+
+    if (token !== null) {
+      try {
+        var decoded: jwtProps = jwt_decode(token);
+        console.log(decoded);
+        if (decoded.role === "Admin") {
+
+          return true;
+        }
+      } catch (error) {
+        return false;
+      }
+    }
+    return false;
+  }
+
+  isManager() {
+    var token = localStorage.getItem("token");
+
+    if (token !== null) {
+      try {
+        var decoded: jwtProps = jwt_decode(token);
+        console.log(decoded);
+        if (decoded.role === "Admin" || decoded.role === "Manager") {
+
+          return true;
+        }
+      } catch (error) {
+        return false;
+      }
+    }
+    return false;
   }
 
   isAuth() {
@@ -54,7 +90,11 @@ class AuthService {
       // decoded.name
       return true;
     }
-    return false;  
+    return false;
+  }
+
+  getCurrentUserLevel() {
+    return localStorage.getItem('username');
   }
 
   getUserToken() {

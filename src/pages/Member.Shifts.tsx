@@ -8,6 +8,7 @@ import ApiService from '../services/api.service';
 
 export default function MemberShifts() {
     const { sectionId } = useGlobalContext();
+    const weekdays = ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'];
 
     const [apiData, setApiData] = useState<MyShiftsDTO>();
     const loadApiData = () => {
@@ -22,16 +23,36 @@ export default function MemberShifts() {
         loadApiData();
     }, [sectionId]); // eslint-disable-line react-hooks/exhaustive-deps
 
+    const renderDate = (startTime:string, endTime:string) => {
+        return (
+            <h5 className="mb-1">{weekdays[moment(endTime).day()] + " Uge " + moment(endTime).week()}</h5>
+        );
+    };
 
+    const renderTimerMinutter = (startTime:string, endTime:string) => {
+        const a = moment(startTime);
+        const b = moment(endTime);
+
+        var duration = moment.duration(b.diff(a));
+        var hours = duration.asHours();
+
+        return (
+            <small>{hours.toFixed(1)} timer</small>
+        );
+    };
 
     const mapShifts = apiData?.shifts.map((shift: ShiftDTO, index: number) => {
         return (
             <ListGroupItem key={index}>
                 <div className="d-flex w-100 justify-content-between">
-                    <h5 className="mb-1">{moment(shift.startTime).format("HH:mm")} - {moment(shift.endTime).format("HH:mm")}</h5>
-                    <small>10,5 timer</small>
+                {renderDate(shift.startTime!, shift.endTime!)}
+                    <small>{shift.units.toFixed(1)} Festival-timer</small>
                 </div>
-                <small className="mb-1">VoV Skranke</small>
+                <div className="d-flex w-100 justify-content-between">
+                    <h5 className="mb-1">{moment(shift.startTime).format("HH:mm")} - {moment(shift.endTime).format("HH:mm")} {moment(shift.endTime).format("DD/MM yyyy")}</h5>
+                    {renderTimerMinutter(shift.startTime!, shift.endTime!)}
+                </div>
+            {/* <h5 className="mb-1">{moment(shift.endTime).format("DD/MM yyyy")}</h5> */}
             </ListGroupItem>
         );
     });

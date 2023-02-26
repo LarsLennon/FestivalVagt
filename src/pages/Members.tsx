@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Container, Table } from "reactstrap";
 import { MemberDTO } from "../interface/interface";
 import apiService from "../services/api.service";
-import { BsSearch } from 'react-icons/bs';
+// import { BsSearch } from 'react-icons/bs';
 import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im';
 import { useGlobalContext } from "../hooks/GlobalContent";
 
@@ -21,11 +21,8 @@ export default function Members() {
 
 
   useEffect(() => {
-    if(apiData.length === 0)
-    {
-      loadApiData();
-    }
-  });
+    loadApiData();
+  }, [sectionId]); // eslint-disable-line react-hooks/exhaustive-deps
 
 
   const handleChange = (e: any) => {
@@ -58,7 +55,7 @@ export default function Members() {
           <td>{filteredItem.driver ? <ImCheckboxChecked /> : <ImCheckboxUnchecked />}</td>
           <td>{filteredItem.experienced ? <ImCheckboxChecked /> : <ImCheckboxUnchecked />}</td>
           <td>{filteredItem.firstAid ? <ImCheckboxChecked /> : <ImCheckboxUnchecked />}</td>
-          <td>{filteredItem.units}</td>
+          <td>{filteredItem.units?.toFixed(1)}</td>
           <td></td>
         </tr>
       </React.Fragment>
@@ -67,13 +64,15 @@ export default function Members() {
 
   return (
     <Container fluid="lg">
-      <h3> Lets go for a <BsSearch />? </h3>
+      {/* <h3> Lets go for a <BsSearch />? </h3> */}
+      <h3>Søg efter medlem på navn eller Memba-nummer</h3>
       <input
         type="search"
         placeholder="Søg"
         onChange={handleChange}
         value={searchInput} />
 
+<h3> {filteredData.length} medlemmer fundet </h3>
       <Table hover>
         <thead>
           <tr>
