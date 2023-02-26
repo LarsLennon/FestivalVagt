@@ -1,7 +1,6 @@
 import moment from "moment";
 // import { useState } from "react";
 // import { RiDeleteBinLine } from "react-icons/ri";
-import { useNavigate } from "react-router-dom";
 import { Button, Modal, ModalHeader, ModalBody, Table, Alert } from "reactstrap";
 import conflict from "../../components/conflics";
 import { CalendarShiftDTO } from "../../interface/interface";
@@ -18,7 +17,6 @@ interface BookingProps {
 
 export default function Booking(props: BookingProps) {
 
-  const navigate = useNavigate();
   // const [open, setOpen] = useState("1");
   // const toggle = (id: any) => {
   //   if (open === id) {
@@ -46,7 +44,6 @@ export default function Booking(props: BookingProps) {
     );
   };
 
-
   const RemoveShift = () => {
     apiService.removeShift(parseInt(props.event.shiftId)).then(
       () => {
@@ -67,10 +64,6 @@ export default function Booking(props: BookingProps) {
         <td>{value}</td>
       </tr>
     );
-  };
-
-  const test = () => {
-
   };
 
   var stringConflict = conflict(props.event.conflict!);
