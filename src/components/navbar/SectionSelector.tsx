@@ -24,7 +24,7 @@ export default function SectionSelector() {
             if(response.data.length > 0)  
             {
               setApiData(response.data);
-              if(sectionId == "")
+              if(sectionId === "")
               {
                 // setSectionId(response.data[0].sectionId)
                 selectSection(response.data[0])

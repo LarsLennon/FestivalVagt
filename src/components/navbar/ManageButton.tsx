@@ -3,22 +3,12 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  NavLink,
 } from "reactstrap";
 import authService from "../../services/auth.service";
 import { useNavigate } from "react-router-dom";
-import { useGlobalContext } from "../../hooks/GlobalContent";
 
 export default function ManageButton() {
-  const { setUserName } = useGlobalContext()
   const navigate = useNavigate();
-
-
-  const handleLogout = () => {
-    authService.logout();
-    setUserName("");
-    navigate("/login");
-  };
 
   const renderButton = () => {
 
