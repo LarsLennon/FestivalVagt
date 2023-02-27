@@ -24,7 +24,7 @@ export default function conflict(conflict: number) {
       return "Denne vagt kræver kørekort";
 
     case ConflictType.TimeConflict:
-      return "Du har en vagt der overlapper";
+      return "Du har anden vagt på samme tid";
 
     case ConflictType.AlreadyAssigned:
       return "Du har allerede denne vagt";
