@@ -115,11 +115,11 @@ export default function Calendar() {
                 </div>
               ))) : ""}
 
-            {(filteredAllDayEvents.length === 0 && filteredEvents.length === 0) ? "" : (
+            {(filteredAllDayEvents.length === 0 && filteredEvents.length === 0) ? (
               <div>
                 Ingen vagter
               </div>
-            )}
+            ) : ""}
           </div>
         </React.Fragment>);
     }

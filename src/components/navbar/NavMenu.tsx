@@ -89,7 +89,7 @@ export default function NavMenu() {
       <Routes>
         {/* Public */}
         <Route path="/login" element={<Login />} />
-        <Route path="/unauthorized" element={<ProtectedRoute><Unauthorized /></ProtectedRoute>} />
+        <Route path="/unauthorized" element={<Unauthorized />} />
         
         {/* Authorized */}
         <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
