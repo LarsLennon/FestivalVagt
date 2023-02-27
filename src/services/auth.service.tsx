@@ -46,7 +46,7 @@ class AuthService {
     if (token !== null) {
       try {
         var decoded: jwtProps = jwt_decode(token);
-        console.log(decoded);
+        //console.log(decoded);
         if (decoded.role === "Admin") {
 
           return true;
@@ -64,7 +64,7 @@ class AuthService {
     if (token !== null) {
       try {
         var decoded: jwtProps = jwt_decode(token);
-        console.log(decoded);
+        //console.log(decoded);
         if (decoded.role === "Admin" || decoded.role === "Manager") {
 
           return true;
@@ -81,8 +81,8 @@ class AuthService {
 
     if (token !== null) {
       try {
-        var decoded: jwtProps = jwt_decode(token);
-        console.log(decoded);
+        //var decoded: jwtProps = jwt_decode(token);
+        //console.log(decoded);
         // console.log(decoded.role);
       } catch (error) {
         return false;

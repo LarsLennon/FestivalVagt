@@ -6,6 +6,7 @@ export interface MemberDTO {
   driver?:boolean;
   experienced?:boolean;
   firstAid?:boolean;
+  requireAttributes?:boolean;
   units?:number;
 }
 
@@ -101,6 +102,11 @@ export interface ShiftWithMemberDTO {
   members: MemberDTO[];
 }
 
+export interface CalendarShiftMemberDTO {
+  memberId: number;
+  name?: string;
+}
+
 export interface CalendarShiftDTO {
   shiftId: string;
   name?: string;
@@ -114,7 +120,9 @@ export interface CalendarShiftDTO {
   endTime?: string;
   myShift?: string;
   conflict?: number;
-  members: MemberDTO[];
+  priority: number;
+  description?: string;
+  members: CalendarShiftMemberDTO[];
 }
 
 export interface CalendarDTO {
@@ -128,4 +136,13 @@ export interface CalendarDTO {
   isOpen: boolean;
   shifts: CalendarShiftDTO[];
 
+}
+
+// ShiftTypes
+
+export interface ShiftTypeCreateDTO {
+  teamId: number;
+  priority: string;
+  name: string;
+  description: string;
 }

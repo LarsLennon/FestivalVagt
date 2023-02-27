@@ -55,6 +55,7 @@ export default function Members() {
           <td>{filteredItem.driver ? <ImCheckboxChecked /> : <ImCheckboxUnchecked />}</td>
           <td>{filteredItem.experienced ? <ImCheckboxChecked /> : <ImCheckboxUnchecked />}</td>
           <td>{filteredItem.firstAid ? <ImCheckboxChecked /> : <ImCheckboxUnchecked />}</td>
+          <td>{!filteredItem.requireAttributes ? <ImCheckboxChecked /> : <ImCheckboxUnchecked />}</td>
           <td>{filteredItem.units?.toFixed(1)}</td>
           <td></td>
         </tr>
@@ -82,6 +83,7 @@ export default function Members() {
             <th>23+Kørekort</th>
             <th>Erfaren</th>
             <th>Førstehjælp</th>
+            <th>Udfyldt</th>
             <th>FestivalTimer</th>
           </tr>
         </thead>

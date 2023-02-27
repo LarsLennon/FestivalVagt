@@ -19,7 +19,7 @@ export default function ManageButton() {
             Manage
           </DropdownToggle>
           <DropdownMenu end>
-            {authService.isManager() ? <DropdownItem onClick={() => navigate("/team")}>Hold</DropdownItem> : ""}
+            {authService.isAdmin() ? <DropdownItem onClick={() => navigate("/team")}>Hold</DropdownItem> : ""}
             {authService.isManager() ? <DropdownItem onClick={() => navigate("/members")}>Medhjælpere</DropdownItem> : ""}
             
           </DropdownMenu>

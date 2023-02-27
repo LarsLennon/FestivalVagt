@@ -29,6 +29,7 @@ import SectionEdit from "../../pages/Section.Edit";
 import Home from "../../pages/Home";
 import ManageButton from "./ManageButton";
 import Unauthorized from "../../pages/Unauthorized";
+import ShiftTypeCreate from "../../pages/ShiftType.Create";
 
 export default function NavMenu() {
   const { setUserName } = useGlobalContext();
@@ -107,6 +108,7 @@ export default function NavMenu() {
         <Route path="/manage/section/:id" element={<ProtectedAdminRoute><SectionDetails /></ProtectedAdminRoute>} />
         <Route path="/manage/section/edit/:id" element={<ProtectedAdminRoute><SectionEdit /></ProtectedAdminRoute>} />
         <Route path="/manage/import/:id" element={<ProtectedAdminRoute><SectionImport /></ProtectedAdminRoute>} />
+        <Route path="/ShiftType/Create/:id" element={<ProtectedAdminRoute><ShiftTypeCreate /></ProtectedAdminRoute>} />
 
         {/* Test */}
         <Route path="/lars" element={<ProtectedAdminRoute><Profile /></ProtectedAdminRoute>} />

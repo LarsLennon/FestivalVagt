@@ -3,10 +3,10 @@ import React from "react";
 // import { useState } from "react";
 // import { RiDeleteBinLine } from "react-icons/ri";
 import { Button, Modal, ModalHeader, ModalBody, Table, Alert } from "reactstrap";
-import conflict from "../../components/conflics";
-import { CalendarShiftDTO } from "../../interface/interface";
-import apiService from "../../services/api.service";
-import authService from "../../services/auth.service";
+import conflict from "../components/conflics";
+import { CalendarShiftDTO } from "../interface/interface";
+import apiService from "../services/api.service";
+import authService from "../services/auth.service";
 
 
 interface BookingProps {
@@ -17,7 +17,7 @@ interface BookingProps {
   close: any;
 }
 
-export default function Booking(props: BookingProps) {
+export default function CalendarShiftModal(props: BookingProps) {
 
   // const [open, setOpen] = useState("1");
   // const toggle = (id: any) => {
@@ -81,6 +81,7 @@ export default function Booking(props: BookingProps) {
         {tableRow("Chauffører", props.event.reqDrivers!)}
         {tableRow("Erfarne", props.event.reqExperienced!)}
         {tableRow("Tidsfaktor", props.event.timeFactor!.toString())}
+        {tableRow("Prioritet", props.event.priority!.toString())}
       </React.Fragment>
     );
   };
@@ -90,6 +91,7 @@ export default function Booking(props: BookingProps) {
     // if (!authService.isManager()) {
     //   return "";
     // }
+    const disabled = (props.event.conflict !== 0);
     if (props.event.myShift) {
       return (
         <Button
@@ -107,6 +109,7 @@ export default function Booking(props: BookingProps) {
       className="float-right m-1"
       color="success"
       onClick={AcceptShift}
+      disabled={disabled}
     >
       Tilmeld
     </Button>);
@@ -124,7 +127,7 @@ export default function Booking(props: BookingProps) {
           {props.event.conflict !== 0 ? <Alert color="danger">{stringConflict}</Alert> : ""}
 
           <ModalBody>
-            Her kan vi skrive en masse tekst omkring hvad man skal være opmærksom på under vagtet. Eller hvad denne vagt indebærer.
+          {props.event.description !== "" ? props.event.description : ""}
             <Table>
               <thead>
                 <tr>
@@ -211,12 +214,13 @@ export default function Booking(props: BookingProps) {
                 Tilbage
               </Button>
               <div>
+                {authService.isAdmin() ?
                 <Button
                   color="primary"
                   className="float-right m-1"
                 >
                   Rediger
-                </Button>
+                </Button> : ""}
                 {renderAcceptRemoveButton()}
               </div>
             </div>

@@ -19,11 +19,13 @@ export default function Calendar() {
 
   const weekdays = ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'];
 
+  const [isLoading, setLoading] = useState(true);
   const [apiData, setApiData] = useState<CalendarDTO>();
   const loadApiData = () => {
     if (sectionId !== "") {
       apiService.getShifts(sectionId).then(
         (response) => {
+          setLoading(false);
           setApiData(response.data);
           const calendarDTO: CalendarDTO = response.data;
 
@@ -82,11 +84,13 @@ export default function Calendar() {
   let b = calenderEndDate(a);
 
   let days = [];
+  let filteredAllDayEvents;
   let filteredEvents;
   if (apiData != null) {
     for (let m = moment(a); m.isBefore(b); m.add(1, 'days')) {
       let dayOfWeek = parseInt(m.format('d'));
-      filteredEvents = apiData!.shifts.filter(event => moment(event.startTime).isSame(m, 'day'));
+      filteredAllDayEvents = apiData!.shifts.filter(event => moment(event.startTime).isSame(m, 'day') && event.allDay);
+      filteredEvents = apiData!.shifts.filter(event => moment(event.startTime).isSame(m, 'day') && !event.allDay);
 
       days.push(
         <React.Fragment key={m.format('YYYY-MM-DD')}>
@@ -95,13 +99,23 @@ export default function Calendar() {
           <div className="col-sm-2 col-md-3 col-xl nopadding">
             <h4>{weekdays[dayOfWeek]} {m.format('DD/MM')}</h4>
 
+            {filteredAllDayEvents.length > 0 ? (
+              filteredAllDayEvents.map(todaysEvent => (
+
+                <div key={todaysEvent.shiftId}>
+                  <EventComponent event={todaysEvent} refresh={loadApiData}></EventComponent>
+                </div>
+              ))) : ""}
+
             {filteredEvents.length > 0 ? (
               filteredEvents.map(todaysEvent => (
 
                 <div key={todaysEvent.shiftId}>
                   <EventComponent event={todaysEvent} refresh={loadApiData}></EventComponent>
                 </div>
-              ))) : (
+              ))) : ""}
+
+            {(filteredAllDayEvents.length === 0 && filteredEvents.length === 0) ? "" : (
               <div>
                 Ingen vagter
               </div>
@@ -132,18 +146,27 @@ export default function Calendar() {
       </div>);
   });
 
-  return (
-    <div>
+  if (isLoading) {
+    return (
       <Container>
-        {!apiData?.isOpen ? <Alert color="danger">Vagtplanen er lukket!</Alert> : ""}
-      </Container>
-      <CalenderHeader firstShiftDate={firstShiftDate} lastShiftDate={lastShiftDate} sectionName={apiData?.name!} units={apiData ? apiData.units : 0}></CalenderHeader>
+    <Alert color="warning">Loading...</Alert>
+    </Container>
+    );
+  }
+  else {
+    return (
       <div>
-        <Container fluid>
-          {mapRows}
+        <Container>
+          {!apiData?.isOpen ? <Alert color="danger">Vagtplanen er lukket!</Alert> : ""}
         </Container>
+        <CalenderHeader firstShiftDate={firstShiftDate} lastShiftDate={lastShiftDate} sectionName={apiData?.name!} units={apiData ? apiData.units : 0}></CalenderHeader>
+        <div>
+          <Container fluid>
+            {mapRows}
+          </Container>
 
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }

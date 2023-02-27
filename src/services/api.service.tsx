@@ -1,5 +1,5 @@
 import axios from "axios";
-import { MemberAttributesDTO, SectionCreateDTO, SectionEditDTO } from "../interface/interface";
+import { MemberAttributesDTO, SectionCreateDTO, SectionEditDTO, ShiftTypeCreateDTO } from "../interface/interface";
 import authHeader from "./auth-header"
 
 
@@ -14,10 +14,12 @@ export const ENDPOINTS = {
   memberController: "member",
   membersController: "members",
   sectionController: "sections",
+  shiftTypesController: "shifttypes",
   shiftController: "shifts",
   acceptShift: "shiftcrew",
   shiftcrew: "shiftcrew",
   getMembersShifts: "member/shifts",
+  vovController: "vov2022",
 };
 
 class ApiService {
@@ -60,12 +62,36 @@ class ApiService {
   * Members
   */  
   getMembers(sectionId:string) {
-    return axios.get(API_URL + ENDPOINTS.membersController + "/section/" + sectionId, { headers: authHeader() });
+    return axios.get(API_URL + ENDPOINTS.memberController + "/members/" + sectionId, { headers: authHeader() });
+  }
+
+  acceptShift(shiftId:number) {
+    return axios.post(API_URL + ENDPOINTS.memberController + "/acceptshift/",
+      { ShiftId: shiftId }, 
+      { headers: authHeader() });
+  }
+
+  removeShift(id:number) {
+    return axios.delete(API_URL + ENDPOINTS.memberController + "/removeShift/" + id, { headers: authHeader() });
   }
 
   setMemberAttributes(attributes:MemberAttributesDTO) {
     return axios.put(API_URL + ENDPOINTS.memberController + "/1",
       attributes,
+      { headers: authHeader() });
+  }
+
+  resetAttributes(id:number) {
+    return axios.get(API_URL + ENDPOINTS.teamController + "/resetattributes/" + id,
+    { headers: authHeader() });
+  }
+
+  /*
+  * ShiftTypes
+  */
+  createShiftType(section:ShiftTypeCreateDTO) {
+    return axios.post(API_URL + ENDPOINTS.shiftTypesController,
+      section,
       { headers: authHeader() });
   }
 
@@ -81,6 +107,11 @@ class ApiService {
   updateSection(section:SectionEditDTO) {
     return axios.put(API_URL + ENDPOINTS.sectionController,
       section,
+      { headers: authHeader() });
+  }
+
+  deleteSection(id:string) {
+    return axios.delete(API_URL + ENDPOINTS.sectionController + "/" + id,
       { headers: authHeader() });
   }
   
@@ -106,18 +137,20 @@ class ApiService {
     });
 }
   
-  acceptShift(shiftId:number) {
-    return axios.post(API_URL + ENDPOINTS.shiftcrew,
-      { ShiftId: shiftId }, 
-      { headers: authHeader() });
-  }
-
-  removeShift(id:number) {
-    return axios.delete(API_URL + ENDPOINTS.shiftcrew + "/" + id, { headers: authHeader() });
-  }
 
   // AcceptShift() {
   //   return localStorage.getItem('token');
+  // }
+
+  // TODO Remove
+  importVoV(id:number) {
+    return axios.get(API_URL + ENDPOINTS.vovController + "/Teams/" + id,
+    { headers: authHeader() });
+  }
+  // TODO
+  // importVoV() {
+  //   return axios.get(API_URL + "User/Admins/",
+  //   { headers: authHeader() });
   // }
   
 }

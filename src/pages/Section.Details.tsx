@@ -19,6 +19,7 @@ export default function SectionDetails() {
         setApiData(response.data);
       })
   };
+
   useEffect(() => {
     if(isLoading)
     {
@@ -26,6 +27,12 @@ export default function SectionDetails() {
     }
   });
 
+  const handleDelete = () => {
+    apiService.deleteSection(apiData!.sectionId).then(
+      () => {
+        navigate("/manage/team/" + apiData?.team.teamId);
+      })
+  };
 
   return (
 
@@ -33,6 +40,7 @@ export default function SectionDetails() {
     <h2>Vagtplan {apiData?.name} tilhørende {apiData?.team.number} - {apiData?.team.name}</h2>
       <Button disabled={isLoading} onClick={() => navigate("/manage/import/" + apiData?.sectionId)}>Importer vagtplan</Button>
       <Button onClick={() => navigate("/manage/section/edit/" + apiData?.sectionId)}>Edit</Button>
+      <Button color="danger" onClick={handleDelete}>Delete</Button>
 
     </Container>
 

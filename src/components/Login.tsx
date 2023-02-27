@@ -94,6 +94,7 @@ export default function Login() {
                     <Button onClick={() => handleDummyLogin("l@rslennon.dk")}>Login Lars</Button>
                     <Button onClick={() => handleDummyLogin("Janne@smukfest.dk")}>Login Janne</Button>
                     <Button onClick={() => handleDummyLogin("all.rasmussen@gmail.com")}>Login Allan</Button>
+                    <Button onClick={() => handleDummyLogin("klaes8660@gmail.com")}>Login Klaes</Button>
                 </div>
             }
 

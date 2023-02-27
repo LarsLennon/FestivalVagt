@@ -18,7 +18,7 @@ export default function Team() {
       })
   };
   useEffect(() => {
-      loadApiData();
+    loadApiData();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const mapSections = apiData?.sections.map((section: SectionDTO, index: number) => {
@@ -30,9 +30,22 @@ export default function Team() {
     );
   });
 
-  const handleImport = () => {
-    console.log(apiData?.teamId);
+  const handleSyncMembers = () => {
     apiService.syncMembers(apiData?.teamId!).then(
+      () => {
+        //setTeams(response.data);
+      })
+  };
+
+  const handleImport = () => {
+    apiService.importVoV(apiData!.teamId).then(
+      () => {
+        //setTeams(response.data);
+      })
+  };
+
+  const handleAttributes = () => {
+    apiService.resetAttributes(apiData!.teamId).then(
       () => {
         //setTeams(response.data);
       })
@@ -50,7 +63,10 @@ export default function Team() {
             Vagtplan
           </h3>
           <Button onClick={() => navigate("/manage/create/" + apiData?.teamId)}>Opret Vagtplan</Button>
-          <Button color="danger" onClick={() => handleImport()}>Sync Medlemmer</Button>
+          <Button color="danger" onClick={() => handleSyncMembers()}>Sync Medlemmer</Button>
+          <Button color="danger" onClick={() => handleImport()}>Import VoV</Button>
+          <Button color="info" onClick={() => navigate("/ShiftType/Create/" + apiData?.teamId)}>Create ShiftType</Button>
+          <Button color="info" onClick={() => handleAttributes()}>Require Attributes</Button>
           <ListGroup>
             {mapSections}
           </ListGroup>

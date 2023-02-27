@@ -3,7 +3,7 @@ import { useState } from "react";
 import { List } from "reactstrap";
 import { CalendarShiftDTO } from "../interface/interface";
 import conflict from "./conflics";
-import Shift from "./modals/Shift";
+import CalendarShiftModal from "../pages/Calendar.ShiftModal";
 
 interface Iprops {
     event: CalendarShiftDTO;
@@ -62,7 +62,7 @@ export default function EventComponent(props: Iprops) {
     const renderModal = () => {
         return (
             <div>
-                <Shift
+                <CalendarShiftModal
                     event={props.event}
                     isOpen={eventInfoModal}
                     returnUrl={""}

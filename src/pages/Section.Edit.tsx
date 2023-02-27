@@ -21,6 +21,7 @@ export default function SectionEdit() {
   const loadApiData = () => {
     apiService.getSection(parseInt(id!)).then(
       (response) => {
+        console.log(response.data)
         setLoading(false);
         setApiData(response.data);
         setName(response.data.name);
