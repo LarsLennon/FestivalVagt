@@ -6,12 +6,16 @@ import authService from "../../services/auth.service";
 export const ProtectedRoute = (props:any) => {
   if (!authService.isAuth()) {
     // user is not authenticated
-    return <Navigate to="/unauthorized" />;
+    return <Navigate to="/login" />;
   }
   return props.children;
 };
 
 export const ProtectedAdminRoute = (props:any) => {
+  if (!authService.isAuth()) {
+    // user is not authenticated
+    return <Navigate to="/login" />;
+  }
   if (!authService.isAdmin()) {
     // user is not authenticated
     return <Navigate to="/unauthorized" />;
@@ -20,6 +24,10 @@ export const ProtectedAdminRoute = (props:any) => {
 };
 
 export const ProtectedManagerRoute = (props:any) => {
+  if (!authService.isAuth()) {
+    // user is not authenticated
+    return <Navigate to="/login" />;
+  }
   if (!authService.isManager()) {
     // user is not authenticated
     return <Navigate to="/unauthorized" />;
