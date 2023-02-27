@@ -81,14 +81,15 @@ class AuthService {
 
     if (token !== null) {
       try {
-        //var decoded: jwtProps = jwt_decode(token);
-        //console.log(decoded);
-        // console.log(decoded.role);
+        var decoded: jwtProps = jwt_decode(token);
+        
+        if (decoded !== null) {
+          return true;
+        }
+        
       } catch (error) {
         return false;
       }
-      // decoded.name
-      return true;
     }
     return false;
   }
