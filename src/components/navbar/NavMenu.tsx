@@ -12,7 +12,7 @@ import authService from "../../services/auth.service";
 import LoginButton from "./LoginButton";
 import { ProtectedAdminRoute, ProtectedManagerRoute, ProtectedRoute } from "./ProtectedRoute ";
 import SectionSelector from "./SectionSelector";
-import Login from "../Login";
+import Login from "../../pages/Login";
 import Teams from "../../pages/Teams";
 import TeamSync from "../../pages/TeamSync";
 import Calendar from "../../pages/Calendar";

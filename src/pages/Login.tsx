@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Alert, Button, Form, FormGroup, Input, Label } from "reactstrap";
-import './Login.css';
+import './css/Login.css';
 import authService from "../services/auth.service"
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../hooks/GlobalContent";
