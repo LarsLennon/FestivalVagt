@@ -70,14 +70,17 @@ export default function CalenderHeader(props: Iprops) {
 
     return (
 
-        <Container fluid>
+        <Container fluid >
+            <div className="m-3">
         <FestivalUnits 
         units={props.units}
         sectionName={props.sectionName}
         />
+        </div>
             <Row>
-                <Col>
-                    <ButtonGroup>
+                <Col xs="12" md="4">
+                    <div style={{ display: "flex" }}>
+                    <ButtonGroup style={{ margin: "auto" }}>
                         <Button onClick={handlePrev}>
                             Tilbage
                         </Button>
@@ -88,13 +91,14 @@ export default function CalenderHeader(props: Iprops) {
                             Frem
                         </Button>
                     </ButtonGroup>
+                    </div>
                 </Col>
-                <Col>
+                <Col xs="12" md="4">
                     {HeaderText()}
                 </Col>
-                <Col>
+                <Col xs="12" md="4">
                     <div style={{ display: "flex" }}>
-                        <ButtonGroup style={{ marginLeft: "auto" }}>
+                        <ButtonGroup style={{ margin: "auto" }}>
                             <Button onClick={handleWeek} disabled={calendarTimeline === "week"}>
                                 Uge
                             </Button>
@@ -104,9 +108,6 @@ export default function CalenderHeader(props: Iprops) {
                             <Button onClick={handleAll} disabled={calendarTimeline === "all"}>
                                 Alle
                             </Button>
-                            {/* <Button onClick={() => setSectionId("Hurra")}>
-                                setContext
-                            </Button> */}
                         </ButtonGroup>
                     </div>
                 </Col>

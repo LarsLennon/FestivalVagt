@@ -74,9 +74,10 @@ export default function EventComponent(props: Iprops) {
     };
 
     const renderHelperText = () => {
-        let conflictText = conflict(props.event.conflict!)
+        let conflictText = conflict(props.event.conflict!);
+        const myShift = props.event.myShift;
 
-        if(conflictText === "")
+        if(conflictText === "" || myShift)
         {
             if(emptySlots === 1) {
                 conflictText = emptySlots + " ledig plads";
