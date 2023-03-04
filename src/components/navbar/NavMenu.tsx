@@ -31,6 +31,7 @@ import ManageButton from "./ManageButton";
 import Unauthorized from "../../pages/Unauthorized";
 import ShiftTypeCreate from "../../pages/ShiftType.Create";
 import Statistics from "../../pages/Statistics";
+import ShiftDetails from "../../pages/Shift.Details";
 
 export default function NavMenu() {
   const { setUserName } = useGlobalContext();
@@ -101,6 +102,7 @@ export default function NavMenu() {
         {/* Manager */}
         <Route path="/members" element={<ProtectedManagerRoute><Members /></ProtectedManagerRoute>} />
         <Route path="/statistics" element={<ProtectedManagerRoute><Statistics /></ProtectedManagerRoute>} />
+        <Route path="/shift/details/:id" element={<ProtectedManagerRoute><ShiftDetails /></ProtectedManagerRoute>} />
 
         {/* Admin */}
         <Route path="/team" element={<ProtectedAdminRoute><Teams /></ProtectedAdminRoute>} />

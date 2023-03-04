@@ -51,6 +51,13 @@ export default function Team() {
       })
   };
 
+  const handleInvite = () => {
+    apiService.sendInvites(apiData!.teamId).then(
+      () => {
+        //setTeams(response.data);
+      })
+  };
+
   return (
 
     <Container fluid="lg">
@@ -67,6 +74,7 @@ export default function Team() {
           <Button color="danger" onClick={() => handleImport()}>Import VoV</Button>
           <Button color="info" onClick={() => navigate("/ShiftType/Create/" + apiData?.teamId)}>Create ShiftType</Button>
           <Button color="info" onClick={() => handleAttributes()}>Require Attributes</Button>
+          <Button color="info" onClick={() => handleInvite()}>Inviter</Button>
           <ListGroup>
             {mapSections}
           </ListGroup>

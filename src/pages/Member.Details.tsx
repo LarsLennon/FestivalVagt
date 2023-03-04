@@ -7,7 +7,7 @@ import { BsSearch } from 'react-icons/bs';
 import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im';
 import { useGlobalContext } from "../hooks/GlobalContent";
 
-export default function Member() {
+export default function MemberDetails() {
   const [searchInput, setSearchInput] = useState("");
   const { sectionId } = useGlobalContext();
 

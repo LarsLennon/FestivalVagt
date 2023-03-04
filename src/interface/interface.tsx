@@ -92,6 +92,15 @@ export interface ShiftDTO {
   endTime?: string;
   members: MemberDTO[];
 }
+export interface ShiftDetailsDTO {
+  shiftId?: number;
+  units: number;
+  name?: string;
+  slots?: number;
+  startTime?: string;
+  endTime?: string;
+  members: MemberDTO[];
+}
 
 export interface ShiftWithMemberDTO {
   shiftId?: number;

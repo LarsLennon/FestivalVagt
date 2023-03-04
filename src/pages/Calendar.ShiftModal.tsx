@@ -1,5 +1,6 @@
 import moment from "moment";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 // import { useState } from "react";
 // import { RiDeleteBinLine } from "react-icons/ri";
 import { Button, Modal, ModalHeader, ModalBody, Table, Alert } from "reactstrap";
@@ -18,6 +19,7 @@ interface BookingProps {
 }
 
 export default function CalendarShiftModal(props: BookingProps) {
+  const navigate = useNavigate();
 
   // const [open, setOpen] = useState("1");
   // const toggle = (id: any) => {
@@ -232,8 +234,9 @@ export default function CalendarShiftModal(props: BookingProps) {
                 <Button
                   color="primary"
                   className="float-right m-1"
+                  onClick={() => navigate("/shift/details/" + props.event.shiftId)}
                 >
-                  Rediger
+                  Detaljer
                 </Button> : ""}
                 {renderAcceptRemoveButton()}
               </div>

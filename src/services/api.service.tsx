@@ -88,6 +88,16 @@ class ApiService {
   }
 
   /*
+  * Team
+  */
+  sendInvites(id:number) {
+    return axios.get(API_URL + ENDPOINTS.teamController + "/sendInvites/" + id,
+    { headers: authHeader() });
+  }
+
+
+
+  /*
   * ShiftTypes
   */
   createShiftType(section:ShiftTypeCreateDTO) {
