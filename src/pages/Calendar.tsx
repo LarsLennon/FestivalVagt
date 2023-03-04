@@ -149,8 +149,8 @@ export default function Calendar() {
   if (isLoading) {
     return (
       <Container>
-    <Alert color="warning">Loading...</Alert>
-    </Container>
+        <Alert color="warning">Loading...</Alert>
+      </Container>
     );
   }
   else {

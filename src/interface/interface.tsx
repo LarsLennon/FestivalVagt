@@ -180,4 +180,6 @@ export interface ShiftTypeCreateDTO {
 export interface StatisticsDTO {
   sectionId: string;
   totalUnits: number;
+  totalMembers: number;
+  verifiedMembers: number;
 }

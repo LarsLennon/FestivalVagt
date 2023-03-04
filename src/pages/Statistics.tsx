@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Col, Container, Progress, Row } from "reactstrap";
 import { useGlobalContext } from "../hooks/GlobalContent";
 import { StatisticsDTO } from "../interface/interface";
 import apiService from "../services/api.service";
@@ -25,9 +26,30 @@ export default function Statistics() {
     });
 
     return (
-        <div>
+        <Container>
             <h5>Statistics</h5>
-            {apiData?.totalUnits}
-        </div>
+            <p>{apiData?.totalUnits}</p>
+            <p>{apiData?.totalMembers}</p>
+            <p>{apiData?.verifiedMembers}</p>
+
+            <Row>
+                <Col className="col-4">
+
+                    Medhjælpere der har bekræftet {apiData?.verifiedMembers} / {apiData?.totalMembers}
+                    <Progress
+                        max={apiData?.totalMembers}
+                        value={apiData?.verifiedMembers}
+                    />
+                </Col>
+                <Col className="col-4">
+
+                Antal medhjælpere for at dække vagtplanen {apiData?.totalMembers} / {(apiData?.totalUnits!/42).toFixed(0)}
+                    <Progress
+                        max={apiData?.totalUnits!/42}
+                        value={apiData?.totalMembers}
+                    />
+                </Col>
+            </Row>
+        </Container>
     );
 }
