@@ -146,3 +146,12 @@ export interface ShiftTypeCreateDTO {
   name: string;
   description: string;
 }
+
+
+/*
+ * Statistics
+ */
+export interface StatisticsDTO {
+  sectionId: string;
+  totalUnits: number;
+}

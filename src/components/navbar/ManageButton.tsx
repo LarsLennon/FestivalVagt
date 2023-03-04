@@ -21,6 +21,7 @@ export default function ManageButton() {
           <DropdownMenu end>
             {authService.isAdmin() ? <DropdownItem onClick={() => navigate("/team")}>Hold</DropdownItem> : ""}
             {authService.isManager() ? <DropdownItem onClick={() => navigate("/members")}>Medhjælpere</DropdownItem> : ""}
+            {authService.isManager() ? <DropdownItem onClick={() => navigate("/statistics")}>Statistik</DropdownItem> : ""}
             
           </DropdownMenu>
         </UncontrolledDropdown>

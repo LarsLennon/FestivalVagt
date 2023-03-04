@@ -20,6 +20,7 @@ export const ENDPOINTS = {
   shiftcrew: "shiftcrew",
   getMembersShifts: "member/shifts",
   vovController: "vov2022",
+  statisticsController: "statistics",
 };
 
 class ApiService {
@@ -138,6 +139,10 @@ class ApiService {
 }
   
 
+getStatistics(id:number) {
+  return axios.get(API_URL + ENDPOINTS.statisticsController + "/" + id,
+  { headers: authHeader() });
+}
   // AcceptShift() {
   //   return localStorage.getItem('token');
   // }

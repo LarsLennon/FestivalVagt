@@ -26,8 +26,8 @@ class AuthService {
           localStorage.setItem("token", response.data);
           var decoded: jwtProps = jwt_decode(response.data);
           // console.log(decoded);
-          localStorage.setItem("username", decoded.name + decoded.role);
-          console.log("Added token for " + decoded.role);
+          localStorage.setItem("username", decoded.name);
+          // console.log("Added token for " + decoded.role);
         }
 
         console.log(response);

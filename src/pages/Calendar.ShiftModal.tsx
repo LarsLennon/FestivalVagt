@@ -116,6 +116,20 @@ export default function CalendarShiftModal(props: BookingProps) {
     }
   }
 
+  const renderApiData = props.event.members.map((filteredItem, index) => {
+    return (
+      <React.Fragment key={index}>
+        <tr>
+          <th scope="row">
+            {/* <Button color="info" onClick={() => handleImport(filteredItem.TeamId)}>Import</Button> */}
+          </th>
+          <td>{filteredItem.name}</td>
+          <td></td>
+        </tr>
+      </React.Fragment>
+    );
+  });
+
     return (
       <div>
         <Modal onOpened={modalOpened} isOpen={props.isOpen} toggle={close}>
@@ -143,7 +157,7 @@ export default function CalendarShiftModal(props: BookingProps) {
               </tbody>
             </Table>
 
-            {/* <Table>
+            <Table>
             <thead>
               <tr>
                 <th>Medhjælpere</th>
@@ -152,9 +166,9 @@ export default function CalendarShiftModal(props: BookingProps) {
               </tr>
             </thead>
             <tbody>
-              {mapMembers}
+              {renderApiData}
             </tbody>
-          </Table> */}
+          </Table>
 
             {
               //@ts-ignore

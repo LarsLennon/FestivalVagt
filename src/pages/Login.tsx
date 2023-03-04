@@ -100,7 +100,7 @@ export default function Login() {
 
             <Form className="form" onSubmit={SubmitHandler}>
                 <FormGroup>
-                    <Label for="exampleEmail">Memba medlemsnummer eller email</Label>
+                    <Label for="exampleEmail">Brug din email og kode fra Memba til at logge ind.</Label>
                     <Input
                         placeholder="example@example.com"
                         onChange={onChangeUsername}
