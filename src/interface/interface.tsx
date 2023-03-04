@@ -10,6 +10,24 @@ export interface MemberDTO {
   units?:number;
 }
 
+export interface MemberDetailsDTO {
+  memberId: number;
+  name: string;
+  membaNumber: string;
+  driver:boolean;
+  experienced:boolean;
+  firstAid:boolean;
+  requireAttributes:boolean;
+}
+
+export interface MemberEditDTO {
+  memberId: string;
+  driver:boolean;
+  experienced:boolean;
+  firstAid:boolean;
+  requireAttributes:boolean;
+}
+
 export interface MemberAttributesDTO {
   driver?:boolean;
   firstAid?:boolean;

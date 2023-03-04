@@ -6,8 +6,10 @@ import apiService from "../services/api.service";
 // import { BsSearch } from 'react-icons/bs';
 import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im';
 import { useGlobalContext } from "../hooks/GlobalContent";
+import { useNavigate } from "react-router-dom";
 
 export default function Members() {
+  const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState("");
   const { sectionId } = useGlobalContext();
 
@@ -64,7 +66,7 @@ export default function Members() {
   });
 
   const memberDetails = (memberId:number) => {
-      
+      navigate("/member/details/" + memberId)
   }
 
 

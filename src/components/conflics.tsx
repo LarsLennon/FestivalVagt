@@ -18,6 +18,9 @@ export function calendarConflict(conflict: number) {
     case ConflictType.None:
       return "";
 
+      case ConflictType.NotSelectable:
+        return "Denne vagt skal tildeles";
+        
     case ConflictType.NeedExperience:
       return "Denne vagt kræver erfaring";
 

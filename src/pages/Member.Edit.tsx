@@ -1,31 +1,32 @@
 import { useEffect, useState } from "react";
 import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
 
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import apiService from "../services/api.service";
-import { SectionDetailsDTO, SectionEditDTO } from "../interface/interface";
-import DateTimePicker from "../components/formcomponents/DateTimePicker";
-import moment from "moment";
-
+import { MemberDetailsDTO, MemberEditDTO } from "../interface/interface";
 
 export default function MemberEdit() {
   const { id } = useParams();
-  const [openDate, setOpenDate] = useState(new Date());
-  const [closeDate, setCloseDate] = useState(new Date());
+  const navigate = useNavigate();
 
-  const [isActive, setActive] = useState(false);
-  const [name, setName] = useState("");
+  const [driver, setDriver] = useState(false);
+  const [experienced, setExperienced] = useState(false);
+  const [firstAid, setFirstAid] = useState(false);
+  const [requireAttributes, setRequireAttributes] = useState(false);
 
   const [isLoading, setLoading] = useState(true);
-  const [apiData, setApiData] = useState<SectionDetailsDTO>();
+  const [apiData, setApiData] = useState<MemberDetailsDTO>();
   const loadApiData = () => {
-    apiService.getSection(parseInt(id!)).then(
+    apiService.getMember(id!).then(
       (response) => {
         console.log(response.data)
+        const memberDetails:MemberDetailsDTO = response.data;
         setLoading(false);
         setApiData(response.data);
-        setName(response.data.name);
-        setActive(response.data.isActive);
+        setDriver(memberDetails.driver);
+        setExperienced(memberDetails.experienced);
+        setFirstAid(memberDetails.firstAid);
+        setRequireAttributes(memberDetails.requireAttributes);
       })
   };
   useEffect(() => {
@@ -36,75 +37,87 @@ export default function MemberEdit() {
 
 
   const SubmitData = () => {
-    var newOpenDate = moment(openDate).format('yyyy-MM-DD hh:mm'); //openDate.toString("yyyy-MM-dd hh:mm"),
-    var newCloseDate = moment(openDate).format('yyyy-MM-DD hh:mm'); //openDate.toString("yyyy-MM-dd hh:mm"),
-
-    const newSection: SectionEditDTO = {
-      SectionId: id!,
-      Name: name,
-      isActive: isActive,
-      openTime: newOpenDate,
-      closeTime: newCloseDate
+    const data: MemberEditDTO = {
+      memberId: id!,
+      driver: driver,
+      experienced: experienced,
+      firstAid: firstAid,
+      requireAttributes: requireAttributes
     };
-    apiService.updateSection(newSection).then(
+    apiService.editMember(data).then(
       () => {
-        //setTeam(response.data);
+        navigate("/member/details/" + apiData?.memberId)
       })
   };
 
-  const onChangeUsername = (event: any) => {
-    setName(event.target.value);
+  const onChangeDriver = (event: any) => {
+    setDriver(event.target.checked);
   };
 
-  const onChangeActive = (event: any) => {
-    setActive(event.target.checked);
-    console.log("onChangeActive " + event.target.checked)
-    console.log(event.target)
+  const onChangeExperienced = (event: any) => {
+    setExperienced(event.target.checked);
+  };
+
+  const onChangeFirstAid = (event: any) => {
+    setFirstAid(event.target.checked);
+  };
+
+  const onChangeRequireAttributes = (event: any) => {
+    setRequireAttributes(event.target.checked);
   };
 
   return (
 
     <Container fluid="lg">
-      <h2>Edit {apiData?.name} tilhørende {apiData?.team.number} - {apiData?.team.name}</h2>
+      <h2>Edit {apiData?.name}</h2>
       <Form>
-        <FormGroup>
-          <Label for="exampleName">
-            Navn
-          </Label>
-          <Input
-            type="text"
-            id="formName"
-            name="name"
-            defaultValue={name}
-            onChange={onChangeUsername}
-          />
-        </FormGroup>
+
         <FormGroup check>
           <Input
             type="checkbox"
-            checked={isActive}
-            onChange={onChangeActive}
+            checked={driver}
+            onChange={onChangeDriver}
           />
           {' '}
           <Label check>
-            Active
+            Kørekort
           </Label>
         </FormGroup>
-        <FormGroup>
-          <Label for="exampleSelectMultiTo">Open</Label>
-          <DateTimePicker
-            initDate={openDate}
-            onChange={setOpenDate}
-            placeholderText="Open Date"
+
+        <FormGroup check>
+          <Input
+            type="checkbox"
+            checked={experienced}
+            onChange={onChangeExperienced}
           />
+          {' '}
+          <Label check>
+            Erfaren
+          </Label>
         </FormGroup>
-        <FormGroup>
-          <Label for="exampleSelectMultiTo">Close</Label>
-          <DateTimePicker
-            initDate={closeDate}
-            onChange={setCloseDate}
-            placeholderText="Close Date"
+
+        <FormGroup check>
+          <Input
+            type="checkbox"
+            checked={firstAid}
+            onChange={onChangeFirstAid}
           />
+          {' '}
+          <Label check>
+            Førstehjælp
+          </Label>
+        </FormGroup>
+
+        <FormGroup check>
+          <Input
+            type="checkbox"
+            checked={requireAttributes}
+            onChange={onChangeRequireAttributes}
+          />
+          {' '}
+          <Label check>
+            Kræv Attributter
+          </Label>
         </FormGroup>
         <Button onClick={SubmitData}>
           Submit

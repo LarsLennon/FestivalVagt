@@ -1,73 +1,91 @@
 import { useEffect, useState } from "react";
-import { Container, Table } from "reactstrap";
-import { MemberDTO } from "../interface/interface";
+import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
+
+import { useNavigate, useParams } from "react-router-dom";
 import apiService from "../services/api.service";
-import { BsSearch } from 'react-icons/bs';
-// import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im';
-import { useGlobalContext } from "../hooks/GlobalContent";
+import { MemberDetailsDTO } from "../interface/interface";
+
 
 export default function MemberDetails() {
-  const [searchInput, setSearchInput] = useState("");
-  const { sectionId } = useGlobalContext();
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-  const [apiData, setApiData] = useState<MemberDTO>();
+  const [isLoading, setLoading] = useState(true);
+  const [apiData, setApiData] = useState<MemberDetailsDTO>();
   const loadApiData = () => {
-    apiService.getMembers(sectionId).then(
+    apiService.getMember(id!).then(
       (response) => {
+        setLoading(false);
         setApiData(response.data);
       })
   };
 
-
   useEffect(() => {
-    if(apiData === null)
-    {
+    if (isLoading) {
       loadApiData();
     }
   });
 
 
-  const handleChange = (e: any) => {
-    e.preventDefault();
-    setSearchInput(e.target.value.toLowerCase());
-  };
-
-  // const handleImport = (membaTeamId: any) => {
-  //   console.log(membaTeamId);
-  //   apiService.importTeam(membaTeamId).then(
-  //     () => {
-  //       //setTeams(response.data);
-  //     })
-  // };
-
-
   return (
+
     <Container fluid="lg">
-      <h3> Lets go for a <BsSearch />? </h3>
-      <input
-        type="search"
-        placeholder="Søg"
-        onChange={handleChange}
-        value={searchInput} />
+      <h2>{apiData?.name} </h2>
+      {/* <Button disabled={isLoading} onClick={() => navigate("/import/" + apiData?.sectionId)}>Importer vagtplan</Button> */}
+      <Button onClick={() => navigate("/member/edit/" + apiData?.memberId)}>Edit</Button>
+      {/* <Button color="danger" onClick={handleDelete}>Delete</Button> */}
+     
+<Form>
 
-      <Table hover>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Navn</th>
-            <th>MembaNummer</th>
-            <th>23+Kørekort</th>
-            <th>Erfaren</th>
-            <th>Førstehjælp</th>
-            <th>FestivalTimer</th>
-          </tr>
-        </thead>
+  <FormGroup check>
+    <Input
+      type="checkbox"
+      checked={apiData?.driver}
+      disabled={true}
+    />
+    {' '}
+    <Label check>
+      Kørekort
+    </Label>
+  </FormGroup>
 
-        <tbody>
+  <FormGroup check>
+    <Input
+      disabled={true}
+      type="checkbox"
+      checked={apiData?.experienced}
+    />
+    {' '}
+    <Label check>
+      Erfaren
+    </Label>
+  </FormGroup>
 
-        </tbody>
+  <FormGroup check>
+    <Input
+      disabled={true}
+      type="checkbox"
+      checked={apiData?.firstAid}
+    />
+    {' '}
+    <Label check>
+      Førstehjælp
+    </Label>
+  </FormGroup>
 
-      </Table>
-    </Container>
+  <FormGroup check>
+    <Input
+      disabled={true}
+      type="checkbox"
+      checked={apiData?.requireAttributes}
+    />
+    {' '}
+    <Label check>
+      Kræv Attributter
+    </Label>
+  </FormGroup>
+</Form>
+</Container>
+
   );
 }
