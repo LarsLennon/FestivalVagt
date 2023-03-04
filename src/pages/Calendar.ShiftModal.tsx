@@ -118,19 +118,19 @@ export default function CalendarShiftModal(props: BookingProps) {
     }
   }
 
-  const renderApiData = props.event.members.map((filteredItem, index) => {
-    return (
-      <React.Fragment key={index}>
-        <tr>
-          <th scope="row">
-            {/* <Button color="info" onClick={() => handleImport(filteredItem.TeamId)}>Import</Button> */}
-          </th>
-          <td>{filteredItem.name}</td>
-          <td></td>
-        </tr>
-      </React.Fragment>
-    );
-  });
+  // const renderApiData = props.event.members.map((filteredItem, index) => {
+  //   return (
+  //     <React.Fragment key={index}>
+  //       <tr>
+  //         <th scope="row">
+  //           {/* <Button color="info" onClick={() => handleImport(filteredItem.TeamId)}>Import</Button> */}
+  //         </th>
+  //         <td>{filteredItem.name}</td>
+  //         <td></td>
+  //       </tr>
+  //     </React.Fragment>
+  //   );
+  // });
 
     return (
       <div>
@@ -140,7 +140,7 @@ export default function CalendarShiftModal(props: BookingProps) {
             {props.event.name}
           </ModalHeader>
 
-          {props.event.conflict !== 0 ? <Alert color="danger">{stringConflict}</Alert> : ""}
+          {stringConflict !== "" ? <Alert color="danger">{stringConflict}</Alert> : ""}
 
           <ModalBody>
           {props.event.description !== "" ? props.event.description : ""}
@@ -159,7 +159,7 @@ export default function CalendarShiftModal(props: BookingProps) {
               </tbody>
             </Table>
 
-            <Table>
+            {/* <Table>
             <thead>
               <tr>
                 <th>Medhjælpere</th>
@@ -170,7 +170,7 @@ export default function CalendarShiftModal(props: BookingProps) {
             <tbody>
               {renderApiData}
             </tbody>
-          </Table>
+          </Table> */}
 
             {
               //@ts-ignore

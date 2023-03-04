@@ -7,8 +7,31 @@ export enum ConflictType {
   NotSelectable,
   TooManyShifts,
   ShiftFull,
+  SectionClosed
 }
 
+
+export function calendarConflict(conflict: number) {
+
+  switch (conflict) {
+
+    case ConflictType.None:
+      return "";
+
+    case ConflictType.NeedExperience:
+      return "Denne vagt kræver erfaring";
+
+    case ConflictType.NeedDriver:
+      return "Denne vagt kræver kørekort";
+
+    case ConflictType.TimeConflict:
+      return "Du har anden vagt på samme tid";  
+
+    default:
+      return "";
+  }
+
+}
 
 export default function conflict(conflict: number) {
 
@@ -37,6 +60,10 @@ export default function conflict(conflict: number) {
 
     case ConflictType.ShiftFull:
       return "Ingen ledige pladser";
+
+      case ConflictType.SectionClosed:
+        return "Vagtplanen er lukket";
+  
 
     default:
       return "Ukendt konflikt! Type: " + conflict;

@@ -50,12 +50,11 @@ export interface SectionDTO {
 
 export interface SectionDetailsDTO {
   sectionId: string;
-  ShiftId?: number;
   name?: string;
-  Slots?: number;
-  StartTime?: string;
-  EndTime?: string;
-  isActive?: boolean;
+  openTime?: string;
+  closeTime?: string;
+  isActive: boolean;
+  isOpen: boolean;
   team: TeamDTO;
 }
 

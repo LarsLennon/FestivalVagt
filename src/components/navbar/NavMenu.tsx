@@ -109,11 +109,11 @@ export default function NavMenu() {
         {/* Admin */}
         <Route path="/team" element={<ProtectedAdminRoute><Teams /></ProtectedAdminRoute>} />
         <Route path="/team/sync" element={<ProtectedAdminRoute><TeamSync /></ProtectedAdminRoute>} />
-        <Route path="/manage/team/:id" element={<ProtectedAdminRoute><Team /></ProtectedAdminRoute>} />
-        <Route path="/manage/create/:id" element={<ProtectedAdminRoute><SectionCreate /></ProtectedAdminRoute>} />
-        <Route path="/manage/section/:id" element={<ProtectedAdminRoute><SectionDetails /></ProtectedAdminRoute>} />
-        <Route path="/manage/section/edit/:id" element={<ProtectedAdminRoute><SectionEdit /></ProtectedAdminRoute>} />
-        <Route path="/manage/import/:id" element={<ProtectedAdminRoute><SectionImport /></ProtectedAdminRoute>} />
+        <Route path="/team/:id" element={<ProtectedAdminRoute><Team /></ProtectedAdminRoute>} />
+        <Route path="/create/:id" element={<ProtectedAdminRoute><SectionCreate /></ProtectedAdminRoute>} />
+        <Route path="/section/details/:id" element={<ProtectedAdminRoute><SectionDetails /></ProtectedAdminRoute>} />
+        <Route path="/section/edit/:id" element={<ProtectedAdminRoute><SectionEdit /></ProtectedAdminRoute>} />
+        <Route path="/import/:id" element={<ProtectedAdminRoute><SectionImport /></ProtectedAdminRoute>} />
         <Route path="/ShiftType/Create/:id" element={<ProtectedAdminRoute><ShiftTypeCreate /></ProtectedAdminRoute>} />
 
         {/* Test */}

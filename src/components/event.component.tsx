@@ -2,7 +2,7 @@ import moment from "moment";
 import { useState } from "react";
 import { List } from "reactstrap";
 import { CalendarShiftDTO } from "../interface/interface";
-import conflict from "./conflics";
+import { calendarConflict } from "./conflics";
 import CalendarShiftModal from "../pages/Calendar.ShiftModal";
 
 interface Iprops {
@@ -30,7 +30,6 @@ export default function EventComponent(props: Iprops) {
     });
 
     const mapMembers = props.event.members.map((Member, index) => {
-
         return (
             <li key={index}>
                 {Member.name}
@@ -44,7 +43,7 @@ export default function EventComponent(props: Iprops) {
     };
 
     const eventBoxBorderColor = () => {
-        if (props.event.conflict != null && props.event.conflict > 0) return "event-conflict";
+        if (props.event.conflict != null && calendarConflict(props.event.conflict!) !== "") return "event-conflict";
         return "event-box";
     };
 
@@ -74,7 +73,7 @@ export default function EventComponent(props: Iprops) {
     };
 
     const renderHelperText = () => {
-        let conflictText = conflict(props.event.conflict!);
+        let conflictText = calendarConflict(props.event.conflict!);
         const myShift = props.event.myShift;
 
         if(conflictText === "" || myShift)

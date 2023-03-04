@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
 
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import apiService from "../services/api.service";
 import { SectionDetailsDTO, SectionEditDTO } from "../interface/interface";
 import DateTimePicker from "../components/formcomponents/DateTimePicker";
@@ -9,6 +9,7 @@ import moment from "moment";
 
 
 export default function SectionEdit() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [openDate, setOpenDate] = useState(new Date());
   const [closeDate, setCloseDate] = useState(new Date());
@@ -48,6 +49,8 @@ export default function SectionEdit() {
     };
     apiService.updateSection(newSection).then(
       () => {
+        
+        navigate("/section/details/" + id);
         //setTeam(response.data);
       })
   };

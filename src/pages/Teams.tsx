@@ -32,7 +32,7 @@ export default function Teams() {
   const renderTeams = apiData.map((team, index) => {
     return (
       <React.Fragment key={index}>
-        <tr onClick={() => navigate("/manage/team/" + team.teamId)}>
+        <tr onClick={() => navigate("/team/" + team.teamId)}>
           <td>{team.number}</td>
           <td>{team.name}</td>
         </tr>

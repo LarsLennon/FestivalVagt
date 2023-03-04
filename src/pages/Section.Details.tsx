@@ -38,7 +38,7 @@ export default function SectionDetails() {
     <Container fluid="lg">
       <h2>Vagtplan {apiData?.name} tilhørende {apiData?.team.number} - {apiData?.team.name}</h2>
       <Button disabled={isLoading} onClick={() => navigate("/manage/import/" + apiData?.sectionId)}>Importer vagtplan</Button>
-      <Button onClick={() => navigate("/manage/section/edit/" + apiData?.sectionId)}>Edit</Button>
+      <Button onClick={() => navigate("/section/edit/" + apiData?.sectionId)}>Edit</Button>
       <Button color="danger" onClick={handleDelete}>Delete</Button>
 
       <Row className="col-2">
@@ -46,7 +46,7 @@ export default function SectionDetails() {
           Open:
         </Col>
         <Col>
-          {apiData?.StartTime}
+          {apiData?.openTime}
         </Col>
       </Row>
       <Row>
@@ -54,7 +54,15 @@ export default function SectionDetails() {
           Close:
         </Col>
         <Col>
-          {apiData?.EndTime}
+          {apiData?.closeTime}
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          IsOpen:
+        </Col>
+        <Col>
+          {apiData?.isOpen ? "Yes" : "No"}
         </Col>
       </Row>
 

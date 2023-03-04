@@ -23,7 +23,7 @@ export default function Team() {
 
   const mapSections = apiData?.sections.map((section: SectionDTO, index: number) => {
     return (
-      <ListGroupItem color={section.isActive ? "success" : ""} key={index} action onClick={() => navigate("/manage/section/" + section.sectionId)}>
+      <ListGroupItem color={section.isActive ? "success" : ""} key={index} action onClick={() => navigate("/section/details/" + section.sectionId)}>
         <h5 className="mb-1">{section.name} {section.isActive ? "(Active)" : ""}</h5>
         {/* <small className="mb-1">VoV Skranke</small> */}
       </ListGroupItem>
