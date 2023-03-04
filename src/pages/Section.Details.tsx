@@ -37,7 +37,7 @@ export default function SectionDetails() {
 
     <Container fluid="lg">
       <h2>Vagtplan {apiData?.name} tilhørende {apiData?.team.number} - {apiData?.team.name}</h2>
-      <Button disabled={isLoading} onClick={() => navigate("/manage/import/" + apiData?.sectionId)}>Importer vagtplan</Button>
+      <Button disabled={isLoading} onClick={() => navigate("/import/" + apiData?.sectionId)}>Importer vagtplan</Button>
       <Button onClick={() => navigate("/section/edit/" + apiData?.sectionId)}>Edit</Button>
       <Button color="danger" onClick={handleDelete}>Delete</Button>
 
