@@ -38,7 +38,7 @@ export default function SectionEdit() {
 
   const SubmitData = () => {
     var newOpenDate = moment(openDate).format('yyyy-MM-DD hh:mm'); //openDate.toString("yyyy-MM-dd hh:mm"),
-    var newCloseDate = moment(openDate).format('yyyy-MM-DD hh:mm'); //openDate.toString("yyyy-MM-dd hh:mm"),
+    var newCloseDate = moment(closeDate).format('yyyy-MM-DD hh:mm'); //openDate.toString("yyyy-MM-dd hh:mm"),
 
     const newSection: SectionEditDTO = {
       SectionId: id!,
@@ -48,10 +48,8 @@ export default function SectionEdit() {
       closeTime: newCloseDate
     };
     apiService.updateSection(newSection).then(
-      () => {
-        
+      () => {        
         navigate("/section/details/" + id);
-        //setTeam(response.data);
       })
   };
 

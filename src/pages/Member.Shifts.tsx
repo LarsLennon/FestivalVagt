@@ -15,7 +15,7 @@ export default function MemberShifts() {
         ApiService.getMembersShifts(sectionId).then(
             (response) => {
                 setApiData(response.data);
-                console.log(response.data);
+                // console.log(response.data);
             })
     };
 
@@ -38,16 +38,16 @@ export default function MemberShifts() {
 
     const mapShifts = apiData?.shifts.map((shift: ShiftDTO, index: number) => {
         return (
-            <Card>
+            <Card key={index}>
                 <CardBody>
-                    <CardTitle tag="h5">
-                                <b>{moment(shift.startTime).format("HH:mm")} - {moment(shift.endTime).format("HH:mm")} {moment(shift.endTime).format("DD/MM yyyy")}</b><br></br>                                
+                    <CardTitle>
+                                <h5><b>{moment(shift.startTime).format("HH:mm")} - {moment(shift.endTime).format("HH:mm")} {moment(shift.endTime).format("DD/MM yyyy")}</b></h5>                              
                                 <h6>{weekdays[moment(shift.endTime).day()] + " Uge " + moment(shift.endTime).week()}</h6>
                     </CardTitle>
                     <CardText>
                         <Row>
                             <Col className="col-sm">
-                                <h5>{shift.name}</h5>                    
+                                <b>{shift.name}</b>                    
                                 </Col>
                         </Row>
                         <Row>

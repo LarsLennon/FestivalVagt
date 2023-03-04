@@ -11,31 +11,6 @@ export enum ConflictType {
 }
 
 
-export function calendarConflict(conflict: number) {
-
-  switch (conflict) {
-
-    case ConflictType.None:
-      return "";
-
-      case ConflictType.NotSelectable:
-        return "Denne vagt skal tildeles";
-        
-    case ConflictType.NeedExperience:
-      return "Denne vagt kræver erfaring";
-
-    case ConflictType.NeedDriver:
-      return "Denne vagt kræver kørekort";
-
-    case ConflictType.TimeConflict:
-      return "Du har anden vagt på samme tid";  
-
-    default:
-      return "";
-  }
-
-}
-
 export default function conflict(conflict: number) {
 
   switch (conflict) {

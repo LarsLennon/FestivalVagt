@@ -146,6 +146,7 @@ export interface CalendarShiftDTO {
   endTime?: string;
   myShift?: string;
   conflict?: number;
+  shiftConflict?: number;
   priority: number;
   description?: string;
   members: CalendarShiftMemberDTO[];

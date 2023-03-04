@@ -1,5 +1,5 @@
 import moment from "moment";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import { useState } from "react";
 // import { RiDeleteBinLine } from "react-icons/ri";
@@ -20,6 +20,7 @@ interface BookingProps {
 
 export default function CalendarShiftModal(props: BookingProps) {
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
 
   // const [open, setOpen] = useState("1");
   // const toggle = (id: any) => {
@@ -42,8 +43,12 @@ export default function CalendarShiftModal(props: BookingProps) {
         props.refetch();
         close();
         //navigate(props.returnUrl)
-      }, (error) => {
-        console.log(error);
+      },
+      error => {
+          // setLoading(false);
+          setErrorMessage("Error");
+          if(error.response.data > 0) setErrorMessage(conflict(error.response.data));
+          // setErrorMessage(error.response.data);
       }
     );
   };
@@ -71,6 +76,7 @@ export default function CalendarShiftModal(props: BookingProps) {
   };
 
   var stringConflict = conflict(props.event.conflict!);
+  var stringShiftConflict = conflict(props.event.shiftConflict!);
 
   const adminInfo = () => {
     if (!authService.isManager()) {
@@ -93,7 +99,8 @@ export default function CalendarShiftModal(props: BookingProps) {
     // if (!authService.isManager()) {
     //   return "";
     // }
-    const disabled = (props.event.conflict !== 0);
+    const disabled = (props.event.conflict !== 0) || (props.event.shiftConflict !== 0);
+    // const disabled = false;
     if (props.event.myShift) {
       return (
         <Button
@@ -118,20 +125,6 @@ export default function CalendarShiftModal(props: BookingProps) {
     }
   }
 
-  // const renderApiData = props.event.members.map((filteredItem, index) => {
-  //   return (
-  //     <React.Fragment key={index}>
-  //       <tr>
-  //         <th scope="row">
-  //           {/* <Button color="info" onClick={() => handleImport(filteredItem.TeamId)}>Import</Button> */}
-  //         </th>
-  //         <td>{filteredItem.name}</td>
-  //         <td></td>
-  //       </tr>
-  //     </React.Fragment>
-  //   );
-  // });
-
     return (
       <div>
         <Modal onOpened={modalOpened} isOpen={props.isOpen} toggle={close}>
@@ -141,6 +134,8 @@ export default function CalendarShiftModal(props: BookingProps) {
           </ModalHeader>
 
           {stringConflict !== "" ? <Alert color="danger">{stringConflict}</Alert> : ""}
+          {stringShiftConflict !== "" ? <Alert color="danger">{stringShiftConflict}</Alert> : ""}
+          {errorMessage !== "" ? <Alert color="danger">{errorMessage}</Alert> : ""}
 
           <ModalBody>
           {props.event.description !== "" ? props.event.description : ""}
@@ -159,67 +154,6 @@ export default function CalendarShiftModal(props: BookingProps) {
               </tbody>
             </Table>
 
-            {/* <Table>
-            <thead>
-              <tr>
-                <th>Medhjælpere</th>
-                <th>Kørekort</th>
-                <th>Erfaren</th>
-              </tr>
-            </thead>
-            <tbody>
-              {renderApiData}
-            </tbody>
-          </Table> */}
-
-            {
-              //@ts-ignore
-              // <Accordion open={open} toggle={toggle}>
-              //   <AccordionItem>
-              //     <AccordionHeader targetId="1">Info</AccordionHeader>
-              //     <AccordionBody accordionId="1">
-              //       <Table>
-              //         <thead>
-              //           <tr>
-              //             <th></th>
-              //             <th></th>
-              //           </tr>
-              //         </thead>
-              //         <tbody>
-              //           <tr>
-              //             <td>Status</td>
-              //             <td>Status</td>
-              //           </tr>
-              //           <tr>
-              //             <td>Bestillinger</td>
-              //             <td>Bestillinger</td>
-              //           </tr>
-              //           <tr>
-              //             <td>Bestilt til</td>
-              //             <td>
-              //               {" "}
-              //               Platforme Op/Ned<br></br>
-              //               Walthers VoV
-              //             </td>
-              //           </tr>
-              //           <tr>
-              //             <td>Første</td>
-              //             <td>Første</td>
-              //           </tr>
-              //           <tr>
-              //             <td>Sidste</td>
-              //             <td>Sidste</td>
-              //           </tr>
-              //           <tr>
-              //             <td>Belægning</td>
-              //             <td>Alle 59 dage</td>
-              //           </tr>
-              //         </tbody>
-              //       </Table>
-              //     </AccordionBody>
-              //   </AccordionItem>
-              // </Accordion>
-            }
             <br></br>
             <div className="d-flex justify-content-between">
               <Button
