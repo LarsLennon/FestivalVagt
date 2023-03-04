@@ -22,7 +22,7 @@ export default function MemberAttributes() {
           };
           apiService.setMemberAttributes(attributes).then(
             () => {
-                navigate("/calendar")
+                navigate("/")
             })
     };
 

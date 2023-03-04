@@ -10,13 +10,16 @@ export default function Home() {
 
     return (
         <Container>
-            <h1>Velkommen til Smukvagt</h1>
-            <iframe title="Video Guide" width="560" height="315" src="https://www.youtube.com/embed/JO0wRjemHlg" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+            <h1>Velkommen til SmukVagt</h1>
+            <h5>Du kan nu se vagtplanen ved at vælge Kalender i menuen</h5>
+            {/* <iframe title="Video Guide" width="560" height="315" src="https://www.youtube.com/embed/JO0wRjemHlg" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> */}
 
+            <br />
+            <br />
             <h2>Spørgsmål og Svar</h2>
             <br />
 
-            <h4>Kan jeg tage vagter før, under og efter festivallen?</h4>
+            <h4>Kan jeg tage vagter før, under og efter festival?</h4>
             <p>Ja, du kan frit vælge hvilke vagter du vil tage hvis du kan vælge dem i kalenderen.</p>
             <br />
             <h4>Hvorfor er der nogle tomme vagter?</h4>

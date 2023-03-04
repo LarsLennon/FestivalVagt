@@ -1,10 +1,9 @@
-import React from "react";
 import { useEffect, useState } from "react";
 import { Container, Table } from "reactstrap";
 import { MemberDTO } from "../interface/interface";
 import apiService from "../services/api.service";
 import { BsSearch } from 'react-icons/bs';
-import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im';
+// import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im';
 import { useGlobalContext } from "../hooks/GlobalContent";
 
 export default function MemberDetails() {

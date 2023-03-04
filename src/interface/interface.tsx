@@ -1,6 +1,6 @@
 
 export interface MemberDTO {
-  memberId?: number;
+  memberId: number;
   name?: string;
   membaNumber?: string;
   driver?:boolean;

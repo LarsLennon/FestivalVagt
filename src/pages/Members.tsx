@@ -46,7 +46,7 @@ export default function Members() {
   const renderApiData = filteredData.map((filteredItem, index) => {
     return (
       <React.Fragment key={index}>
-        <tr>
+        <tr  onClick={() => memberDetails(filteredItem.memberId)}>
           <th scope="row">
             {/* <Button color="info" onClick={() => handleImport(filteredItem.TeamId)}>Import</Button> */}
           </th>
@@ -62,6 +62,11 @@ export default function Members() {
       </React.Fragment>
     );
   });
+
+  const memberDetails = (memberId:number) => {
+      
+  }
+
 
   return (
     <Container fluid="lg">
