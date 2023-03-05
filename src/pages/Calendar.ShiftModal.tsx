@@ -150,7 +150,7 @@ export default function CalendarShiftModal(props: BookingProps) {
   const exchangeInfo = () => {
     if (props.event.conflict !== ConflictType.TooManyShifts  || (props.event.shiftConflict !== 0)) {
 
-      return (props.event.conflict);
+      return ("");
     }
     return (
       <Form>

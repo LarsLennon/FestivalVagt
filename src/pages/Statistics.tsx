@@ -24,7 +24,7 @@ export default function Statistics() {
     useEffect(() => {
         const interval = setInterval(() => {
             loadApiData();
-        }, 5000);
+        }, 2000);
     
         return () => clearInterval(interval);
       }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -41,6 +41,7 @@ export default function Statistics() {
                     <Progress
                         value={apiData?.membersWith42Hours}
                         max={apiData?.totalMembers}
+                        color="success"
                     />
                     <br></br>
 
@@ -48,6 +49,7 @@ export default function Statistics() {
                     <Progress
                         value={apiData?.membersWith41Hours}
                         max={apiData?.totalMembers}
+                        color="warning"
                     />
                     <br></br>
 
@@ -62,6 +64,7 @@ export default function Statistics() {
                     <Progress
                         value={apiData?.membersWith0Hours}
                         max={apiData?.totalMembers}
+                        color="danger"
                     />
                     <br></br>
 
@@ -111,6 +114,7 @@ export default function Statistics() {
                     <Progress
                         value={apiData?.fullShifts}
                         max={apiData?.totalShifts}
+                        color="success"
                     />
                     <br></br>
 
@@ -118,6 +122,7 @@ export default function Statistics() {
                     <Progress
                         value={apiData?.emptyShifts}
                         max={apiData?.totalShifts}
+                        color="danger"
                     />
                     <br></br>
 

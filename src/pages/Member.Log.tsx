@@ -70,6 +70,7 @@ export default function MemberLog() {
             <th>Tid</th>
             <th>Bruger</th>
             <th>Medlem</th>
+            <th>Message</th>
           </tr>
         </thead>
 
