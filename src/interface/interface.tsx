@@ -201,6 +201,11 @@ export interface StatisticsDTO {
 
   totalUnits: number;
   unitsRemaining: number;
+  
+  membersWith42Hours: number;
+  membersWith41Hours: number;
+  membersWithSomeHours: number;
+  membersWith0Hours: number;
 
   totalMembers: number;
   verifiedMembers: number;  

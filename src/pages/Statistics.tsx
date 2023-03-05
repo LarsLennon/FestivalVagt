@@ -32,6 +32,35 @@ export default function Statistics() {
             <Row>
                 <Col className="col-4">
 
+
+                    Medhjælpere med 42 timer {apiData?.membersWith42Hours} / {apiData?.totalMembers}
+                    <Progress
+                        value={apiData?.membersWith42Hours}
+                        max={apiData?.totalMembers}
+                    />
+                    <br></br>
+
+                    Medhjælpere mellem 41 og 42 timer {apiData?.membersWith41Hours} / {apiData?.totalMembers}
+                    <Progress
+                        value={apiData?.membersWith41Hours}
+                        max={apiData?.totalMembers}
+                    />
+                    <br></br>
+
+                    Medhjælpere med nogle vagter {apiData?.membersWithSomeHours} / {apiData?.totalMembers}
+                    <Progress
+                        value={apiData?.membersWithSomeHours}
+                        max={apiData?.totalMembers}
+                    />
+                    <br></br>
+
+                    Medhjælpere uden vagter {apiData?.membersWith0Hours} / {apiData?.totalMembers}
+                    <Progress
+                        value={apiData?.membersWith0Hours}
+                        max={apiData?.totalMembers}
+                    />
+                    <br></br>
+
                     Medhjælpere der har bekræftet {apiData?.verifiedMembers} / {apiData?.totalMembers}
                     <Progress
                         value={apiData?.verifiedMembers}
@@ -45,7 +74,6 @@ export default function Statistics() {
                         max={apiData?.totalUnits! / 42}
                     />
                     <br></br>
-
                     Medhjælpere med kørekort {apiData?.drivers} / {apiData?.totalMembers}
                     <Progress
                         value={apiData?.drivers}
@@ -87,6 +115,7 @@ export default function Statistics() {
                         value={apiData?.emptyShifts}
                         max={apiData?.totalShifts}
                     />
+                    <br></br>
 
                 </Col>
             </Row>
