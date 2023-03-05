@@ -10,6 +10,16 @@ export interface MemberDTO {
   units?:number;
 }
 
+export interface MemberLogDTO {
+  date: string;
+  applicationMemberId: number;
+  applicationMember: string;
+  operatorMemberId: number;
+  operatorMember: string;
+  timeStamp: string;
+  message: string;
+}
+
 export interface MemberDetailsDTO {
   memberId: number;
   name: string;
@@ -162,7 +172,11 @@ export interface CalendarDTO {
   lastDate: string;
   isOpen: boolean;
   shifts: CalendarShiftDTO[];
+}
 
+export interface ShiftExchangeDTO {
+  addShiftId: number;
+  removeShiftId:number;
 }
 
 // ShiftTypes
@@ -180,7 +194,18 @@ export interface ShiftTypeCreateDTO {
  */
 export interface StatisticsDTO {
   sectionId: string;
+
+  totalShifts: number;
+  emptyShifts: number;
+  fullShifts: number;
+
   totalUnits: number;
+  unitsRemaining: number;
+
   totalMembers: number;
-  verifiedMembers: number;
+  verifiedMembers: number;  
+  drivers: number;  
+  experienced: number;  
+  firstAid: number;            
+  
 }

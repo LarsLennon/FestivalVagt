@@ -28,26 +28,66 @@ export default function Statistics() {
     return (
         <Container>
             <h5>Statistics</h5>
-            <p>{apiData?.totalUnits}</p>
-            <p>{apiData?.totalMembers}</p>
-            <p>{apiData?.verifiedMembers}</p>
 
             <Row>
                 <Col className="col-4">
 
                     Medhjælpere der har bekræftet {apiData?.verifiedMembers} / {apiData?.totalMembers}
                     <Progress
-                        max={apiData?.totalMembers}
                         value={apiData?.verifiedMembers}
+                        max={apiData?.totalMembers}
+                    />
+                    <br></br>
+
+                    Medhjælpere for at dække vagtplanen {apiData?.totalMembers} / {(apiData?.totalUnits! / 42).toFixed(0)}
+                    <Progress
+                        value={apiData?.totalMembers}
+                        max={apiData?.totalUnits! / 42}
+                    />
+                    <br></br>
+
+                    Medhjælpere med kørekort {apiData?.drivers} / {apiData?.totalMembers}
+                    <Progress
+                        value={apiData?.drivers}
+                        max={apiData?.totalMembers}
+                    />
+                    <br></br>
+
+                    Medhjælpere med  erfaring {apiData?.experienced} / {apiData?.totalMembers}
+                    <Progress
+                        value={apiData?.experienced}
+                        max={apiData?.totalMembers}
+                    />
+                    <br></br>
+
+                    Medhjælpere med førstehjælp {apiData?.firstAid} / {apiData?.totalMembers}
+                    <Progress
+                        value={apiData?.firstAid}
+                        max={apiData?.totalMembers}
                     />
                 </Col>
                 <Col className="col-4">
 
-                Antal medhjælpere for at dække vagtplanen {apiData?.totalMembers} / {(apiData?.totalUnits!/42).toFixed(0)}
+                    Antal timer taget {apiData?.unitsRemaining.toFixed(0)} / {apiData?.totalUnits.toFixed(0)}
                     <Progress
-                        max={apiData?.totalUnits!/42}
-                        value={apiData?.totalMembers}
+                        value={apiData?.unitsRemaining}
+                        max={apiData?.totalUnits}
                     />
+                    <br></br>
+
+                    Antal fyldte vagter {apiData?.fullShifts.toFixed(0)} / {apiData?.totalShifts.toFixed(0)}
+                    <Progress
+                        value={apiData?.fullShifts}
+                        max={apiData?.totalShifts}
+                    />
+                    <br></br>
+
+                    Antal tomme vagter {apiData?.emptyShifts.toFixed(0)} / {apiData?.totalShifts.toFixed(0)}
+                    <Progress
+                        value={apiData?.emptyShifts}
+                        max={apiData?.totalShifts}
+                    />
+
                 </Col>
             </Row>
         </Container>

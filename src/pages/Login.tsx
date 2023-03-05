@@ -111,8 +111,10 @@ export default function Login() {
                     <Input
                         placeholder="********"
                         onChange={onChangePassword}
+                        type="password"
                     />
                 </FormGroup>
+
 
                 <FormGroup>{errorMessage !== "" ? <Alert color="danger">{errorMessage}</Alert> : ""}</FormGroup>
 

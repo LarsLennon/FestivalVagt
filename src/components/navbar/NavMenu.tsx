@@ -34,6 +34,7 @@ import Statistics from "../../pages/Statistics";
 import ShiftDetails from "../../pages/Shift.Details";
 import MemberDetails from "../../pages/Member.Details";
 import MemberEdit from "../../pages/Member.Edit";
+import MemberLog from "../../pages/Member.Log";
 
 export default function NavMenu() {
   const { setUserName } = useGlobalContext();
@@ -110,6 +111,7 @@ export default function NavMenu() {
 
         {/* Admin */}
         <Route path="/team" element={<ProtectedAdminRoute><Teams /></ProtectedAdminRoute>} />
+        <Route path="/member/log" element={<ProtectedAdminRoute><MemberLog /></ProtectedAdminRoute>} />
         <Route path="/team/sync" element={<ProtectedAdminRoute><TeamSync /></ProtectedAdminRoute>} />
         <Route path="/team/:id" element={<ProtectedAdminRoute><Team /></ProtectedAdminRoute>} />
         <Route path="/create/:id" element={<ProtectedAdminRoute><SectionCreate /></ProtectedAdminRoute>} />

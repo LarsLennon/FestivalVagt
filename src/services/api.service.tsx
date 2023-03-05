@@ -1,5 +1,5 @@
 import axios from "axios";
-import { MemberAttributesDTO, MemberEditDTO, SectionCreateDTO, SectionEditDTO, ShiftTypeCreateDTO } from "../interface/interface";
+import { MemberAttributesDTO, MemberEditDTO, SectionCreateDTO, SectionEditDTO, ShiftExchangeDTO, ShiftTypeCreateDTO } from "../interface/interface";
 import authHeader from "./auth-header"
 
 
@@ -13,6 +13,7 @@ export const ENDPOINTS = {
   membaController: "memba",
   memberController: "member",
   membersController: "members",
+  memberLogsController: "memberlogs",
   sectionController: "sections",
   shiftTypesController: "shifttypes",
   shiftController: "shifts",
@@ -66,6 +67,10 @@ class ApiService {
     return axios.get(API_URL + ENDPOINTS.memberController + "/members/" + sectionId, { headers: authHeader() });
   }
 
+  getMemberLogs() {
+    return axios.get(API_URL + ENDPOINTS.memberLogsController, { headers: authHeader() });
+  }
+
   getMember(sectionId: string) {
     return axios.get(API_URL + ENDPOINTS.membersController + "/" + sectionId, { headers: authHeader() });
   }
@@ -84,6 +89,12 @@ class ApiService {
 
   removeShift(id: number) {
     return axios.delete(API_URL + ENDPOINTS.memberController + "/removeShift/" + id, { headers: authHeader() });
+  }
+
+  exchangeShift(data: ShiftExchangeDTO) {
+    return axios.put(API_URL + ENDPOINTS.memberController + "/exchangeShift/",
+      data,
+      { headers: authHeader() });
   }
 
   setMemberAttributes(attributes: MemberAttributesDTO) {
