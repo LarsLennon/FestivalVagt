@@ -42,7 +42,7 @@ export default function MemberShifts() {
                 <CardBody>
                     <CardTitle>
                                 <h5><b>{moment(shift.startTime).format("HH:mm")} - {moment(shift.endTime).format("HH:mm")} {moment(shift.endTime).format("DD/MM yyyy")}</b></h5>                              
-                                <h6>{weekdays[moment(shift.endTime).day()] + " Uge " + moment(shift.endTime).week()}</h6>
+                                <h6>{weekdays[moment(shift.endTime).day()] + " Uge " + moment(shift.endTime).isoWeek()}</h6>
                     </CardTitle>
                     <CardText>
                         <Row>
