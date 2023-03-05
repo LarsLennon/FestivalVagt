@@ -33,7 +33,7 @@ export default function CalendarShiftModal(props: BookingProps) {
   const close = () => props.close();
 
   const modalOpened = () => {
-    setLoading(true);
+    // setLoading(true);
     setValidShift(false);
     setErrorMessage("");
     if (props.event.conflict === ConflictType.TooManyShifts) {
@@ -87,7 +87,7 @@ export default function CalendarShiftModal(props: BookingProps) {
         props.refetch();
         setErrorMessage("Error");
         console.log(error)
-        if (error.response.data != "") setErrorMessage(error.response.data);
+        if (error.response.data !== "") setErrorMessage(error.response.data);
         // setErrorMessage(error.response.data);
       })
 
@@ -121,7 +121,7 @@ export default function CalendarShiftModal(props: BookingProps) {
     );
   };
 
-  const [isLoading, setLoading] = useState(true);
+  // const [isLoading, setLoading] = useState(true);
   const [apiData, setApiData] = useState<MyShiftsDTO>();
   const loadApiData = () => {
     apiService.getMembersShifts(sectionId).then(
@@ -260,7 +260,7 @@ export default function CalendarShiftModal(props: BookingProps) {
                 >
                   Venteliste
                 </Button> : ""} */}
-              {(props.event.conflict === ConflictType.TooManyShifts) && (props.event.shiftConflict == 0) ?
+              {(props.event.conflict === ConflictType.TooManyShifts) && (props.event.shiftConflict === 0) ?
                 <Button
                   color="warning"
                   className="float-right m-1"

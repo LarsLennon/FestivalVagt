@@ -4,10 +4,8 @@ import { Container, Table } from "reactstrap";
 import { MemberLogDTO } from "../interface/interface";
 import apiService from "../services/api.service";
 import { useGlobalContext } from "../hooks/GlobalContent";
-import { useNavigate } from "react-router-dom";
 
 export default function MemberLog() {
-  const navigate = useNavigate();
   const { sectionId } = useGlobalContext();
 
   const [apiData, setApiData] = useState<MemberLogDTO[]>([]);
@@ -56,9 +54,9 @@ export default function MemberLog() {
     );
   });
 
-  const memberDetails = (memberId: number) => {
-    navigate("/member/details/" + memberId)
-  }
+  // const memberDetails = (memberId: number) => {
+  //   navigate("/member/details/" + memberId)
+  // }
 
 
   return (
