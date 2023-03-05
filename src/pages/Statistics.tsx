@@ -19,11 +19,15 @@ export default function Statistics() {
             })
     };
 
+
+
     useEffect(() => {
-        if (isLoading) {
+        const interval = setInterval(() => {
             loadApiData();
-        }
-    });
+        }, 5000);
+    
+        return () => clearInterval(interval);
+      }, []);
 
     return (
         <Container>

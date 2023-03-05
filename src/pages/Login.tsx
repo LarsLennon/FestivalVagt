@@ -26,7 +26,7 @@ export default function Login() {
 
     const handleDummyLogin = (user: string) => {
         setLoading(true);
-        authService.login(user, "1234").then(
+        authService.login(user, "Kærligkys").then(
             () => {
                 setErrorMessage("");
                 console.log("Response");
