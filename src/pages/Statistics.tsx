@@ -8,12 +8,12 @@ export default function Statistics() {
     const { sectionId } = useGlobalContext();
 
 
-    const [isLoading, setLoading] = useState(true);
+    // const [isLoading, setLoading] = useState(true);
     const [apiData, setApiData] = useState<StatisticsDTO>();
     const loadApiData = () => {
         apiService.getStatistics(parseInt(sectionId)).then(
             (response) => {
-                setLoading(false);
+                // setLoading(false);
                 setApiData(response.data);
                 console.log(response.data);
             })
@@ -27,7 +27,7 @@ export default function Statistics() {
         }, 5000);
     
         return () => clearInterval(interval);
-      }, []);
+      }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <Container>
